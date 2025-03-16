@@ -16,7 +16,7 @@ bool Engine::Initialize() {
         std::cerr << "SDL Initialization Failed: " << SDL_GetError() << std::endl;
         return false;
     }
-
+    //Change this to run in play mode only
     window = SDL_CreateWindow("Game", 800, 600, NULL);
 
     SDL_ShowWindow(window);
