@@ -10,12 +10,24 @@ if (POLICY CMP0141)
 endif()
 
 project ("Pancake Engine 2D")
+#Load SDL First
+add_subdirectory(Libraries/SDL)
 
-# Add source to this project's executable.
-add_executable (CMakeTarget "Pancake Engine 2D.cpp" "Pancake Engine 2D.h")
+# Add subdirectories
+add_subdirectory(Engine)
+add_subdirectory(Editor)
+# Add third-party libraries
+add_subdirectory(Libraries/imgui)
+
+add_custom_target(run
+    COMMAND Editor
+    DEPENDS Editor
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET CMakeTarget PROPERTY CXX_STANDARD 20)
+  set_property(TARGET Editor PROPERTY CXX_STANDARD 20)
+  set_property(TARGET Engine PROPERTY CXX_STANDARD 20)
 endif()
 
 # TODO: Add tests and install targets if needed.
