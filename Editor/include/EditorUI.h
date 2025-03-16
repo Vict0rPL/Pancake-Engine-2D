@@ -7,9 +7,13 @@ public:
     EditorUI(Engine* engine);
     ~EditorUI();
 
-    // Renders the editor interface, including the Play button
-    void Render();
+    void InitializeImGui();
+    void ShutdownImGui();
+
+    // Main loop function (or you can put this in main.cpp)
+    void Run();
 
 private:
     Engine* engineRef;
+    bool isRunning;
 };

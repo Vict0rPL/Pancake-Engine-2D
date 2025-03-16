@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SDL3/SDL.h>
+#include <SDL.h>
 #include <memory>
 
 class Scene;
@@ -11,8 +11,18 @@ public:
     ~Engine();
 
     bool Initialize();
-    void Run();
     void Shutdown();
+
+    // Called each frame by the Editor (or your main loop)
+    void Update(float deltaTime);
+    void Render();
+
+    // Accessors so the Editor can grab the SDL pointers for ImGui initialization
+    SDL_Window* GetWindow() const { return window; }
+    SDL_Renderer* GetRenderer() const { return renderer; }
+
+    bool IsRunning() const { return isRunning; }
+    void Stop() { isRunning = false; }
 
 private:
     bool isRunning;
@@ -21,7 +31,5 @@ private:
 
     std::unique_ptr<Scene> activeScene;
 
-    void ProcessEvents();
-    void Update(float deltaTime);
-    void Render();
+    void ProcessEvents(); // If the Engine also handles game input
 };
