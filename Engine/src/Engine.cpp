@@ -26,7 +26,7 @@ bool Engine::Initialize() {
     SDL_ShowWindow(window);
 
     // Create a renderer
-    renderer = SDL_CreateRenderer(window, nullptr, 0);
+    renderer = SDL_CreateRenderer(window, NULL);
     if (!renderer) {
         std::cerr << "Renderer Creation Failed: " << SDL_GetError() << std::endl;
         return false;

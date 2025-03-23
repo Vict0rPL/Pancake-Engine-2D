@@ -10,14 +10,15 @@ if (POLICY CMP0141)
 endif()
 
 project ("Pancake Engine 2D")
+# Add third-party libraries
 #Load SDL First
 add_subdirectory(Libraries/SDL)
+add_subdirectory(Libraries/imgui)
 
 # Add subdirectories
 add_subdirectory(Engine)
 add_subdirectory(Editor)
-# Add third-party libraries
-add_subdirectory(Libraries/imgui)
+
 
 add_custom_target(run
     COMMAND Editor

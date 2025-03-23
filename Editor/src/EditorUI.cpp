@@ -2,7 +2,7 @@
 #include "Engine.h"
 #include <imgui.h>
 #include <backends/imgui_impl_sdl3.h>
-#include <backends/imgui_impl_sdlrenderer.h>
+#include <backends/imgui_impl_sdlrenderer3.h>
 #include <iostream>
 
 EditorUI::EditorUI(Engine* engine)
@@ -18,13 +18,13 @@ void EditorUI::InitializeImGui() {
     ImGui::CreateContext();
     ImGui::StyleColorsDark();
 
-    // Initialize ImGui backends using the engine's SDL window/renderer
+    //Initialize ImGui backends using the engine's SDL window/renderer
     ImGui_ImplSDL3_InitForSDLRenderer(engineRef->GetWindow(), engineRef->GetRenderer());
-    ImGui_ImplSDLRenderer_Init(engineRef->GetRenderer());
+    ImGui_ImplSDLRenderer3_Init(engineRef->GetRenderer());
 }
 
 void EditorUI::ShutdownImGui() {
-    ImGui_ImplSDLRenderer_Shutdown();
+    ImGui_ImplSDLRenderer3_Shutdown();
     ImGui_ImplSDL3_Shutdown();
     ImGui::DestroyContext();
 }
@@ -59,7 +59,7 @@ void EditorUI::Run() {
 
         // Start a new ImGui frame
         ImGui_ImplSDL3_NewFrame();
-        ImGui_ImplSDLRenderer_NewFrame();
+        ImGui_ImplSDLRenderer3_NewFrame();
         ImGui::NewFrame();
 
         // -------------------------------------------------------------------
@@ -75,7 +75,7 @@ void EditorUI::Run() {
 
         // Render the ImGui overlay
         ImGui::Render();
-        ImGui_ImplSDLRenderer_RenderDrawData(ImGui::GetDrawData());
+        ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), engineRef->GetRenderer());
 
         // Finally present everything to the screen
         SDL_RenderPresent(engineRef->GetRenderer());

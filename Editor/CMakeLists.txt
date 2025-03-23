@@ -10,7 +10,7 @@ target_include_directories(Editor PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include          # Editor-specific headers
     ${CMAKE_SOURCE_DIR}/Engine/include           # Engine headers
     ${CMAKE_SOURCE_DIR}/Libraries/SDL/include    # SDL3 headers (SDL.h)
-    ${CMAKE_SOURCE_DIR}/Libraries/imgui          # ImGui headers
+    ${CMAKE_SOURCE_DIR}/Libraries/imgui       # ImGui headers
 )
 
 
