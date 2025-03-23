@@ -42,15 +42,11 @@ add_library(ImGui STATIC
 target_include_directories(ImGui PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/backends
-    # Add SDL's include path if you don’t rely on a global include
-    # For example, if SDL is in Libraries/SDL/include:
+    # Add SDL's include path
     ${CMAKE_SOURCE_DIR}/Libraries/SDL/include
 )
 
-# Link to SDL3 if your SDL library target is named "SDL3"
-#target_link_libraries(ImGui PUBLIC SDL3::SDL3)
-
-# Optionally create an alias target for convenience
+# Create an alias target for convenience
 add_library(ImGui::ImGui ALIAS ImGui)
 ```
 4. **Build the project:**  
