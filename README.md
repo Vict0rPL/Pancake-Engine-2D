@@ -1,4 +1,4 @@
-﻿# Pancake Engine 2D
+# Pancake Engine 2D
 
 **This is a project for PSK PGK classes.**
 
