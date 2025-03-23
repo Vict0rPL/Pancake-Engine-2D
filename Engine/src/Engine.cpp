@@ -2,7 +2,6 @@
 #include "Scene.h"
 #include <iostream>
 
-
 Engine::Engine()
     : isRunning(false), window(nullptr), renderer(nullptr) {
 }
@@ -16,21 +15,17 @@ bool Engine::Initialize() {
         std::cerr << "SDL Initialization Failed: " << SDL_GetError() << std::endl;
         return false;
     }
-    //Change this to run in play mode only
-    window = SDL_CreateWindow("Game", 800, 600, NULL);
 
-    SDL_ShowWindow(window);
-
-    SDL_SetWindowPosition(window,
-        SDL_WINDOWPOS_CENTERED,
-        SDL_WINDOWPOS_CENTERED);
-
-
+    // Create an SDL3 window (API changed slightly from SDL2)
+    // For SDL3, signature: SDL_CreateWindow(const char* title, int w, int h, Uint32 flags)
+    window = SDL_CreateWindow("Engine Window", 800, 600, 0);
     if (!window) {
         std::cerr << "Window Creation Failed: " << SDL_GetError() << std::endl;
         return false;
     }
+    SDL_ShowWindow(window);
 
+    // Create a renderer
     renderer = SDL_CreateRenderer(window, NULL);
     if (!renderer) {
         std::cerr << "Renderer Creation Failed: " << SDL_GetError() << std::endl;
@@ -45,24 +40,6 @@ bool Engine::Initialize() {
     return true;
 }
 
-void Engine::Run() {
-    const float fps = 60.0f;
-    const float frameDelay = 1000.0f / fps;
-
-    while (isRunning) {
-        Uint32 frameStart = SDL_GetTicks();
-
-        ProcessEvents();
-        Update(1.0f / fps);
-        Render();
-
-        Uint32 frameTime = SDL_GetTicks() - frameStart;
-        if (frameDelay > frameTime) {
-            SDL_Delay(frameDelay - frameTime);
-        }
-    }
-}
-
 void Engine::Shutdown() {
     if (renderer) {
         SDL_DestroyRenderer(renderer);
@@ -75,31 +52,34 @@ void Engine::Shutdown() {
     SDL_Quit();
 }
 
-void Engine::ProcessEvents() {
-    SDL_Event event;
-    while (SDL_PollEvent(&event)) {
-        if (event.type == SDL_EVENT_QUIT) {
-            isRunning = false;
-        }
-        // Handle other inputs/events
-    }
-}
-
 void Engine::Update(float deltaTime) {
+    // If you want the Engine to handle its own events, do it here:
+    ProcessEvents();
+
+    // Update the active scene
     if (activeScene) {
         activeScene->Update(deltaTime);
     }
 }
 
 void Engine::Render() {
-    // Clear screen
-    SDL_SetRenderDrawColor(renderer, 100, 149, 237, 255); // Cornflower blue
+    // Clear the screen
+    SDL_SetRenderDrawColor(renderer, 100, 149, 237, 255);
     SDL_RenderClear(renderer);
 
-    //if (activeScene) {
-    //    activeScene->Render(renderer);
-    //}
+    // Render the scene
+    if (activeScene) {
+        activeScene->Render(renderer);
+    }
+}
 
-    // Present to screen
-    SDL_RenderPresent(renderer);
+// Optional: Engine handles game-specific events
+void Engine::ProcessEvents() {
+    SDL_Event event;
+    while (SDL_PollEvent(&event)) {
+        if (event.type == SDL_EVENT_QUIT) {
+            isRunning = false;
+        }
+        // Handle other game-related inputs here
+    }
 }

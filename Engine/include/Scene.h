@@ -2,9 +2,9 @@
 
 #include <vector>
 #include <memory>
+#include "GameObject.h"
 
 class SDL_Renderer;
-class GameObject;
 
 class Scene {
 public:
@@ -13,8 +13,8 @@ public:
 
     virtual void Load();
     virtual void Update(float deltaTime);
-    //virtual void Render(SDL_Renderer* renderer);
+    virtual void Render(SDL_Renderer* renderer);
 
 protected:
-    //std::vector<std::unique_ptr<GameObject>> gameObjects;
+    std::vector<std::unique_ptr<GameObject>> gameObjects;
 };
