@@ -1,3 +1,19 @@
 #include "GameObject.h"
+#include <iostream>
 
-// Implementation if needed; often this file is empty for an abstract class.
+GameObject::GameObject(const std::string& name)
+    : name(name)
+{
+}
+
+GameObject::~GameObject() {
+}
+
+void GameObject::Update(float deltaTime) {
+    // Default update
+}
+
+void GameObject::Render(SDL_Renderer* /*renderer*/) {
+    // Default render
+}
+

@@ -1,8 +1,10 @@
-#include "EditorUI.h"
-#include "Engine.h"
-#include <imgui.h>
-#include <backends/imgui_impl_sdl3.h>
-#include <backends/imgui_impl_sdlrenderer3.h>
+#include "EditorUI.h" 
+#include "Engine.h" 
+#include "PrimitiveRenderer.h" 
+#include "Point2D.h" 
+#include <imgui.h> 
+#include <backends/imgui_impl_sdl3.h> 
+#include <backends/imgui_impl_sdlrenderer3.h> 
 #include <iostream>
 
 EditorUI::EditorUI(Engine* engine)
@@ -30,54 +32,63 @@ void EditorUI::ShutdownImGui() {
 }
 
 void EditorUI::Run() {
-    // Example fixed timestep
+    // Example fixed timestep 
     const float fps = 60.0f;
     const float frameDelay = 1000.0f / fps;
+    // We'll use a persistent flag to control point drawing.
+// (Alternatively, you could make it a member variable of EditorUI.)
+    static bool drawPoint = false;
 
     while (isRunning && engineRef->IsRunning()) {
         Uint32 frameStart = SDL_GetTicks();
 
-        // Process events specifically for ImGui
+        // Process events specifically for ImGui and the Editor.
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
-            // Let ImGui process the event
             ImGui_ImplSDL3_ProcessEvent(&event);
 
             // Also handle quitting the Editor
             if (event.type == SDL_EVENT_QUIT) {
-                // Stop both the Editor and the Engine
                 isRunning = false;
                 engineRef->Stop();
             }
         }
 
-        // Update the engine (which might also poll events if you want)
-        engineRef->Update(1.0f / fps);
-
-        // Engine does its own SDL rendering (no SDL_RenderPresent call)
-        engineRef->Render();
-
-        // Start a new ImGui frame
+        // Start a new ImGui frame so we can update our UI state.
         ImGui_ImplSDL3_NewFrame();
         ImGui_ImplSDLRenderer3_NewFrame();
         ImGui::NewFrame();
 
-        // -------------------------------------------------------------------
-        // Draw your Editor UI here
-        // -------------------------------------------------------------------
+        // Draw the Editor UI window.
         ImGui::Begin("Editor UI");
-        ImGui::Text("Hello from Dear ImGui (Editor)!");
-        // Example button that calls an Engine method
+        ImGui::Text("Dear ImGui Editor Window");
         if (ImGui::Button("Stop Engine")) {
             engineRef->Stop();
         }
+        // Checkbox to toggle drawing of the point. (later add support to draw based on click)
+        ImGui::Checkbox("Draw Point", &drawPoint);
         ImGui::End();
 
-        // Render the ImGui overlay
+        // Call ImGui::Render to capture the UI state
         ImGui::Render();
+
+        // Update and render the engine scene
+        engineRef->Update(1.0f / fps);
+        engineRef->Render();
+
+        // If the option is enabled, draw the point
+        if (drawPoint) {
+            // Create a PrimitiveRenderer using the engine's SDL_Renderer
+            PrimitiveRenderer primitiveRenderer(engineRef->GetRenderer());
+            // Create a Point2D at a fixed position (200,200) and draw it
+            Point2D point(200.0f, 200.0f);
+            point.Draw(primitiveRenderer);
+        }
+
+        // Render the ImGui overlay (draws the UI window)
         ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), engineRef->GetRenderer());
 
-        // Finally present everything to the screen
+        // Present everything to the screen
         SDL_RenderPresent(engineRef->GetRenderer());
 
         // Frame limiting

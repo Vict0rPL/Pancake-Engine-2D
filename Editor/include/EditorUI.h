@@ -10,7 +10,7 @@ public:
     void InitializeImGui();
     void ShutdownImGui();
 
-    // Main loop function (or you can put this in main.cpp)
+    // Main loop function
     void Run();
 
 private:

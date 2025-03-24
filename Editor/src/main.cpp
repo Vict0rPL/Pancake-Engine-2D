@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
     EditorUI editor(&engine);
     editor.InitializeImGui();
 
-    // Run the editor loop (which updates and renders the engine)
+    // Run the editor loop (updates and renders the engine)
     editor.Run();
 
     // Cleanup

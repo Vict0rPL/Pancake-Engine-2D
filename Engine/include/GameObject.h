@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GAMEOBJECT_H
+#define GAMEOBJECT_H
 
 #include <SDL3/SDL.h>
 #include <memory>
@@ -9,13 +10,12 @@ struct Vector2 {
     float x, y;
 };
 
-class Component; // forward declare if using components
-
 class GameObject {
 public:
     GameObject(const std::string& name = "GameObject");
     virtual ~GameObject();
 
+    // Base-class virtuals
     virtual void Update(float deltaTime);
     virtual void Render(SDL_Renderer* renderer);
 
@@ -28,10 +28,6 @@ public:
     bool isActive = true;
     std::string name;
 
-    // Component system (optional)
-    void AddComponent(std::unique_ptr<Component> component);
-    template<typename T> T* GetComponent();
-
-protected:
-    std::vector<std::unique_ptr<Component>> components;
 };
+
+#endif // GAMEOBJECT_H
