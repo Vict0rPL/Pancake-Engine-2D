@@ -16,8 +16,7 @@ bool Engine::Initialize() {
         return false;
     }
 
-    // Create an SDL3 window (API changed slightly from SDL2)
-    // For SDL3, signature: SDL_CreateWindow(const char* title, int w, int h, Uint32 flags)
+    // Create an SDL3 window
     window = SDL_CreateWindow("Engine Window", 800, 600, 0);
     if (!window) {
         std::cerr << "Window Creation Failed: " << SDL_GetError() << std::endl;
@@ -53,7 +52,7 @@ void Engine::Shutdown() {
 }
 
 void Engine::Update(float deltaTime) {
-    // If you want the Engine to handle its own events, do it here:
+    //Engine handles its own events
     ProcessEvents();
 
     // Update the active scene
@@ -80,6 +79,6 @@ void Engine::ProcessEvents() {
         if (event.type == SDL_EVENT_QUIT) {
             isRunning = false;
         }
-        // Handle other game-related inputs here
+        // Handle other game-related inputs
     }
 }

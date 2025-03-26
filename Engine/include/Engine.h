@@ -13,7 +13,7 @@ public:
     bool Initialize();
     void Shutdown();
 
-    // Called each frame by the Editor (or your main loop)
+    // Called each frame by the Editor (main loop)
     void Update(float deltaTime);
     void Render();
 
@@ -31,5 +31,5 @@ private:
 
     std::unique_ptr<Scene> activeScene;
 
-    void ProcessEvents(); // If the Engine also handles game input
+    void ProcessEvents(); //Engine also handles game input
 };
