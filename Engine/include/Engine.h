@@ -26,7 +26,7 @@ public:
     bool IsRunning() const { return isRunning; }
     void Stop() { isRunning = false; }
 
-    // New setter to control event processing
+    // setter to control event processing
     void SetProcessEventsEnabled(bool enabled);
 
 private:
@@ -36,9 +36,9 @@ private:
 
     std::unique_ptr<Scene> activeScene;
 
-    // New member variable: events are processed only if true
+    // events are processed only if true
     bool processEventsEnabled;
 
-    // Engine now processes events only when in game mode (i.e. processEventsEnabled is true)
+    // Engine processes events only when in game mode (when processEventsEnabled is true)
     void ProcessEvents();
 };

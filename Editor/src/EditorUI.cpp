@@ -53,7 +53,6 @@ void EditorUI::Run() {
     bool inGameMode = false;
 
     // Attempt to load the default scene if a project folder is already set
-    // (In practice, you might wait until the user selects a folder.)
     if (!projectFolderPath.empty()) {
         EnsureScenesFolderExists(projectFolderPath);
         std::filesystem::path mainScenePath = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
@@ -96,7 +95,7 @@ void EditorUI::Run() {
             // Provide a text input to type in the project folder
             static char folderBuffer[256] = "";
             if (ImGui::InputText("Set Project Folder", folderBuffer, IM_ARRAYSIZE(folderBuffer))) {
-                // We store user input in folderBuffer as they type
+                // store user input in folderBuffer as they type
             }
 
             // Button to confirm project folder

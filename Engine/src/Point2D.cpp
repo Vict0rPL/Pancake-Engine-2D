@@ -28,7 +28,7 @@ void Point2D::SetCoordinates(float newX, float newY) {
 }
 
 void Point2D::Draw(PrimitiveRenderer& renderer) const {
-    SDL_Color color = { 255, 0, 0, 255 };  // For example, red color.
+    SDL_Color color = { 255, 0, 0, 255 };
     renderer.DrawPoint(static_cast<int>(x), static_cast<int>(y), color);
 }
 

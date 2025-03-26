@@ -3,7 +3,7 @@
 #include <iostream>
 
 Engine::Engine()
-    : isRunning(false), window(nullptr), renderer(nullptr), processEventsEnabled(false) // initialize new flag here
+    : isRunning(false), window(nullptr), renderer(nullptr), processEventsEnabled(false)
 {
 }
 
@@ -86,7 +86,7 @@ void Engine::SetProcessEventsEnabled(bool enabled) {
     processEventsEnabled = enabled;
 }
 
-// Process events only when in game mode (i.e. processEventsEnabled is true)
+// Process events only when in game mode (when processEventsEnabled is true)
 void Engine::ProcessEvents() {
     if (!processEventsEnabled) {
         return;

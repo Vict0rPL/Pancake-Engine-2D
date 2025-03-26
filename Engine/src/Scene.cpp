@@ -1,11 +1,11 @@
 // Scene.cpp
 #include "Scene.h"
-#include "Point2D.h"  // <-- Include so the compiler knows about Point2D
+#include "Point2D.h"
 #include <fstream>
 #include <iostream>
 
 void Scene::Load() {
-    // Optionally initialize default objects here.
+    // initialize default objects here if later needed
 }
 
 void Scene::Update(float deltaTime) {
@@ -35,7 +35,7 @@ bool Scene::SerializeToJson(const std::string& filename) const {
         std::cerr << "Failed to open " << filename << " for writing.\n";
         return false;
     }
-    file << j.dump(4);  // Pretty-print with an indent of 4 spaces
+    file << j.dump(4);  // indent of 4 spaces
     return true;
 }
 
@@ -55,7 +55,7 @@ std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename) {
             float y = objJson["y"];
             scene->AddGameObject(std::make_unique<Point2D>(x, y));
         }
-        // Extend for other object types...
+        // Extend for other object types later...
     }
     return scene;
 }
