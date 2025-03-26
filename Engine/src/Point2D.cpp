@@ -1,11 +1,9 @@
+// Point2D.cpp
 #include "Point2D.h"
 
 Point2D::Point2D(float x, float y)
-    : GameObject("Point2D"),
-    x(x),
-    y(y)
+    : GameObject("Point2D"), x(x), y(y)
 {
-
 }
 
 float Point2D::GetX() const {
@@ -30,6 +28,19 @@ void Point2D::SetCoordinates(float newX, float newY) {
 }
 
 void Point2D::Draw(PrimitiveRenderer& renderer) const {
-    // Cast the float coordinates to int if needed
-    renderer.DrawPoint(static_cast<int>(x), static_cast<int>(y));
+    SDL_Color color = { 255, 0, 0, 255 };  // For example, red color.
+    renderer.DrawPoint(static_cast<int>(x), static_cast<int>(y), color);
+}
+
+void Point2D::Render(SDL_Renderer* renderer) {
+    PrimitiveRenderer primitiveRenderer(renderer);
+    Draw(primitiveRenderer);
+}
+
+nlohmann::json Point2D::ToJson() const {
+    nlohmann::json j;
+    j["type"] = "Point2D";
+    j["x"] = x;
+    j["y"] = y;
+    return j;
 }

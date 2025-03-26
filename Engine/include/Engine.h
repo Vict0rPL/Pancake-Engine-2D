@@ -16,6 +16,8 @@ public:
     // Called each frame by the Editor (main loop)
     void Update(float deltaTime);
     void Render();
+    void SetActiveScene(std::unique_ptr<Scene> newScene);
+    Scene* GetActiveScene() const;
 
     // Accessors so the Editor can grab the SDL pointers for ImGui initialization
     SDL_Window* GetWindow() const { return window; }

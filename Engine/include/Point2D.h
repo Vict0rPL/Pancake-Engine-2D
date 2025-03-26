@@ -1,3 +1,4 @@
+// Point2D.h
 #ifndef POINT2D_H
 #define POINT2D_H
 
@@ -6,24 +7,20 @@
 
 class Point2D : public GameObject {
 public:
-    // Constructor
-    Point2D(float x = 0.0f, float y = 0.0f);
-
-    // Methods to read coordinates
+    Point2D(float x, float y);
     float GetX() const;
     float GetY() const;
-
-    // Methods to modify coordinates
     void SetX(float newX);
     void SetY(float newY);
     void SetCoordinates(float newX, float newY);
-
-    // Draw the point using the provided PrimitiveRenderer instance
     void Draw(PrimitiveRenderer& renderer) const;
 
+    virtual void Update(float deltaTime) override {}
+    virtual void Render(SDL_Renderer* renderer) override;
+    virtual nlohmann::json ToJson() const override;
+
 private:
-    float x;
-    float y;
+    float x, y;
 };
 
 #endif // POINT2D_H

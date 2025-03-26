@@ -1,14 +1,17 @@
-#include "EditorUI.h" 
-#include "Engine.h" 
-#include "PrimitiveRenderer.h" 
-#include "Point2D.h" 
-#include <imgui.h> 
-#include <backends/imgui_impl_sdl3.h> 
-#include <backends/imgui_impl_sdlrenderer3.h> 
+// EditorUI.cpp
+#include "EditorUI.h"
+#include "Engine.h"
+#include "Scene.h"
+#include "Point2D.h"
+#include <imgui.h>
+#include <backends/imgui_impl_sdl3.h>
+#include <backends/imgui_impl_sdlrenderer3.h>
 #include <iostream>
+#include <filesystem> // C++17 or above for std::filesystem
 
 EditorUI::EditorUI(Engine* engine)
-    : engineRef(engine), isRunning(true) {
+    : engineRef(engine), isRunning(true), projectFolderPath("")
+{
 }
 
 EditorUI::~EditorUI() {
@@ -20,7 +23,6 @@ void EditorUI::InitializeImGui() {
     ImGui::CreateContext();
     ImGui::StyleColorsDark();
 
-    //Initialize ImGui backends using the engine's SDL window/renderer
     ImGui_ImplSDL3_InitForSDLRenderer(engineRef->GetWindow(), engineRef->GetRenderer());
     ImGui_ImplSDLRenderer3_Init(engineRef->GetRenderer());
 }
@@ -31,64 +33,128 @@ void EditorUI::ShutdownImGui() {
     ImGui::DestroyContext();
 }
 
+// Helper function to ensure [projectFolder]/scenes exists
+void EditorUI::EnsureScenesFolderExists(const std::string& projectFolder) {
+    std::filesystem::path scenesPath = std::filesystem::path(projectFolder) / "scenes";
+    if (!std::filesystem::exists(scenesPath)) {
+        try {
+            std::filesystem::create_directories(scenesPath);
+        }
+        catch (const std::exception& e) {
+            std::cerr << "Failed to create scenes folder: " << e.what() << std::endl;
+        }
+    }
+}
+
 void EditorUI::Run() {
-    // Example fixed timestep 
     const float fps = 60.0f;
     const float frameDelay = 1000.0f / fps;
-    // We'll use a persistent flag to control point drawing.
-// (Alternatively, you could make it a member variable of EditorUI.)
-    static bool drawPoint = false;
+
+    bool inGameMode = false;
+
+    // Attempt to load the default scene if a project folder is already set
+    // (In practice, you might wait until the user selects a folder.)
+    if (!projectFolderPath.empty()) {
+        EnsureScenesFolderExists(projectFolderPath);
+        std::filesystem::path mainScenePath = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
+        if (std::filesystem::exists(mainScenePath)) {
+            auto loadedScene = Scene::LoadFromJson(mainScenePath.string());
+            engineRef->SetActiveScene(std::move(loadedScene));
+        }
+    }
 
     while (isRunning && engineRef->IsRunning()) {
         Uint32 frameStart = SDL_GetTicks();
 
-        // Process events specifically for ImGui and the Editor.
+        // Process SDL events
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
-            ImGui_ImplSDL3_ProcessEvent(&event);
-
-            // Also handle quitting the Editor
+            if (!inGameMode) {
+                ImGui_ImplSDL3_ProcessEvent(&event);
+            }
             if (event.type == SDL_EVENT_QUIT) {
                 isRunning = false;
                 engineRef->Stop();
             }
         }
 
-        // Start a new ImGui frame so we can update our UI state.
-        ImGui_ImplSDL3_NewFrame();
-        ImGui_ImplSDLRenderer3_NewFrame();
-        ImGui::NewFrame();
+        if (!inGameMode) {
+            ImGui_ImplSDL3_NewFrame();
+            ImGui_ImplSDLRenderer3_NewFrame();
+            ImGui::NewFrame();
 
-        // Draw the Editor UI window.
-        ImGui::Begin("Editor UI");
-        ImGui::Text("Dear ImGui Editor Window");
-        if (ImGui::Button("Stop Engine")) {
-            engineRef->Stop();
+            ImGui::Begin("Editor UI");
+            ImGui::Text("Editor Mode Active");
+
+            // Show current project folder
+            ImGui::Text("Project Folder: %s", projectFolderPath.empty()
+                ? "None selected"
+                : projectFolderPath.c_str());
+
+            // Provide a text input to type in the project folder
+            static char folderBuffer[256] = "";
+            if (ImGui::InputText("Set Project Folder", folderBuffer, IM_ARRAYSIZE(folderBuffer))) {
+                // We store user input in folderBuffer as they type
+            }
+
+            // Button to confirm project folder
+            if (ImGui::Button("Confirm Project Folder")) {
+                projectFolderPath = folderBuffer;
+                if (!projectFolderPath.empty()) {
+                    EnsureScenesFolderExists(projectFolderPath);
+                }
+            }
+
+            // Stop Engine button
+            if (ImGui::Button("Stop Engine")) {
+                engineRef->Stop();
+            }
+
+            // Add Point to scene and save
+            if (ImGui::Button("Add Point")) {
+                if (!projectFolderPath.empty()) {
+                    // Add a new point to the current scene
+                    Scene* currentScene = engineRef->GetActiveScene();
+                    if (currentScene) {
+                        currentScene->AddGameObject(std::make_unique<Point2D>(200.0f, 200.0f));
+                        // Save to JSON in [projectFolder]/scenes/MainScene.json
+                        std::filesystem::path scenePath = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
+                        if (!currentScene->SerializeToJson(scenePath.string())) {
+                            std::cerr << "Failed to save scene.\n";
+                        }
+                    }
+                }
+                else {
+                    std::cerr << "No project folder set. Cannot add object.\n";
+                }
+            }
+
+            // Play Game button
+            if (ImGui::Button("Play Game")) {
+                // Reload the main scene from JSON
+                std::filesystem::path scenePath = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
+                if (std::filesystem::exists(scenePath)) {
+                    auto loadedScene = Scene::LoadFromJson(scenePath.string());
+                    engineRef->SetActiveScene(std::move(loadedScene));
+                    inGameMode = true;
+                }
+                else {
+                    std::cerr << "Scene file not found: " << scenePath.string() << std::endl;
+                }
+            }
+
+            ImGui::End();
+            ImGui::Render();
         }
-        // Checkbox to toggle drawing of the point. (later add support to draw based on click)
-        ImGui::Checkbox("Draw Point", &drawPoint);
-        ImGui::End();
 
-        // Call ImGui::Render to capture the UI state
-        ImGui::Render();
-
-        // Update and render the engine scene
+        // Update and render the active scene
         engineRef->Update(1.0f / fps);
         engineRef->Render();
 
-        // If the option is enabled, draw the point
-        if (drawPoint) {
-            // Create a PrimitiveRenderer using the engine's SDL_Renderer
-            PrimitiveRenderer primitiveRenderer(engineRef->GetRenderer());
-            // Create a Point2D at a fixed position (200,200) and draw it
-            Point2D point(200.0f, 200.0f);
-            point.Draw(primitiveRenderer);
+        if (!inGameMode) {
+            ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), engineRef->GetRenderer());
         }
 
-        // Render the ImGui overlay (draws the UI window)
-        ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), engineRef->GetRenderer());
-
-        // Present everything to the screen
         SDL_RenderPresent(engineRef->GetRenderer());
 
         // Frame limiting

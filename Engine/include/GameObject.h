@@ -2,6 +2,7 @@
 #define GAMEOBJECT_H
 
 #include <SDL3/SDL.h>
+#include <nlohmann/json.hpp>
 #include <memory>
 #include <string>
 #include <vector>
@@ -28,6 +29,8 @@ public:
     bool isActive = true;
     std::string name;
 
+    // Pure virtual method to convert a game object to JSON.
+    virtual nlohmann::json ToJson() const = 0;
 };
 
 #endif // GAMEOBJECT_H

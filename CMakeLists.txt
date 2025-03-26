@@ -14,6 +14,7 @@ project ("Pancake Engine 2D")
 #Load SDL First
 add_subdirectory(Libraries/SDL)
 add_subdirectory(Libraries/imgui)
+add_subdirectory(Libraries/json)
 
 # Add subdirectories
 add_subdirectory(Engine)

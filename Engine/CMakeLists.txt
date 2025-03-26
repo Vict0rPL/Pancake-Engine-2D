@@ -6,6 +6,7 @@ add_library(Engine STATIC
     src/Engine.cpp
     src/Scene.cpp
     src/GameObject.cpp
+    src/Game.cpp
     # Add other source files as needed
  "src/PrimitiveRenderer.cpp" "include/PrimitiveRenderer.h" "include/Point2D.h" "src/Point2D.cpp")
 
@@ -18,5 +19,6 @@ target_include_directories(Engine PUBLIC
 
 target_link_libraries(Engine 
     PRIVATE
-    SDL3::SDL3     # Link SDL3
+    SDL3::SDL3
+    nlohmann_json::nlohmann_json
 )

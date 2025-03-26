@@ -72,13 +72,57 @@ void Engine::Render() {
     }
 }
 
-// Optional: Engine handles game-specific events
+void Engine::SetActiveScene(std::unique_ptr<Scene> newScene) {
+    activeScene = std::move(newScene);
+    if (activeScene) {
+        activeScene->Load();
+    }
+}
+
+Scene* Engine::GetActiveScene() const { return activeScene.get(); }
+
+
+// Engine handles game-specific events
 void Engine::ProcessEvents() {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
-        if (event.type == SDL_EVENT_QUIT) {
+        switch (event.type) {
+        case SDL_EVENT_QUIT:
             isRunning = false;
+            break;
+
+        case SDL_EVENT_KEY_DOWN:
+            std::cout << "Key Pressed: " << SDL_GetKeyName(event.key.key) << std::endl;
+            if (event.key.key == SDLK_ESCAPE) {
+                isRunning = false;
+            }
+            break;
+
+        case SDL_EVENT_KEY_UP:
+            std::cout << "Key Released: " << SDL_GetKeyName(event.key.key) << std::endl;
+            break;
+
+        case SDL_EVENT_MOUSE_BUTTON_DOWN:
+            std::cout << "Mouse Button Down: " << static_cast<int>(event.button.button)
+                << " at (" << event.button.x << ", " << event.button.y << ")" << std::endl;
+            break;
+
+        case SDL_EVENT_MOUSE_BUTTON_UP:
+            std::cout << "Mouse Button Up: " << static_cast<int>(event.button.button)
+                << " at (" << event.button.x << ", " << event.button.y << ")" << std::endl;
+            break;
+
+        case SDL_EVENT_MOUSE_MOTION:
+            std::cout << "Mouse Moved to: (" << event.motion.x << ", " << event.motion.y << ")" << std::endl;
+            break;
+
+        case SDL_EVENT_MOUSE_WHEEL:
+            std::cout << "Mouse Wheel: x=" << event.wheel.x << " y=" << event.wheel.y << std::endl;
+            break;
+
+        default:
+            break;
         }
-        // Handle other game-related inputs
     }
 }
+

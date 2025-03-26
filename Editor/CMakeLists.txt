@@ -17,5 +17,6 @@ target_include_directories(Editor PUBLIC
 target_link_libraries(Editor
     Engine         # Link your Engine library target
     ImGui::ImGui   # Link Dear ImGui
+    nlohmann_json::nlohmann_json
 )
 
