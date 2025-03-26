@@ -8,8 +8,8 @@ public:
     // Constructor
     PrimitiveRenderer(SDL_Renderer* renderer);
 
-    // Draws a single point at (x, y) using the specified color (white)
-    void DrawPoint(int x, int y, SDL_Color color = { 255, 255, 255, 255 });
+    // Draws a single point at (x, y) using the specified color (black)
+    void DrawPoint(int x, int y, SDL_Color color = { 0, 0, 0, 255 });
 
 private:
     SDL_Renderer* renderer;
