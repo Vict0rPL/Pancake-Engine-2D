@@ -66,19 +66,21 @@ void EditorUI::Run() {
     while (isRunning && engineRef->IsRunning()) {
         Uint32 frameStart = SDL_GetTicks();
 
-        // Process SDL events
-        SDL_Event event;
-        while (SDL_PollEvent(&event)) {
-            if (!inGameMode) {
-                ImGui_ImplSDL3_ProcessEvent(&event);
-            }
-            if (event.type == SDL_EVENT_QUIT) {
-                isRunning = false;
-                engineRef->Stop();
-            }
-        }
+        
 
         if (!inGameMode) {
+            // Process SDL events
+            SDL_Event event;
+            while (SDL_PollEvent(&event)) {
+                if (!inGameMode) {
+                    ImGui_ImplSDL3_ProcessEvent(&event);
+                }
+                if (event.type == SDL_EVENT_QUIT) {
+                    isRunning = false;
+                    engineRef->Stop();
+                }
+            }
+
             ImGui_ImplSDL3_NewFrame();
             ImGui_ImplSDLRenderer3_NewFrame();
             ImGui::NewFrame();
@@ -137,6 +139,8 @@ void EditorUI::Run() {
                     auto loadedScene = Scene::LoadFromJson(scenePath.string());
                     engineRef->SetActiveScene(std::move(loadedScene));
                     inGameMode = true;
+                    // Enable event processing in game mode:
+                    engineRef->SetProcessEventsEnabled(true);
                 }
                 else {
                     std::cerr << "Scene file not found: " << scenePath.string() << std::endl;

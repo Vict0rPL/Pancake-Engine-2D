@@ -3,7 +3,8 @@
 #include <iostream>
 
 Engine::Engine()
-    : isRunning(false), window(nullptr), renderer(nullptr) {
+    : isRunning(false), window(nullptr), renderer(nullptr), processEventsEnabled(false) // initialize new flag here
+{
 }
 
 Engine::~Engine() {
@@ -52,7 +53,7 @@ void Engine::Shutdown() {
 }
 
 void Engine::Update(float deltaTime) {
-    //Engine handles its own events
+    // Process events only if in game mode
     ProcessEvents();
 
     // Update the active scene
@@ -81,9 +82,17 @@ void Engine::SetActiveScene(std::unique_ptr<Scene> newScene) {
 
 Scene* Engine::GetActiveScene() const { return activeScene.get(); }
 
+void Engine::SetProcessEventsEnabled(bool enabled) {
+    processEventsEnabled = enabled;
+}
 
-// Engine handles game-specific events
+// Process events only when in game mode (i.e. processEventsEnabled is true)
 void Engine::ProcessEvents() {
+    if (!processEventsEnabled) {
+        return;
+    }
+    SDL_PumpEvents(); // Ensure all pending events are pumped into the queue
+
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         switch (event.type) {
@@ -125,4 +134,3 @@ void Engine::ProcessEvents() {
         }
     }
 }
-

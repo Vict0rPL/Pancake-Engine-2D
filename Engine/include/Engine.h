@@ -26,6 +26,9 @@ public:
     bool IsRunning() const { return isRunning; }
     void Stop() { isRunning = false; }
 
+    // New setter to control event processing
+    void SetProcessEventsEnabled(bool enabled);
+
 private:
     bool isRunning;
     SDL_Window* window;
@@ -33,5 +36,9 @@ private:
 
     std::unique_ptr<Scene> activeScene;
 
-    void ProcessEvents(); //Engine also handles game input
+    // New member variable: events are processed only if true
+    bool processEventsEnabled;
+
+    // Engine now processes events only when in game mode (i.e. processEventsEnabled is true)
+    void ProcessEvents();
 };
