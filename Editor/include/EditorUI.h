@@ -16,6 +16,7 @@ public:
 private:
     Engine* engineRef;
     bool isRunning;
+    bool waitingForPointClick;
 
     // Store the path to the user's project folder
     std::string projectFolderPath;

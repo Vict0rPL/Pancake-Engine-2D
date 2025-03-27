@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include <iostream>
 
+
 Engine::Engine()
     : isRunning(false), window(nullptr), renderer(nullptr), processEventsEnabled(false)
 {
@@ -18,11 +19,23 @@ bool Engine::Initialize() {
     }
 
     // Create an SDL3 window
-    window = SDL_CreateWindow("Engine Window", 800, 600, 0);
+    window = SDL_CreateWindow("Pancake Engine", 800, 600, 0);
     if (!window) {
         std::cerr << "Window Creation Failed: " << SDL_GetError() << std::endl;
         return false;
     }
+
+    // Load BMP icon
+    SDL_Surface* iconSurface = SDL_LoadBMP("../Engine/assets/pancake.bmp");
+    if (!iconSurface) {
+        std::cerr << "Failed to load icon BMP: " << SDL_GetError() << std::endl;
+    }
+    else {
+        SDL_SetWindowIcon(window, iconSurface);
+        SDL_DestroySurface(iconSurface);
+    }
+
+    // Show window
     SDL_ShowWindow(window);
 
     // Create a renderer
