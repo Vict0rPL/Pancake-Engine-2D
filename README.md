@@ -51,8 +51,8 @@ add_library(ImGui::ImGui ALIAS ImGui)
 ```
 4. **Build the project:**  
    Open the project in Visual Studio (which will automatically create an out/ folder) or manually build the `CMakeLists.txt` file located in the root folder of the project.
-5. **Copy SDL3.dll:**  
-   In the created `out/` folder, copy the SDL3.dll file from `out/build/x64-debug/Libraries/SDL` to `out/build/x64-debug/Editor` if its not there try buiding project and run `Editor.exe` once .
+5. **Copy SDL3.dll:** 
+   In the created `out/` folder, copy the SDL3.dll file from `out/build/x64-debug/Libraries/SDL` to `out/build/x64-debug/Editor` if its not there try buiding project and run `Editor.exe` once. (in the final version thiss will be ommited after we add post-build script to CMake)
 6. **Run the Editor:**  
    Execute `Editor.exe`.
 
@@ -61,7 +61,7 @@ add_library(ImGui::ImGui ALIAS ImGui)
 ### Kamien Milowy 30.03.2025
 - Obsługa klawiatury i myszy: OK
 
-- Obsługa współrzędnych (Point2D): Partially OK; Add support to select a place to draw a point (eg. by cicking), change default renderer to Primitive Renderer
+- Obsługa współrzędnych (Point2D): OK
 
 - Rysowanie prymitywów
 

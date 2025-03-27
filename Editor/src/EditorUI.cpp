@@ -9,8 +9,9 @@
 #include <iostream>
 #include <filesystem> // C++17 or above for std::filesystem
 
+
 EditorUI::EditorUI(Engine* engine)
-    : engineRef(engine), isRunning(true), projectFolderPath("")
+    : engineRef(engine), isRunning(true), projectFolderPath(""), waitingForPointClick(false)
 {
 }
 
@@ -64,91 +65,92 @@ void EditorUI::Run() {
 
     while (isRunning && engineRef->IsRunning()) {
         Uint32 frameStart = SDL_GetTicks();
+        SDL_Event event;
 
-        
-
-        if (!inGameMode) {
-            // Process SDL events
-            SDL_Event event;
-            while (SDL_PollEvent(&event)) {
-                if (!inGameMode) {
-                    ImGui_ImplSDL3_ProcessEvent(&event);
-                }
-                if (event.type == SDL_EVENT_QUIT) {
-                    isRunning = false;
-                    engineRef->Stop();
-                }
+        // Process SDL events
+        while (SDL_PollEvent(&event)) {
+            if (!inGameMode) {
+                ImGui_ImplSDL3_ProcessEvent(&event);
             }
-
-            ImGui_ImplSDL3_NewFrame();
-            ImGui_ImplSDLRenderer3_NewFrame();
-            ImGui::NewFrame();
-
-            ImGui::Begin("Editor UI");
-            ImGui::Text("Editor Mode Active");
-
-            // Show current project folder
-            ImGui::Text("Project Folder: %s", projectFolderPath.empty()
-                ? "None selected"
-                : projectFolderPath.c_str());
-
-            // Provide a text input to type in the project folder
-            static char folderBuffer[256] = "";
-            if (ImGui::InputText("Set Project Folder", folderBuffer, IM_ARRAYSIZE(folderBuffer))) {
-                // store user input in folderBuffer as they type
-            }
-
-            // Button to confirm project folder
-            if (ImGui::Button("Confirm Project Folder")) {
-                projectFolderPath = folderBuffer;
-                if (!projectFolderPath.empty()) {
-                    EnsureScenesFolderExists(projectFolderPath);
-                }
-            }
-
-            // Stop Engine button
-            if (ImGui::Button("Stop Engine")) {
+            if (event.type == SDL_EVENT_QUIT) {
+                isRunning = false;
                 engineRef->Stop();
             }
 
-            // Add Point to scene and save
-            if (ImGui::Button("Add Point")) {
-                if (!projectFolderPath.empty()) {
-                    // Add a new point to the current scene
-                    Scene* currentScene = engineRef->GetActiveScene();
-                    if (currentScene) {
-                        currentScene->AddGameObject(std::make_unique<Point2D>(200.0f, 200.0f));
-                        // Save to JSON in [projectFolder]/scenes/MainScene.json
-                        std::filesystem::path scenePath = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
-                        if (!currentScene->SerializeToJson(scenePath.string())) {
-                            std::cerr << "Failed to save scene.\n";
-                        }
+            // Check for a mouse click when waiting for the user to add a point
+            if (waitingForPointClick && event.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
+                int mouseX = event.button.x;
+                int mouseY = event.button.y;
+                Scene* currentScene = engineRef->GetActiveScene();
+                if (currentScene) {
+                    currentScene->AddGameObject(std::make_unique<Point2D>(static_cast<float>(mouseX), static_cast<float>(mouseY)));
+                    // Save the updated scene to JSON in [projectFolder]/scenes/MainScene.json
+                    std::filesystem::path scenePath = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
+                    if (!currentScene->SerializeToJson(scenePath.string())) {
+                        std::cerr << "Failed to save scene.\n";
                     }
                 }
-                else {
-                    std::cerr << "No project folder set. Cannot add object.\n";
-                }
+                waitingForPointClick = false; // Reset the waiting state after processing the click
             }
-
-            // Play Game button
-            if (ImGui::Button("Play Game")) {
-                // Reload the main scene from JSON
-                std::filesystem::path scenePath = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
-                if (std::filesystem::exists(scenePath)) {
-                    auto loadedScene = Scene::LoadFromJson(scenePath.string());
-                    engineRef->SetActiveScene(std::move(loadedScene));
-                    inGameMode = true;
-                    // Enable event processing in game mode:
-                    engineRef->SetProcessEventsEnabled(true);
-                }
-                else {
-                    std::cerr << "Scene file not found: " << scenePath.string() << std::endl;
-                }
-            }
-
-            ImGui::End();
-            ImGui::Render();
         }
+
+        ImGui_ImplSDL3_NewFrame();
+        ImGui_ImplSDLRenderer3_NewFrame();
+        ImGui::NewFrame();
+
+        ImGui::Begin("Editor UI");
+        ImGui::Text("Editor Mode Active");
+
+        // Show current project folder
+        ImGui::Text("Project Folder: %s", projectFolderPath.empty()
+            ? "None selected"
+            : projectFolderPath.c_str());
+
+        // Provide a text input to type in the project folder
+        static char folderBuffer[256] = "";
+        if (ImGui::InputText("Set Project Folder", folderBuffer, IM_ARRAYSIZE(folderBuffer))) {
+            // store user input in folderBuffer as they type
+        }
+
+        // Button to confirm project folder
+        if (ImGui::Button("Confirm Project Folder")) {
+            projectFolderPath = folderBuffer;
+            if (!projectFolderPath.empty()) {
+                EnsureScenesFolderExists(projectFolderPath);
+            }
+        }
+
+        // Stop Engine button
+        if (ImGui::Button("Stop Engine")) {
+            engineRef->Stop();
+        }
+
+        // set a flag to wait for a mouse click
+        if (ImGui::Button("Add Point")) {
+            waitingForPointClick = true;
+        }
+        if (waitingForPointClick) {
+            ImGui::Text("Click anywhere in the window to place the new point.");
+        }
+
+        // Play Game button
+        if (ImGui::Button("Play Game")) {
+            // Reload the main scene from JSON
+            std::filesystem::path scenePath = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
+            if (std::filesystem::exists(scenePath)) {
+                auto loadedScene = Scene::LoadFromJson(scenePath.string());
+                engineRef->SetActiveScene(std::move(loadedScene));
+                inGameMode = true;
+                // Enable event processing in game mode:
+                engineRef->SetProcessEventsEnabled(true);
+            }
+            else {
+                std::cerr << "Scene file not found: " << scenePath.string() << std::endl;
+            }
+        }
+
+        ImGui::End();
+        ImGui::Render();
 
         // Update and render the active scene
         engineRef->Update(1.0f / fps);
