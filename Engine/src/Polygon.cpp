@@ -7,7 +7,11 @@ Polygon::Polygon(const std::vector<SDL_Point>& points)
 }
 
 void Polygon::Draw(PrimitiveRenderer& renderer) const {
-    renderer.DrawPolygon(points);
+    std::vector<SDL_Point> closedPoints = points;
+    if (!points.empty() && !(points.front().x == points.back().x && points.front().y == points.back().y)) {
+        closedPoints.push_back(points.front()); // Close the polygon
+    }
+    renderer.DrawPolygon(closedPoints);
 }
 
 void Polygon::Render(SDL_Renderer* renderer) {

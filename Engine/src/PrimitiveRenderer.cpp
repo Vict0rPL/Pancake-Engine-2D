@@ -132,13 +132,17 @@ void PrimitiveRenderer::DrawEllipse(int x0, int y0, int rx, int ry, SDL_Color co
     }
 }
 
-// Rysowanie wielokąta – łączymy kolejne punkty
 void PrimitiveRenderer::DrawPolygon(const std::vector<SDL_Point>& points, SDL_Color color) {
-    if (points.size() < 2)
-        return;
-    for (size_t i = 0; i < points.size() - 1; i++) {
-        DrawLine(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y, color);
+    if (points.size() < 2) return;
+
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+
+    // Rysuj linie pomiędzy wszystkimi punktami
+    for (size_t i = 0; i < points.size() - 1; ++i) {
+        SDL_RenderLine(renderer, points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
     }
-    // Połącz ostatni punkt z pierwszym, aby zamknąć wielokąt
-    DrawLine(points.back().x, points.back().y, points.front().x, points.front().y, color);
+
+    // Zamknij polygon (ostanti punkt do pierwszego punktu)
+    SDL_RenderLine(renderer, points.back().x, points.back().y, points.front().x, points.front().y);
 }
+
