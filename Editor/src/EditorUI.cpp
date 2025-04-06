@@ -70,16 +70,18 @@ void EditorUI::Run() {
 
     while (isRunning && engineRef->IsRunning()) {
         Uint32 frameStart = SDL_GetTicks();
-        SDL_Event event;
-
-        // Process SDL events
-        while (SDL_PollEvent(&event)) {
-            if (!inGameMode) {
-                ImGui_ImplSDL3_ProcessEvent(&event);
-            }
-            if (event.type == SDL_EVENT_QUIT) {
-                isRunning = false;
-                engineRef->Stop();
+        
+		if (!inGameMode) {
+            // Process SDL events
+            SDL_Event event;
+            while (SDL_PollEvent(&event)) {
+                if (!inGameMode) {
+                    ImGui_ImplSDL3_ProcessEvent(&event);
+                }
+                if (event.type == SDL_EVENT_QUIT) {
+                    isRunning = false;
+                    engineRef->Stop();
+                }
             }
 
             // Check for a mouse click when waiting for the user to add a point
