@@ -1,4 +1,4 @@
-﻿# CMakeList.txt : CMake project for Pancake Engine 2D, include source and define
+﻿# CMakeLists.txt : CMake project for Pancake Engine 2D, include source and define
 # project specific logic here.
 #
 cmake_minimum_required (VERSION 3.8)

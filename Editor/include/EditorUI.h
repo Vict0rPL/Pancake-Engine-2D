@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <vector>
+#include <SDL3/SDL.h>
 
 class Engine;
 
@@ -17,6 +19,19 @@ private:
     Engine* engineRef;
     bool isRunning;
     bool waitingForPointClick;
+
+    enum class DrawMode {
+        None,
+        Point,
+        Line,
+        Square,
+        Circle,
+        Ellipse,
+        Polygon
+    };
+
+    DrawMode currentDrawMode = DrawMode::None;
+    std::vector<SDL_Point> pendingPoints;
 
     // Store the path to the user's project folder
     std::string projectFolderPath;

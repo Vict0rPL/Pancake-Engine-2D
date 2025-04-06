@@ -1,4 +1,4 @@
-# Engine/CMakeLists.txt
+﻿# Engine/CMakeLists.txt
 # Build configuration for the core engine library
 
 # Create a library target for the engine
@@ -7,8 +7,16 @@ add_library(Engine STATIC
     src/Scene.cpp
     src/GameObject.cpp
     src/Game.cpp
-    # Add other source files as needed
- "src/PrimitiveRenderer.cpp" "include/PrimitiveRenderer.h" "include/Point2D.h" "src/Point2D.cpp")
+    src/PrimitiveRenderer.cpp
+    src/Point2D.cpp
+    src/Square.cpp
+    src/Circle.cpp
+    src/Ellipse.cpp
+    src/Polygon.cpp
+    src/Line.cpp  # Upewnij się, że ten plik jest tutaj
+    "include/PrimitiveRenderer.h" "include/Point2D.h" "include/Square.h" "include/Circle.h" "include/Ellipse.h" "include/Polygon.h" "include/Line.h"
+)
+
 
 # Include directories for Engine
 target_include_directories(Engine PUBLIC
