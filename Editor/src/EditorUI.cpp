@@ -71,7 +71,7 @@ void EditorUI::Run() {
     while (isRunning && engineRef->IsRunning()) {
         Uint32 frameStart = SDL_GetTicks();
         
-		if (!inGameMode) {
+        if (!inGameMode) {
             // Process SDL events
             SDL_Event event;
             while (SDL_PollEvent(&event)) {
@@ -82,81 +82,81 @@ void EditorUI::Run() {
                     isRunning = false;
                     engineRef->Stop();
                 }
-            }
 
-            // Check for a mouse click when waiting for the user to add a point
-           // Obsługa kliknięć dla trybów rysowania prymitywów
-            if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
-                int mouseX = event.button.x;
-                int mouseY = event.button.y;
 
-                // Jeśli nie jesteśmy w trybie dodawania, sprawdź istniejący kod (np. dodawanie punktu)
-                if (currentDrawMode != DrawMode::None) {
-                    pendingPoints.push_back({ mouseX, mouseY });
+                // Check for a mouse click when waiting for the user to add a point
+               // Obsługa kliknięć dla trybów rysowania prymitywów
+                if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
+                    int mouseX = event.button.x;
+                    int mouseY = event.button.y;
 
-                    // Dla poszczególnych trybów decydujemy, kiedy mamy wystarczająco punktów:
-                    Scene* currentScene = engineRef->GetActiveScene();
-                    if (!currentScene) continue;
+                    // Jeśli nie jesteśmy w trybie dodawania, sprawdź istniejący kod (np. dodawanie punktu)
+                    if (currentDrawMode != DrawMode::None) {
+                        pendingPoints.push_back({ mouseX, mouseY });
 
-                    // Przykłady:
-                    if (currentDrawMode == DrawMode::Point && pendingPoints.size() == 1) {
-                        // Dodaj nowy Point2D
-                        currentScene->AddGameObject(std::make_unique<Point2D>(static_cast<float>(mouseX), static_cast<float>(mouseY)));
-                        currentDrawMode = DrawMode::None;
-                    }
-                    else if (currentDrawMode == DrawMode::Line && pendingPoints.size() == 2) {
-                        // Utwórz obiekt Line na podstawie dwóch kliknięć
-                        Point2D p1(pendingPoints[0].x, pendingPoints[0].y);
-                        Point2D p2(pendingPoints[1].x, pendingPoints[1].y);
-                        currentScene->AddGameObject(std::make_unique<Line>(p1, p2));
-                        currentDrawMode = DrawMode::None;
-                    }
-                    else if (currentDrawMode == DrawMode::Square && pendingPoints.size() == 1) {
-                        // Przykładowo: utwórz kwadrat o stałym rozmiarze, gdzie kliknięty punkt to lewy górny róg
-                        int size = 50; // przykładowy rozmiar
-                        currentScene->AddGameObject(std::make_unique<Square>(pendingPoints[0].x, pendingPoints[0].y, size));
-                        currentDrawMode = DrawMode::None;
-                    }
-                    else if (currentDrawMode == DrawMode::Circle && pendingPoints.size() == 1) {
-                        // Utwórz koło o stałym promieniu, kliknięty punkt to środek
-                        int radius = 30;
-                        currentScene->AddGameObject(std::make_unique<Circle>(pendingPoints[0].x, pendingPoints[0].y, radius));
-                        currentDrawMode = DrawMode::None;
-                    }
-                    else if (currentDrawMode == DrawMode::Ellipse && pendingPoints.size() == 1) {
-                        // Utwórz elipsę o stałych promieniach
-                        int rx = 40, ry = 20;
-                        currentScene->AddGameObject(std::make_unique<Ellipse>(pendingPoints[0].x, pendingPoints[0].y, rx, ry));
-                        currentDrawMode = DrawMode::None;
-                    }
-                    else if (currentDrawMode == DrawMode::Polygon) {
-                        // Dla wielokąta możesz umożliwić zbieranie dowolnej liczby punktów.
-                        // Na przykład, jeżeli użytkownik kliknie prawym przyciskiem, zakończ zbieranie i utwórz wielokąt.
-                        if (event.button.button == SDL_BUTTON_RIGHT && pendingPoints.size() >= 3) {
-                            currentScene->AddGameObject(std::make_unique<Polygon>(pendingPoints));
+                        // Dla poszczególnych trybów decydujemy, kiedy mamy wystarczająco punktów:
+                        Scene* currentScene = engineRef->GetActiveScene();
+                        if (!currentScene) continue;
+
+                        // Przykłady:
+                        if (currentDrawMode == DrawMode::Point && pendingPoints.size() == 1) {
+                            // Dodaj nowy Point2D
+                            currentScene->AddGameObject(std::make_unique<Point2D>(static_cast<float>(mouseX), static_cast<float>(mouseY)));
                             currentDrawMode = DrawMode::None;
                         }
-                    }
-                }
-                else {
-                    // Jeśli nie jesteśmy w żadnym trybie – zachowaj dotychczasową logikę (np. dodawanie Point2D)
-                    if (waitingForPointClick) {
-                        Scene* currentScene = engineRef->GetActiveScene();
-                        if (currentScene) {
-                            currentScene->AddGameObject(std::make_unique<Point2D>(static_cast<float>(mouseX), static_cast<float>(mouseY)));
-                            // Zapisz scenę do JSON, jak wcześniej
-                            std::filesystem::path scenePath = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
-                            if (!currentScene->SerializeToJson(scenePath.string())) {
-                                std::cerr << "Failed to save scene.\n";
+                        else if (currentDrawMode == DrawMode::Line && pendingPoints.size() == 2) {
+                            // Utwórz obiekt Line na podstawie dwóch kliknięć
+                            Point2D p1(pendingPoints[0].x, pendingPoints[0].y);
+                            Point2D p2(pendingPoints[1].x, pendingPoints[1].y);
+                            currentScene->AddGameObject(std::make_unique<Line>(p1, p2));
+                            currentDrawMode = DrawMode::None;
+                        }
+                        else if (currentDrawMode == DrawMode::Square && pendingPoints.size() == 1) {
+                            // Przykładowo: utwórz kwadrat o stałym rozmiarze, gdzie kliknięty punkt to lewy górny róg
+                            int size = 50; // przykładowy rozmiar
+                            currentScene->AddGameObject(std::make_unique<Square>(pendingPoints[0].x, pendingPoints[0].y, size));
+                            currentDrawMode = DrawMode::None;
+                        }
+                        else if (currentDrawMode == DrawMode::Circle && pendingPoints.size() == 1) {
+                            // Utwórz koło o stałym promieniu, kliknięty punkt to środek
+                            int radius = 30;
+                            currentScene->AddGameObject(std::make_unique<Circle>(pendingPoints[0].x, pendingPoints[0].y, radius));
+                            currentDrawMode = DrawMode::None;
+                        }
+                        else if (currentDrawMode == DrawMode::Ellipse && pendingPoints.size() == 1) {
+                            // Utwórz elipsę o stałych promieniach
+                            int rx = 40, ry = 20;
+                            currentScene->AddGameObject(std::make_unique<Ellipse>(pendingPoints[0].x, pendingPoints[0].y, rx, ry));
+                            currentDrawMode = DrawMode::None;
+                        }
+                        else if (currentDrawMode == DrawMode::Polygon) {
+                            // Dla wielokąta możesz umożliwić zbieranie dowolnej liczby punktów.
+                            // Na przykład, jeżeli użytkownik kliknie prawym przyciskiem, zakończ zbieranie i utwórz wielokąt.
+                            if (event.button.button == SDL_BUTTON_RIGHT && pendingPoints.size() >= 3) {
+                                currentScene->AddGameObject(std::make_unique<Polygon>(pendingPoints));
+                                currentDrawMode = DrawMode::None;
                             }
                         }
-                        waitingForPointClick = false;
+                    }
+                    else {
+                        // Jeśli nie jesteśmy w żadnym trybie – zachowaj dotychczasową logikę (np. dodawanie Point2D)
+                        if (waitingForPointClick) {
+                            Scene* currentScene = engineRef->GetActiveScene();
+                            if (currentScene) {
+                                currentScene->AddGameObject(std::make_unique<Point2D>(static_cast<float>(mouseX), static_cast<float>(mouseY)));
+                                // Zapisz scenę do JSON, jak wcześniej
+                                std::filesystem::path scenePath = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
+                                if (!currentScene->SerializeToJson(scenePath.string())) {
+                                    std::cerr << "Failed to save scene.\n";
+                                }
+                            }
+                            waitingForPointClick = false;
+                        }
                     }
                 }
+
             }
-
         }
-
         ImGui_ImplSDL3_NewFrame();
         ImGui_ImplSDLRenderer3_NewFrame();
         ImGui::NewFrame();
@@ -180,8 +180,23 @@ void EditorUI::Run() {
             projectFolderPath = folderBuffer;
             if (!projectFolderPath.empty()) {
                 EnsureScenesFolderExists(projectFolderPath);
+
+                std::filesystem::path scenePath = std::filesystem::path(projectFolderPath)
+                    / "scenes" / defaultSceneFilename;
+
+                if (std::filesystem::exists(scenePath)) {
+                    auto loaded = Scene::LoadFromJson(scenePath.string());
+                    engineRef->SetActiveScene(std::move(loaded));
+                }
+                else {
+                    // no MainScene.json yet: start with an empty Scene
+                    engineRef->SetActiveScene(std::make_unique<Scene>());
+                    // optionally immediately save it:
+                    engineRef->GetActiveScene()->SerializeToJson(scenePath.string());
+                }
             }
         }
+
 
         // Stop Engine button
         if (ImGui::Button("Stop Engine")) {
