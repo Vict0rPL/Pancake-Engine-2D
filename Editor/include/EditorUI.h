@@ -4,6 +4,7 @@
 #include <vector>
 #include <SDL3/SDL.h>
 #include <tinyfiledialogs.h>
+#include "imgui.h"
 
 class Engine;
 
@@ -28,10 +29,13 @@ private:
         Square,
         Circle,
         Ellipse,
-        Polygon
+        Polygon,
+        Fill
     };
 
     DrawMode currentDrawMode = DrawMode::None;
+    ImVec4 fillColor = ImVec4(1, 1, 1, 1);  // default white fill
+    ImVec4 outlineColor = ImVec4(0, 0, 0, 1);  // default black outline
     std::vector<SDL_Point> pendingPoints;
     bool hasProject = false;          // true once we've loaded or created a project
     // Store the path to the user's project folder

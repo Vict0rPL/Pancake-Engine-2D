@@ -53,7 +53,6 @@ void EditorUI::EnsureScenesFolderExists(const std::string& projectFolder) {
 }
 
 // Opens a native “select folder” dialog and loads the project
-// Opens a native “select folder” dialog and loads the project
 void EditorUI::LoadProjectFolder() {
     const char* path = tinyfd_selectFolderDialog("Select Existing Project Folder", nullptr);
     if (!path) return;
@@ -160,11 +159,36 @@ void EditorUI::Run() {
                             currentDrawMode = DrawMode::None;
                         }
                         else if (currentDrawMode == DrawMode::Square && pendingPoints.size() == 1) {
-                            // Przykładowo: utwórz kwadrat o stałym rozmiarze, gdzie kliknięty punkt to lewy górny róg
+                            // Tworzymy kwadrat o stałym rozmiarze, gdzie kliknięty punkt to lewy górny róg
                             int size = 50; // przykładowy rozmiar
-                            currentScene->AddGameObject(std::make_unique<Square>(pendingPoints[0].x, pendingPoints[0].y, size));
+
+                            // Konwersja z ImGui-owego ImVec4 na SDL_Color
+                            SDL_Color f = {
+                                static_cast<Uint8>(fillColor.x * 255.0f),
+                                static_cast<Uint8>(fillColor.y * 255.0f),
+                                static_cast<Uint8>(fillColor.z * 255.0f),
+                                static_cast<Uint8>(fillColor.w * 255.0f)
+                            };
+                            SDL_Color o = {
+                                static_cast<Uint8>(outlineColor.x * 255.0f),
+                                static_cast<Uint8>(outlineColor.y * 255.0f),
+                                static_cast<Uint8>(outlineColor.z * 255.0f),
+                                static_cast<Uint8>(outlineColor.w * 255.0f)
+                            };
+
+                            currentScene->AddGameObject(
+                                std::make_unique<Square>(
+                                    pendingPoints[0].x,
+                                    pendingPoints[0].y,
+                                    size,
+                                    f,
+                                    o
+                                )
+                            );
+
                             currentDrawMode = DrawMode::None;
                         }
+
                         else if (currentDrawMode == DrawMode::Circle && pendingPoints.size() == 1) {
                             // Utwórz koło o stałym promieniu, kliknięty punkt to środek
                             int radius = 30;
@@ -267,6 +291,17 @@ void EditorUI::Run() {
                 currentDrawMode = DrawMode::Polygon;
                 pendingPoints.clear();
             }
+
+            ImGui::Separator();
+            // color-picker for fill
+            ImGui::ColorEdit4("Fill Color", (float*)&fillColor);
+            ImGui::ColorEdit4("Outline Color", (float*)&outlineColor);
+
+            if (ImGui::Button("Fill")) {
+                currentDrawMode = DrawMode::Fill;
+                pendingPoints.clear();
+            }
+
 
 			ImGui::Separator();
 

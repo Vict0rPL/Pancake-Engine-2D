@@ -74,8 +74,25 @@ std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename) {
             int x = objJson.value("x", 0);
             int y = objJson.value("y", 0);
             int size = objJson.value("size", 0);
-            scene->AddGameObject(std::make_unique<Square>(x, y, size));
+
+            SDL_Color fillColor = {
+                objJson["fillColor"].value("r", 255),
+                objJson["fillColor"].value("g", 255),
+                objJson["fillColor"].value("b", 255),
+                objJson["fillColor"].value("a", 255)
+            };
+            SDL_Color outlineColor = {
+                objJson["outlineColor"].value("r", 0),
+                objJson["outlineColor"].value("g", 0),
+                objJson["outlineColor"].value("b", 0),
+                objJson["outlineColor"].value("a", 255)
+            };
+
+            scene->AddGameObject(
+                std::make_unique<Square>(x, y, size, fillColor, outlineColor)
+            );
         }
+
         else if (type == "Circle") {
             int x = objJson.value("x", 0);
             int y = objJson.value("y", 0);
