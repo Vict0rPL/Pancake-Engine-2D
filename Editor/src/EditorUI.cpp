@@ -192,15 +192,63 @@ void EditorUI::Run() {
                         else if (currentDrawMode == DrawMode::Circle && pendingPoints.size() == 1) {
                             // Utwórz koło o stałym promieniu, kliknięty punkt to środek
                             int radius = 30;
-                            currentScene->AddGameObject(std::make_unique<Circle>(pendingPoints[0].x, pendingPoints[0].y, radius));
+
+                            // Konwersja ImVec4 → SDL_Color
+                            SDL_Color f = {
+                                static_cast<Uint8>(fillColor.x * 255.0f),
+                                static_cast<Uint8>(fillColor.y * 255.0f),
+                                static_cast<Uint8>(fillColor.z * 255.0f),
+                                static_cast<Uint8>(fillColor.w * 255.0f)
+                            };
+                            SDL_Color o = {
+                                static_cast<Uint8>(outlineColor.x * 255.0f),
+                                static_cast<Uint8>(outlineColor.y * 255.0f),
+                                static_cast<Uint8>(outlineColor.z * 255.0f),
+                                static_cast<Uint8>(outlineColor.w * 255.0f)
+                            };
+
+                            currentScene->AddGameObject(
+                                std::make_unique<Circle>(
+                                    pendingPoints[0].x,
+                                    pendingPoints[0].y,
+                                    radius,
+                                    f,
+                                    o
+                                )
+                            );
                             currentDrawMode = DrawMode::None;
                         }
                         else if (currentDrawMode == DrawMode::Ellipse && pendingPoints.size() == 1) {
                             // Utwórz elipsę o stałych promieniach
                             int rx = 40, ry = 20;
-                            currentScene->AddGameObject(std::make_unique<Ellipse>(pendingPoints[0].x, pendingPoints[0].y, rx, ry));
+
+                            // Konwersja ImVec4 → SDL_Color
+                            SDL_Color f = {
+                                static_cast<Uint8>(fillColor.x * 255.0f),
+                                static_cast<Uint8>(fillColor.y * 255.0f),
+                                static_cast<Uint8>(fillColor.z * 255.0f),
+                                static_cast<Uint8>(fillColor.w * 255.0f)
+                            };
+                            SDL_Color o = {
+                                static_cast<Uint8>(outlineColor.x * 255.0f),
+                                static_cast<Uint8>(outlineColor.y * 255.0f),
+                                static_cast<Uint8>(outlineColor.z * 255.0f),
+                                static_cast<Uint8>(outlineColor.w * 255.0f)
+                            };
+
+                            currentScene->AddGameObject(
+                                std::make_unique<Ellipse>(
+                                    pendingPoints[0].x,
+                                    pendingPoints[0].y,
+                                    rx,
+                                    ry,
+                                    f,
+                                    o
+                                )
+                            );
                             currentDrawMode = DrawMode::None;
                         }
+
                         else if (currentDrawMode == DrawMode::Polygon) {
                             // Dla wielokąta możesz umożliwić zbieranie dowolnej liczby punktów.
                             // Na przykład, jeżeli użytkownik kliknie prawym przyciskiem, zakończ zbieranie i utwórz wielokąt.

@@ -1,13 +1,16 @@
 #include "Ellipse.h"
 #include "PrimitiveRenderer.h"
 
-Ellipse::Ellipse(int x, int y, int rx, int ry)
-    : GameObject("Ellipse"), x(x), y(y), rx(rx), ry(ry)
-{
+Ellipse::Ellipse(int cx, int cy, int rx, int ry,
+    SDL_Color fill, SDL_Color outline)
+    : GameObject("Ellipse"),
+    x(cx), y(cy), rx(rx), ry(ry),
+    fillColor(fill), outlineColor(outline) {
 }
 
 void Ellipse::Draw(PrimitiveRenderer& renderer) const {
-    renderer.DrawEllipse(x, y, rx, ry);
+    renderer.FillEllipse(x, y, rx, ry, fillColor);
+    renderer.DrawEllipse(x, y, rx, ry, outlineColor);
 }
 
 void Ellipse::Render(SDL_Renderer* renderer) {
@@ -22,5 +25,9 @@ nlohmann::json Ellipse::ToJson() const {
     j["y"] = y;
     j["rx"] = rx;
     j["ry"] = ry;
+    j["fillColor"] = { {"r",fillColor.r},    {"g",fillColor.g},
+                        {"b",fillColor.b},    {"a",fillColor.a} };
+    j["outlineColor"] = { {"r",outlineColor.r}, {"g",outlineColor.g},
+                         {"b",outlineColor.b}, {"a",outlineColor.a} };
     return j;
 }
