@@ -1,6 +1,10 @@
 // Scene.cpp
 #include "Scene.h"
 #include "Point2D.h"
+#include "Line.h"
+#include "Square.h"
+#include "Circle.h"
+#include "Ellipse.h"
 #include "Polygon.h"
 #include <fstream>
 #include <iostream>
@@ -36,7 +40,7 @@ bool Scene::SerializeToJson(const std::string& filename) const {
         std::cerr << "Failed to open " << filename << " for writing.\n";
         return false;
     }
-    file << j.dump(4);  // indent of 4 spaces
+    file << j.dump(4);
     return true;
 }
 
@@ -46,6 +50,7 @@ std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename) {
         std::cerr << "Failed to open " << filename << " for reading.\n";
         return std::make_unique<Scene>();
     }
+
     nlohmann::json j;
     file >> j;
     auto scene = std::make_unique<Scene>();
@@ -57,6 +62,32 @@ std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename) {
             float x = objJson.value("x", 0.0f);
             float y = objJson.value("y", 0.0f);
             scene->AddGameObject(std::make_unique<Point2D>(x, y));
+        }
+        else if (type == "Line") {
+            auto& s = objJson["start"];
+            auto& e = objJson["end"];
+            Point2D p1(s.value("x", 0.0f), s.value("y", 0.0f));
+            Point2D p2(e.value("x", 0.0f), e.value("y", 0.0f));
+            scene->AddGameObject(std::make_unique<Line>(p1, p2));
+        }
+        else if (type == "Square") {
+            int x = objJson.value("x", 0);
+            int y = objJson.value("y", 0);
+            int size = objJson.value("size", 0);
+            scene->AddGameObject(std::make_unique<Square>(x, y, size));
+        }
+        else if (type == "Circle") {
+            int x = objJson.value("x", 0);
+            int y = objJson.value("y", 0);
+            int radius = objJson.value("radius", 0);
+            scene->AddGameObject(std::make_unique<Circle>(x, y, radius));
+        }
+        else if (type == "Ellipse") {
+            int x = objJson.value("x", 0);
+            int y = objJson.value("y", 0);
+            int rx = objJson.value("rx", 0);
+            int ry = objJson.value("ry", 0);
+            scene->AddGameObject(std::make_unique<Ellipse>(x, y, rx, ry));
         }
         else if (type == "Polygon") {
             std::vector<SDL_Point> points;
@@ -77,7 +108,9 @@ std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename) {
             };
             scene->AddGameObject(std::make_unique<Polygon>(points, fillColor, outlineColor));
         }
-        // TODO: Extend for other object types (Line, Square, Circle, Ellipse, etc.)
+        else {
+            std::cerr << "Unknown object type in JSON: " << type << "\n";
+        }
     }
 
     return scene;

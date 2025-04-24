@@ -53,20 +53,35 @@ void EditorUI::EnsureScenesFolderExists(const std::string& projectFolder) {
 }
 
 // Opens a native “select folder” dialog and loads the project
+// Opens a native “select folder” dialog and loads the project
 void EditorUI::LoadProjectFolder() {
     const char* path = tinyfd_selectFolderDialog("Select Existing Project Folder", nullptr);
-    if (path) {
-        projectFolderPath = path;
-        hasProject = true;
-        EnsureScenesFolderExists(projectFolderPath);
-        // Load default scene if it exists
-        auto sceneFile = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
-        if (std::filesystem::exists(sceneFile)) {
-            auto loaded = Scene::LoadFromJson(sceneFile.string());
-            engineRef->SetActiveScene(std::move(loaded));
-        }
+    if (!path) return;
+
+    projectFolderPath = path;
+    hasProject = true;
+
+    // make sure <project>/scenes exists
+    EnsureScenesFolderExists(projectFolderPath);
+
+    // our main scene JSON
+    auto scenePath = std::filesystem::path(projectFolderPath)
+        / "scenes"
+        / defaultSceneFilename;
+
+    if (std::filesystem::exists(scenePath)) {
+        // load it
+        auto loaded = Scene::LoadFromJson(scenePath.string());
+        engineRef->SetActiveScene(std::move(loaded));
+    }
+    else {
+        // no scene yet: create an empty one, hook it up and immediately save
+        auto newScene = std::make_unique<Scene>();
+        engineRef->SetActiveScene(std::move(newScene));
+        engineRef->GetActiveScene()->SerializeToJson(scenePath.string());
     }
 }
+
 
 // Opens a native “choose directory” dialog and creates a new project there
 void EditorUI::CreateNewProjectFolder() {
@@ -253,6 +268,21 @@ void EditorUI::Run() {
                 pendingPoints.clear();
             }
 
+			ImGui::Separator();
+
+            if (ImGui::Button("Save Scene")) {
+                // build the path to MainScene.json
+                std::filesystem::path scenePath =
+                    std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
+                // serialize current scene
+                if (engineRef->GetActiveScene()) {
+                    if (!engineRef->GetActiveScene()->SerializeToJson(scenePath.string())) {
+                        std::cerr << "Failed to save scene to " << scenePath << "\n";
+                    }
+                }
+            }
+
+			ImGui::Separator();
 
             // Play Game button
             if (ImGui::Button("Play Game")) {
