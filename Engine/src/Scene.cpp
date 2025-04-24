@@ -140,24 +140,33 @@ std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename) {
         }
 
         else if (type == "Polygon") {
+            // 1) read points
             std::vector<SDL_Point> points;
             for (auto& pj : objJson["points"]) {
-                points.push_back({ pj.value("x", 0), pj.value("y", 0) });
+                points.push_back({ pj.value("x",0), pj.value("y",0) });
             }
-            SDL_Color fillColor{
-                objJson["fillColor"].value("r", 255),
-                objJson["fillColor"].value("g", 255),
-                objJson["fillColor"].value("b", 255),
-                objJson["fillColor"].value("a", 255)
+
+            // 2) read fillColor
+            SDL_Color fillColor = {
+                objJson["fillColor"].value("r",200),
+                objJson["fillColor"].value("g",200),
+                objJson["fillColor"].value("b",200),
+                objJson["fillColor"].value("a",255)
             };
-            SDL_Color outlineColor{
-                objJson["outlineColor"].value("r", 0),
-                objJson["outlineColor"].value("g", 0),
-                objJson["outlineColor"].value("b", 0),
-                objJson["outlineColor"].value("a", 255)
+            // 3) read outlineColor
+            SDL_Color outlineColor = {
+                objJson["outlineColor"].value("r",0),
+                objJson["outlineColor"].value("g",0),
+                objJson["outlineColor"].value("b",0),
+                objJson["outlineColor"].value("a",255)
             };
-            scene->AddGameObject(std::make_unique<Polygon>(points, fillColor, outlineColor));
+
+            // 4) construct with both colors
+            scene->AddGameObject(
+                std::make_unique<Polygon>(points, fillColor, outlineColor)
+            );
         }
+
         else {
             std::cerr << "Unknown object type in JSON: " << type << "\n";
         }
