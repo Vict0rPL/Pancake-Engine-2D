@@ -52,6 +52,39 @@ void EditorUI::EnsureScenesFolderExists(const std::string& projectFolder) {
     }
 }
 
+// Opens a native “select folder” dialog and loads the project
+void EditorUI::LoadProjectFolder() {
+    const char* path = tinyfd_selectFolderDialog("Select Existing Project Folder", nullptr);
+    if (path) {
+        projectFolderPath = path;
+        hasProject = true;
+        EnsureScenesFolderExists(projectFolderPath);
+        // Load default scene if it exists
+        auto sceneFile = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
+        if (std::filesystem::exists(sceneFile)) {
+            auto loaded = Scene::LoadFromJson(sceneFile.string());
+            engineRef->SetActiveScene(std::move(loaded));
+        }
+    }
+}
+
+// Opens a native “choose directory” dialog and creates a new project there
+void EditorUI::CreateNewProjectFolder() {
+    const char* path = tinyfd_selectFolderDialog("Select Where to Create New Project", nullptr);
+    if (path) {
+        projectFolderPath = path;
+        hasProject = true;
+        // Create project folder + “scenes” subfolder
+        std::filesystem::create_directories(projectFolderPath);
+        EnsureScenesFolderExists(projectFolderPath);
+        // Initialize an empty scene and save it
+        auto scene = std::make_unique<Scene>();
+        engineRef->SetActiveScene(std::move(scene));
+        auto sceneFile = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
+        engineRef->GetActiveScene()->SerializeToJson(sceneFile.string());
+    }
+}
+
 void EditorUI::Run() {
     const float fps = 60.0f;
     const float frameDelay = 1000.0f / fps;
@@ -164,92 +197,80 @@ void EditorUI::Run() {
         ImGui::Begin("Editor UI");
         ImGui::Text("Editor Mode Active");
 
-        // Show current project folder
-        ImGui::Text("Project Folder: %s", projectFolderPath.empty()
-            ? "None selected"
-            : projectFolderPath.c_str());
-
-        // Provide a text input to type in the project folder
-        static char folderBuffer[256] = "";
-        if (ImGui::InputText("Set Project Folder", folderBuffer, IM_ARRAYSIZE(folderBuffer))) {
-            // store user input in folderBuffer as they type
+        if (!hasProject) {
+            if (ImGui::Button("Load Project")) {
+                LoadProjectFolder();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("New Project")) {
+                CreateNewProjectFolder();
+            }
+        }
+        else {
+            ImGui::Text("Project: %s", projectFolderPath.c_str());
+            if (ImGui::Button("Unload Project")) {
+                hasProject = false;
+                projectFolderPath.clear();
+            }
         }
 
-        // Button to confirm project folder
-        if (ImGui::Button("Confirm Project Folder")) {
-            projectFolderPath = folderBuffer;
-            if (!projectFolderPath.empty()) {
-                EnsureScenesFolderExists(projectFolderPath);
+        if (hasProject) {
+            ImGui::Separator();
 
-                std::filesystem::path scenePath = std::filesystem::path(projectFolderPath)
-                    / "scenes" / defaultSceneFilename;
+            // Stop Engine button
+            if (ImGui::Button("Stop Engine")) {
+                engineRef->Stop();
+            }
 
+            ImGui::Separator();
+            ImGui::Text("Dodaj prymitywy:");
+            if (ImGui::Button("Punkt")) {
+                currentDrawMode = DrawMode::Point;
+                pendingPoints.clear();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Linia")) {
+                currentDrawMode = DrawMode::Line;
+                pendingPoints.clear();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Kwadrat")) {
+                currentDrawMode = DrawMode::Square;
+                pendingPoints.clear();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Koło")) {
+                currentDrawMode = DrawMode::Circle;
+                pendingPoints.clear();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Elipsa")) {
+                currentDrawMode = DrawMode::Ellipse;
+                pendingPoints.clear();
+            }
+            if (ImGui::Button("Wielokąt")) {
+                currentDrawMode = DrawMode::Polygon;
+                pendingPoints.clear();
+            }
+
+
+            // Play Game button
+            if (ImGui::Button("Play Game")) {
+                // Reload the main scene from JSON
+                std::filesystem::path scenePath = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
                 if (std::filesystem::exists(scenePath)) {
-                    auto loaded = Scene::LoadFromJson(scenePath.string());
-                    engineRef->SetActiveScene(std::move(loaded));
+                    auto loadedScene = Scene::LoadFromJson(scenePath.string());
+                    engineRef->SetActiveScene(std::move(loadedScene));
+                    inGameMode = true;
+                    // Enable event processing in game mode:
+                    engineRef->SetProcessEventsEnabled(true);
                 }
                 else {
-                    // no MainScene.json yet: start with an empty Scene
-                    engineRef->SetActiveScene(std::make_unique<Scene>());
-                    // optionally immediately save it:
-                    engineRef->GetActiveScene()->SerializeToJson(scenePath.string());
+                    std::cerr << "Scene file not found: " << scenePath.string() << std::endl;
                 }
             }
         }
 
-
-        // Stop Engine button
-        if (ImGui::Button("Stop Engine")) {
-            engineRef->Stop();
-        }
-
-        ImGui::Separator();
-        ImGui::Text("Dodaj prymitywy:");
-        if (ImGui::Button("Punkt")) {
-            currentDrawMode = DrawMode::Point;
-            pendingPoints.clear();
-        }
-        ImGui::SameLine();
-        if (ImGui::Button("Linia")) {
-            currentDrawMode = DrawMode::Line;
-            pendingPoints.clear();
-        }
-        ImGui::SameLine();
-        if (ImGui::Button("Kwadrat")) {
-            currentDrawMode = DrawMode::Square;
-            pendingPoints.clear();
-        }
-        ImGui::SameLine();
-        if (ImGui::Button("Koło")) {
-            currentDrawMode = DrawMode::Circle;
-            pendingPoints.clear();
-        }
-        ImGui::SameLine();
-        if (ImGui::Button("Elipsa")) {
-            currentDrawMode = DrawMode::Ellipse;
-            pendingPoints.clear();
-        }
-        if (ImGui::Button("Wielokąt")) {
-            currentDrawMode = DrawMode::Polygon;
-            pendingPoints.clear();
-        }
-
-
-        // Play Game button
-        if (ImGui::Button("Play Game")) {
-            // Reload the main scene from JSON
-            std::filesystem::path scenePath = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
-            if (std::filesystem::exists(scenePath)) {
-                auto loadedScene = Scene::LoadFromJson(scenePath.string());
-                engineRef->SetActiveScene(std::move(loadedScene));
-                inGameMode = true;
-                // Enable event processing in game mode:
-                engineRef->SetProcessEventsEnabled(true);
-            }
-            else {
-                std::cerr << "Scene file not found: " << scenePath.string() << std::endl;
-            }
-        }
 
         ImGui::End();
         ImGui::Render();

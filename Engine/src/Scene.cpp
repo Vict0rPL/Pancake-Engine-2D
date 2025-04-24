@@ -1,6 +1,7 @@
 // Scene.cpp
 #include "Scene.h"
 #include "Point2D.h"
+#include "Polygon.h"
 #include <fstream>
 #include <iostream>
 
@@ -48,14 +49,36 @@ std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename) {
     nlohmann::json j;
     file >> j;
     auto scene = std::make_unique<Scene>();
+
     for (auto& objJson : j["gameObjects"]) {
-        std::string type = objJson["type"];
+        std::string type = objJson.value("type", "");
+
         if (type == "Point2D") {
-            float x = objJson["x"];
-            float y = objJson["y"];
+            float x = objJson.value("x", 0.0f);
+            float y = objJson.value("y", 0.0f);
             scene->AddGameObject(std::make_unique<Point2D>(x, y));
         }
-        // Extend for other object types later...
+        else if (type == "Polygon") {
+            std::vector<SDL_Point> points;
+            for (auto& pj : objJson["points"]) {
+                points.push_back({ pj.value("x", 0), pj.value("y", 0) });
+            }
+            SDL_Color fillColor{
+                objJson["fillColor"].value("r", 255),
+                objJson["fillColor"].value("g", 255),
+                objJson["fillColor"].value("b", 255),
+                objJson["fillColor"].value("a", 255)
+            };
+            SDL_Color outlineColor{
+                objJson["outlineColor"].value("r", 0),
+                objJson["outlineColor"].value("g", 0),
+                objJson["outlineColor"].value("b", 0),
+                objJson["outlineColor"].value("a", 255)
+            };
+            scene->AddGameObject(std::make_unique<Polygon>(points, fillColor, outlineColor));
+        }
+        // TODO: Extend for other object types (Line, Square, Circle, Ellipse, etc.)
     }
+
     return scene;
 }
