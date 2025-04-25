@@ -367,12 +367,14 @@ void EditorUI::Run() {
                     currentScene->AddGameObject(
                         std::make_unique<Player>(
                             engineRef->GetRenderer(),
-                            "../Engine/assets/pacman.png"  // <-- Ścieżka do sprite sheetu
+                            "../Engine/assets/pacman.png",  // <-- Ścieżka do sprite sheetu
+                            currentScene                   // <-- Add this!
                         )
                     );
                     std::cout << "Player added to the scene.\n";
                 }
             }
+
 
 
             ImGui::Separator();

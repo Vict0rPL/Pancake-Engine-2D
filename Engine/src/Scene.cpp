@@ -150,7 +150,7 @@ std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename, SDL_Rend
             obj = std::make_unique<Polygon>(points, fillColor, outlineColor);
         }
         else if (type == "Player") {
-            obj = std::make_unique<Player>(renderer, "../Engine/assets/pacman.png");
+            obj = std::make_unique<Player>(renderer, "../Engine/assets/pacman.png", scene.get());
             if (auto* t = dynamic_cast<TransformableObject*>(obj.get())) {
                 auto& pj = objJson["position"];
                 t->SetPosition({ pj.value("x", 0.0f), pj.value("y", 0.0f) });

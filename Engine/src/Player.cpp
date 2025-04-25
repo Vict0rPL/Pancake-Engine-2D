@@ -1,14 +1,21 @@
 ﻿#include "Player.h"
+#include "Square.h"
+#include "Circle.h"
+#include "Scene.h"
 #include <SDL3/SDL.h>
 #include <nlohmann/json.hpp> 
+#include <algorithm>
+#include <iostream>
 
-Player::Player(SDL_Renderer* renderer, const std::string& spriteSheetPath)
-    : SpriteObject(renderer, spriteSheetPath, 32, 32, 4, 0.1f), currentDirection(Direction::None), speed(100.0f)
+Player::Player(SDL_Renderer* renderer, const std::string& spriteSheetPath, Scene* scene)
+    : SpriteObject(renderer, spriteSheetPath, 32, 32, 4, 0.1f),
+    currentDirection(Direction::None),
+    speed(100.0f),
+    sceneRef(scene)
 {
 }
 
-void Player::HandleInput(const bool* keyboardState)  // <- tutaj była niezgodność!
-{
+void Player::HandleInput(const bool* keyboardState) {
     currentDirection = Direction::None;
 
     if (keyboardState[SDL_SCANCODE_W]) currentDirection = Direction::Up;
@@ -19,7 +26,6 @@ void Player::HandleInput(const bool* keyboardState)  // <- tutaj była niezgodno
 
 void Player::Update(float deltaTime) {
     if (currentDirection != Direction::None) {
-        // animacja działa tylko w ruchu
         SpriteObject::Update(deltaTime);
 
         float dx = 0.0f, dy = 0.0f;
@@ -30,20 +36,75 @@ void Player::Update(float deltaTime) {
         case Direction::Right: dx = speed * deltaTime; break;
         default: break;
         }
-        switch (currentDirection) {
-        case Direction::Up:    directionRow = 0; break;
-        case Direction::Down:  directionRow = 1; break;
-        case Direction::Left:  directionRow = 2; break;
-        case Direction::Right: directionRow = 3; break;
-        default: directionRow = 0; break;  // kierunek domyślny, góra
+        directionRow = (currentDirection == Direction::Up) ? 0 :
+            (currentDirection == Direction::Down) ? 1 :
+            (currentDirection == Direction::Left) ? 2 : 3;
+
+        // Predict next position (future rectangle)
+        SDL_FRect futureRect = dstRect;
+        futureRect.x += static_cast<int>(dx);
+        futureRect.y += static_cast<int>(dy);
+
+        bool canMove = true;
+
+        // Check collision with Squares (block movement)
+        for (auto& obj : sceneRef->GetGameObjects()) {
+            if (obj->GetName() == "Square") {
+                auto* square = dynamic_cast<Square*>(obj.get());
+                if (square) {
+                    SDL_FRect squareRect = square->GetRect();
+                    if (SDL_HasRectIntersectionFloat(&futureRect, &squareRect)) {
+                        canMove = false;
+                        break;
+                    }
+
+                }
+            }
         }
 
+        if (canMove) {
+            dstRect.x += static_cast<int>(dx);
+            dstRect.y += static_cast<int>(dy);
+        }
 
-        dstRect.x += dx;
-        dstRect.y += dy;
+        // Circle collection (remove if player touches)
+        sceneRef->GetGameObjects().erase(
+            std::remove_if(
+                sceneRef->GetGameObjects().begin(),
+                sceneRef->GetGameObjects().end(),
+                [&](std::unique_ptr<GameObject>& obj) {
+                    if (obj->GetName() == "Circle") {
+                        auto* circle = dynamic_cast<Circle*>(obj.get());
+                        if (circle) {
+                            SDL_FRect circleRect = circle->GetRect();
+                            if (SDL_HasRectIntersectionFloat(&dstRect, &circleRect)) {
+                                std::cout << "Collected a circle!\n";
+                                return true;  // remove this circle
+                            }
+                        }
+                    }
+                    return false;
+                }),
+            sceneRef->GetGameObjects().end()
+        );
+
+        // Victory condition (no circles left)
+        bool circlesRemaining = std::any_of(
+            sceneRef->GetGameObjects().begin(),
+            sceneRef->GetGameObjects().end(),
+            [](const std::unique_ptr<GameObject>& obj) {
+                return obj->GetName() == "Circle";
+            }
+        );
+
+        if (!circlesRemaining) {
+            std::cout << "You collected all the circles! You won!" << std::endl;
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Victory!", "You collected all circles!", nullptr);
+            exit(0);  // stop game after win
+        }
     }
     else {
-        currentFrame = 0;  // Reset animacji, jeśli stoi w miejscu
+        currentFrame = 0;  // Stop animation when idle
     }
 }
 
@@ -55,4 +116,3 @@ nlohmann::json Player::ToJson() const {
     j["scale"] = { {"x", scale.x}, {"y", scale.y} };
     return j;
 }
-

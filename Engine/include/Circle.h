@@ -21,6 +21,19 @@ public: // (x, y) – srodek, radius – promien
 	// center getter
 	int GetX() const { return x; }
 	int GetY() const { return y; }
+	int GetRadius() const { return radius; }
+
+	SDL_FRect GetRect() const {
+		float radiusScaled = radius * ((GetScale().x + GetScale().y) * 0.5f);
+		return {
+			GetPosition().x - radiusScaled,
+			GetPosition().y - radiusScaled,
+			radiusScaled * 2.0f,
+			radiusScaled * 2.0f
+		};
+	}
+
+
 
 private: 
 	int x, y, radius; 

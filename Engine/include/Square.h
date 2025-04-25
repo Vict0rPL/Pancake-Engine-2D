@@ -21,6 +21,16 @@ public: // (x, y) – lewy górny róg, size – długość boku
 	int GetY()    const { return y; }
 	int GetSize() const { return size; }
 
+	SDL_FRect GetRect() const {
+		return {
+			GetPosition().x,
+			GetPosition().y,
+			static_cast<float>(size),
+			static_cast<float>(size)
+		};
+	}
+
+
 
 private: 
 	int x, y, size; 

@@ -9,17 +9,20 @@
 
 class Scene {
 public:
-    virtual ~Scene() = default;  // Virtual destructor for polymorphic base
+    virtual ~Scene() = default;
 
-    virtual void Load();                       // Mark as virtual
-    virtual void Update(float deltaTime);      // Mark as virtual
-    virtual void Render(SDL_Renderer* renderer); // Mark as virtual
+    virtual void Load();
+    virtual void Update(float deltaTime);
+    virtual void Render(SDL_Renderer* renderer);
 
     void AddGameObject(std::unique_ptr<GameObject> gameObject);
 
     bool SerializeToJson(const std::string& filename) const;
     static std::unique_ptr<Scene> LoadFromJson(const std::string& filename, SDL_Renderer* renderer);
 
+    std::vector<std::unique_ptr<GameObject>>& GetGameObjects() {
+        return gameObjects;
+    }
 
     const std::vector<std::unique_ptr<GameObject>>& GetGameObjects() const {
         return gameObjects;
