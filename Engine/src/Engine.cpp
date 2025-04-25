@@ -21,7 +21,7 @@ bool Engine::Initialize() {
     }
 
     // Create an SDL3 window
-    window = SDL_CreateWindow("Pancake Engine", 1600, 1000, 0);
+    window = SDL_CreateWindow("Pancake Engine", 1000, 800, 0);
     if (!window) {
         std::cerr << "Window Creation Failed: " << SDL_GetError() << std::endl;
         return false;
@@ -51,7 +51,7 @@ bool Engine::Initialize() {
     activeScene = std::make_unique<Scene>();
     activeScene->Load();
 
-    player = std::make_unique<Player>(renderer, "../Engine/assets/pacman.png");
+    
 
     isRunning = true;
     return true;
@@ -154,6 +154,18 @@ void Engine::ProcessEvents() {
 
         default:
             break;
+        }
+    }
+}
+
+void Engine::FindPlayer() {
+    player = nullptr;
+    if (activeScene) {
+        for (auto& obj : activeScene->GetGameObjects()) {
+            if (Player* p = dynamic_cast<Player*>(obj.get())) {
+                player = p;
+                break;
+            }
         }
     }
 }

@@ -29,18 +29,21 @@ public:
     // setter to control event processing
     void SetProcessEventsEnabled(bool enabled);
 
+    void FindPlayer();
+
 private:
     bool isRunning;
     SDL_Window* window;
     SDL_Renderer* renderer;
     std::unique_ptr<Scene> activeScene;
-    std::unique_ptr<Player> player;
+    Player* player = nullptr;  // Raw pointer
+
 
     // events are processed only if true
     bool processEventsEnabled;
 
     // Engine processes events only when in game mode (when processEventsEnabled is true)
     void ProcessEvents();
-
+   
 
 };

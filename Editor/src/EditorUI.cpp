@@ -469,6 +469,8 @@ void EditorUI::Run() {
                 if (std::filesystem::exists(scenePath)) {
                     auto loadedScene = Scene::LoadFromJson(scenePath.string(), engineRef->GetRenderer());
                     engineRef->SetActiveScene(std::move(loadedScene));
+                    engineRef->FindPlayer();  // <- this assigns the player pointer!
+
                     inGameMode = true;
                     // Enable event processing in game mode:
                     engineRef->SetProcessEventsEnabled(true);
