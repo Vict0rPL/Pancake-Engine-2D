@@ -66,27 +66,21 @@ void Player::Update(float deltaTime) {
             dstRect.x += static_cast<int>(dx);
             dstRect.y += static_cast<int>(dy);
         }
-
-        // Circle collection (remove if player touches)
-        sceneRef->GetGameObjects().erase(
-            std::remove_if(
-                sceneRef->GetGameObjects().begin(),
-                sceneRef->GetGameObjects().end(),
-                [&](std::unique_ptr<GameObject>& obj) {
-                    if (obj->GetName() == "Circle") {
-                        auto* circle = dynamic_cast<Circle*>(obj.get());
-                        if (circle) {
-                            SDL_FRect circleRect = circle->GetRect();
-                            if (SDL_HasRectIntersectionFloat(&dstRect, &circleRect)) {
-                                std::cout << "Collected a circle!\n";
-                                return true;  // remove this circle
-                            }
-                        }
+        // Circle collection (mark for removal if player touches)
+        for (auto& obj : sceneRef->GetGameObjects()) {
+            if (obj->GetName() == "Circle") {
+                auto* circle = dynamic_cast<Circle*>(obj.get());
+                if (circle) {
+                    SDL_FRect circleRect = circle->GetRect();
+                    if (SDL_HasRectIntersectionFloat(&dstRect, &circleRect)) {
+                        std::cout << "Collected a circle!\n";
+                        sceneRef->MarkForRemoval(obj.get());  // <-- Mark instead of erasing immediately
+                        break;  // optional: break if only one circle can be collected at a time
                     }
-                    return false;
-                }),
-            sceneRef->GetGameObjects().end()
-        );
+                }
+            }
+        }
+
 
         // Victory condition (no circles left)
         bool circlesRemaining = std::any_of(

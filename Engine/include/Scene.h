@@ -17,6 +17,8 @@ public:
 
     void AddGameObject(std::unique_ptr<GameObject> gameObject);
 
+    void MarkForRemoval(GameObject* obj);
+
     bool SerializeToJson(const std::string& filename) const;
     static std::unique_ptr<Scene> LoadFromJson(const std::string& filename, SDL_Renderer* renderer);
 
@@ -27,6 +29,8 @@ public:
     const std::vector<std::unique_ptr<GameObject>>& GetGameObjects() const {
         return gameObjects;
     }
+
+    std::vector<GameObject*> objectsToRemove;
 
 private:
     std::vector<std::unique_ptr<GameObject>> gameObjects;

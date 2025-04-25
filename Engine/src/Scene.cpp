@@ -15,10 +15,26 @@ void Scene::Load() {
 }
 
 void Scene::Update(float deltaTime) {
+    // Update all objects first
     for (auto& obj : gameObjects) {
         obj->Update(deltaTime);
     }
+
+    // Remove objects marked for removal AFTER update loop
+    if (!objectsToRemove.empty()) {
+        gameObjects.erase(
+            std::remove_if(
+                gameObjects.begin(),
+                gameObjects.end(),
+                [&](std::unique_ptr<GameObject>& obj) {
+                    return std::find(objectsToRemove.begin(), objectsToRemove.end(), obj.get()) != objectsToRemove.end();
+                }),
+            gameObjects.end()
+        );
+        objectsToRemove.clear();
+    }
 }
+
 
 void Scene::Render(SDL_Renderer* renderer) {
     for (auto& obj : gameObjects) {
@@ -180,4 +196,8 @@ std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename, SDL_Rend
     }
 
     return scene;
+}
+
+void Scene::MarkForRemoval(GameObject* obj) {
+    objectsToRemove.push_back(obj);
 }
