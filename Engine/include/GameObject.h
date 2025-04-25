@@ -9,7 +9,21 @@
 
 struct Vector2 {
     float x, y;
+
+    Vector2() = default;
+    Vector2(float _x, float _y) : x(_x), y(_y) {}
+
+    Vector2& operator+=(Vector2 const& o) {
+        x += o.x;
+        y += o.y;
+        return *this;
+    }
+    Vector2  operator+ (Vector2 const& o) const {
+        return { x + o.x, y + o.y };
+    }
+
 };
+
 
 class GameObject {
 public:
@@ -31,6 +45,10 @@ public:
 
     // Pure virtual method to convert a game object to JSON.
     virtual nlohmann::json ToJson() const = 0;
+
+    /// Returns this object’s name
+    const std::string& GetName() const { return name; }
+
 };
 
 #endif // GAMEOBJECT_H

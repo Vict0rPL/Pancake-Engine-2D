@@ -12,6 +12,7 @@
 #include <backends/imgui_impl_sdl3.h>
 #include <backends/imgui_impl_sdlrenderer3.h>
 #include <iostream>
+#include "TransformableObject.h"
 #include <filesystem> // C++17 or above for std::filesystem
 
 
@@ -367,6 +368,66 @@ void EditorUI::Run() {
                 currentDrawMode = DrawMode::Fill;
                 pendingPoints.clear();
             }
+
+            ImGui::Separator();
+
+            // --- TRANSFORM PANEL ---
+            ImGui::Text("Transforms");
+
+            // grab scene & objects
+            auto scene = engineRef->GetActiveScene();
+            auto& objs = scene->GetGameObjects();
+
+            // build name list for combo
+            static int selectedIndex = 0;
+            std::vector<const char*> names;
+            for (auto& obj : objs) {
+                names.push_back(obj->GetName().c_str());
+            }
+            if (!names.empty()) {
+                ImGui::Combo("Select Object", &selectedIndex,
+                    names.data(), (int)names.size());
+            }
+
+            // Translate
+            static float tx[2] = { 0.0f,0.0f };
+            ImGui::InputFloat2("Translate (dx,dy)", tx);
+            ImGui::SameLine();
+            if (ImGui::Button("Apply Translate") && !names.empty()) {
+                auto* gameObj = objs[selectedIndex].get();
+                if (auto* t = dynamic_cast<TransformableObject*>(gameObj)) {
+                    t->Translate(tx[0], tx[1]);
+                }
+            }
+
+            // Rotate
+            static float angleDeg = 0.0f;
+            ImGui::InputFloat("Rotate (deg)", &angleDeg);
+            ImGui::SameLine();
+            if (ImGui::Button("Apply Rotate") && !names.empty()) {
+                float rad = angleDeg * 3.14159265f / 180.0f;
+                auto* gameObj = objs[selectedIndex].get();
+                if (auto* t = dynamic_cast<TransformableObject*>(gameObj)) {
+                    // we pass (0,0) here; each shape’s Rotate() ignores it and uses its own center
+                    t->Rotate(rad);
+                }
+            }
+
+
+            // Scale
+            static float scaleXY[2] = { 1.0f, 1.0f };
+            ImGui::InputFloat2("Scale (sx,sy)", scaleXY);
+            ImGui::SameLine();
+            if (ImGui::Button("Apply Scale") && !names.empty()) {
+                auto* gameObj = objs[selectedIndex].get();
+                if (auto* t = dynamic_cast<TransformableObject*>(gameObj)) {
+                    // again pivot (0,0) is ignored by each shape, which scales around its own center
+                    t->Scale(scaleXY[0], scaleXY[1]);
+                }
+            }
+
+
+            // --- end TRANSFORM PANEL ---
 
 
 			ImGui::Separator();

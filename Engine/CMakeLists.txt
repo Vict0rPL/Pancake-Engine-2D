@@ -15,7 +15,7 @@ add_library(Engine STATIC
     src/Polygon.cpp
     src/Line.cpp  # Upewnij się, że ten plik jest tutaj
     "include/PrimitiveRenderer.h" "include/Point2D.h" "include/Square.h" "include/Circle.h" "include/Ellipse.h" "include/Polygon.h" "include/Line.h"
-)
+ "include/TransformableObject.h" "include/Transform.h")
 
 
 # Include directories for Engine
