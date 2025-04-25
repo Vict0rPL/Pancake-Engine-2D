@@ -11,10 +11,15 @@ endif()
 
 project ("Pancake Engine 2D")
 # Add third-party libraries
+
 #Load SDL First
 add_subdirectory(Libraries/SDL)
 add_subdirectory(Libraries/imgui)
 add_subdirectory(Libraries/json)
+set(SDLIMAGE_AVIF OFF CACHE BOOL "Disable AVIF support" FORCE)
+
+set(AOM_TARGET_CPU "generic" CACHE STRING "Target CPU for AOM (AV1)" FORCE)
+add_subdirectory(Libraries/SDL_image)
 
 # Add subdirectories
 add_subdirectory(Engine)

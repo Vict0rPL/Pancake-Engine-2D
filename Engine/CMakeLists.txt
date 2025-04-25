@@ -13,20 +13,24 @@ add_library(Engine STATIC
     src/Circle.cpp
     src/Ellipse.cpp
     src/Polygon.cpp
-    src/Line.cpp  # Upewnij się, że ten plik jest tutaj
+    src/Line.cpp
+    src/SpriteObject.cpp
+    src/Player.cpp
     "include/PrimitiveRenderer.h" "include/Point2D.h" "include/Square.h" "include/Circle.h" "include/Ellipse.h" "include/Polygon.h" "include/Line.h"
- "include/TransformableObject.h" "include/Transform.h")
+ "include/TransformableObject.h" "include/Transform.h" "include/BitmapHandler.h" "src/BitmapHandler.cpp" "include/BitmapObject.h" "src/BitmapObject.cpp" "include/SpriteObject.h" "include/Player.h" "src/Player.cpp")
 
 
 # Include directories for Engine
 target_include_directories(Engine PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/Libraries/SDL/include
+    ${CMAKE_SOURCE_DIR}/Libraries/SDL_image/include
 )
 
 
 target_link_libraries(Engine 
     PRIVATE
     SDL3::SDL3
+    SDL3_image::SDL3_image
     nlohmann_json::nlohmann_json
 )

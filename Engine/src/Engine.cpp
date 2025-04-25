@@ -1,6 +1,8 @@
 #include "Engine.h"
 #include "Scene.h"
+#include <SDL3_image/SDL_image.h>
 #include <iostream>
+
 
 
 Engine::Engine()
@@ -49,6 +51,8 @@ bool Engine::Initialize() {
     activeScene = std::make_unique<Scene>();
     activeScene->Load();
 
+    player = std::make_unique<Player>(renderer, "../Engine/assets/pacman.png");
+
     isRunning = true;
     return true;
 }
@@ -68,6 +72,12 @@ void Engine::Shutdown() {
 void Engine::Update(float deltaTime) {
     // Process events only if in game mode
     ProcessEvents();
+
+    const bool* state = SDL_GetKeyboardState(NULL);
+
+    if (player) {
+        player->HandleInput(state);
+    }
 
     // Update the active scene
     if (activeScene) {
