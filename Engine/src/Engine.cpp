@@ -21,7 +21,7 @@ bool Engine::Initialize() {
     }
 
     // Create an SDL3 window
-    window = SDL_CreateWindow("Pancake Engine", 800, 600, 0);
+    window = SDL_CreateWindow("Pancake Engine", 1600, 1000, 0);
     if (!window) {
         std::cerr << "Window Creation Failed: " << SDL_GetError() << std::endl;
         return false;

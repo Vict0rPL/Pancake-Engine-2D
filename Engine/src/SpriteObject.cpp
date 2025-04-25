@@ -22,7 +22,13 @@ void SpriteObject::Update(float deltaTime) {
 void SpriteObject::Render(SDL_Renderer* renderer) {
     if (texture) {
         SDL_FRect dst = dstRect;
-        SDL_FRect src = { static_cast<float>(currentFrame * frameWidth), 0.0f, static_cast<float>(frameWidth), static_cast<float>(frameHeight) };
+        SDL_FRect src = {
+            static_cast<float>(currentFrame * frameWidth),
+            static_cast<float>(directionRow * frameHeight),  // <-- zmiana tu!
+            static_cast<float>(frameWidth),
+            static_cast<float>(frameHeight)
+        };
         SDL_RenderTexture(renderer, texture, &src, &dst);
     }
 }
+

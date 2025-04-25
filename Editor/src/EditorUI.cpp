@@ -8,6 +8,7 @@
 #include "Circle.h"
 #include "Ellipse.h"
 #include "Polygon.h"
+#include "Player.h"
 #include <imgui.h>
 #include <backends/imgui_impl_sdl3.h>
 #include <backends/imgui_impl_sdlrenderer3.h>
@@ -71,7 +72,7 @@ void EditorUI::LoadProjectFolder() {
 
     if (std::filesystem::exists(scenePath)) {
         // load it
-        auto loaded = Scene::LoadFromJson(scenePath.string());
+        auto loaded = Scene::LoadFromJson(scenePath.string(), engineRef->GetRenderer());
         engineRef->SetActiveScene(std::move(loaded));
     }
     else {
@@ -111,7 +112,7 @@ void EditorUI::Run() {
         EnsureScenesFolderExists(projectFolderPath);
         std::filesystem::path mainScenePath = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
         if (std::filesystem::exists(mainScenePath)) {
-            auto loadedScene = Scene::LoadFromJson(mainScenePath.string());
+            auto loadedScene = Scene::LoadFromJson(mainScenePath.string(), engineRef->GetRenderer());
             engineRef->SetActiveScene(std::move(loadedScene));
         }
     }
@@ -360,6 +361,21 @@ void EditorUI::Run() {
             }
 
             ImGui::Separator();
+            if (ImGui::Button("Dodaj Playera")) {
+                Scene* currentScene = engineRef->GetActiveScene();
+                if (currentScene) {
+                    currentScene->AddGameObject(
+                        std::make_unique<Player>(
+                            engineRef->GetRenderer(),
+                            "../Engine/assets/pacman.png"  // <-- Ścieżka do sprite sheetu
+                        )
+                    );
+                    std::cout << "Player added to the scene.\n";
+                }
+            }
+
+
+            ImGui::Separator();
             // color-picker for fill
             ImGui::ColorEdit4("Fill Color", (float*)&fillColor);
             ImGui::ColorEdit4("Outline Color", (float*)&outlineColor);
@@ -451,7 +467,7 @@ void EditorUI::Run() {
                 // Reload the main scene from JSON
                 std::filesystem::path scenePath = std::filesystem::path(projectFolderPath) / "scenes" / defaultSceneFilename;
                 if (std::filesystem::exists(scenePath)) {
-                    auto loadedScene = Scene::LoadFromJson(scenePath.string());
+                    auto loadedScene = Scene::LoadFromJson(scenePath.string(), engineRef->GetRenderer());
                     engineRef->SetActiveScene(std::move(loadedScene));
                     inGameMode = true;
                     // Enable event processing in game mode:

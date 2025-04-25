@@ -18,7 +18,8 @@ public:
     void AddGameObject(std::unique_ptr<GameObject> gameObject);
 
     bool SerializeToJson(const std::string& filename) const;
-    static std::unique_ptr<Scene> LoadFromJson(const std::string& filename);
+    static std::unique_ptr<Scene> LoadFromJson(const std::string& filename, SDL_Renderer* renderer);
+
 
     const std::vector<std::unique_ptr<GameObject>>& GetGameObjects() const {
         return gameObjects;

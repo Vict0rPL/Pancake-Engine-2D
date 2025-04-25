@@ -6,6 +6,7 @@
 #include "Circle.h"
 #include "Ellipse.h"
 #include "Polygon.h"
+#include "Player.h"
 #include <fstream>
 #include <iostream>
 
@@ -44,7 +45,8 @@ bool Scene::SerializeToJson(const std::string& filename) const {
     return true;
 }
 
-std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename) {
+std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename, SDL_Renderer* renderer)
+{
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Failed to open " << filename << " for reading.\n";
@@ -147,6 +149,17 @@ std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename) {
             };
             obj = std::make_unique<Polygon>(points, fillColor, outlineColor);
         }
+        else if (type == "Player") {
+            obj = std::make_unique<Player>(renderer, "../Engine/assets/pacman.png");
+            if (auto* t = dynamic_cast<TransformableObject*>(obj.get())) {
+                auto& pj = objJson["position"];
+                t->SetPosition({ pj.value("x", 0.0f), pj.value("y", 0.0f) });
+                t->SetRotation(objJson.value("rotation", 0.0f));
+                auto& sj = objJson["scale"];
+                t->SetScale({ sj.value("x", 1.0f), sj.value("y", 1.0f) });
+            }
+        }
+
         else {
             std::cerr << "Unknown object type in JSON: " << type << "\n";
             continue;

@@ -30,6 +30,14 @@ void Player::Update(float deltaTime) {
         case Direction::Right: dx = speed * deltaTime; break;
         default: break;
         }
+        switch (currentDirection) {
+        case Direction::Up:    directionRow = 0; break;
+        case Direction::Down:  directionRow = 1; break;
+        case Direction::Left:  directionRow = 2; break;
+        case Direction::Right: directionRow = 3; break;
+        default: directionRow = 0; break;  // kierunek domyślny, góra
+        }
+
 
         dstRect.x += dx;
         dstRect.y += dy;

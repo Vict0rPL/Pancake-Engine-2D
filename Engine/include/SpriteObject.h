@@ -11,6 +11,8 @@ public:
 
 protected:
 	int currentFrame;
+    int directionRow = 0;  // numer wiersza w sprite sheet (dla kierunku)
+
 
 private:
     int frameWidth, frameHeight, numFrames;

@@ -19,3 +19,23 @@
      ImGui::ImGui   # Link Dear ImGui
      nlohmann_json::nlohmann_json
  )
+
+add_custom_command(
+    TARGET Editor POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_BINARY_DIR}/Libraries/SDL/SDL3.dll
+            $<TARGET_FILE_DIR:Editor>/SDL3.dll
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_BINARY_DIR}/Libraries/SDL_image/SDL3_image.dll
+            $<TARGET_FILE_DIR:Editor>/SDL3_image.dll
+    COMMAND ${CMAKE_COMMAND} -E make_directory
+            $<TARGET_FILE_DIR:Editor>/Engine/assets
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/Engine/assets/pacman.png
+            $<TARGET_FILE_DIR:Editor>/Engine/assets/pacman.png
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/Engine/assets/pancake.bmp
+            $<TARGET_FILE_DIR:Editor>/Engine/assets/pancake.bmp
+    COMMENT "Copying DLLs and assets to output directory"
+)
+
