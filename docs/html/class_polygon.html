@@ -1,0 +1,545 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Pancake Engine 2D: Dokumentacja klasy Polygon</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Pancake Engine 2D
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Szukaj" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano za pomocą Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_polygon.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Wczytywanie...</div>
+<div class="SRStatus" id="Searching">Szukanie...</div>
+<div class="SRStatus" id="NoMatches">Brak dopasowań</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Metody publiczne</a> &#124;
+<a href="class_polygon-members.html">Lista wszystkich składowych</a>  </div>
+  <div class="headertitle"><div class="title">Dokumentacja klasy Polygon</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Klasa <a class="el" href="class_polygon.html" title="Klasa Polygon reprezentująca wielokąt w przestrzeni 2D.">Polygon</a> reprezentująca wielokąt w przestrzeni 2D.  
+ <a href="#details">Więcej...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_polygon_8h_source.html">Polygon.h</a>&gt;</code></p>
+<div class="dynheader">
+Diagram dziedziczenia dla Polygon</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_polygon.png" usemap="#Polygon_map" alt=""/>
+  <map id="Polygon_map" name="Polygon_map">
+<area href="class_game_object.html" title="Klasa GameObject reprezentująca obiekt w grze." alt="GameObject" shape="rect" coords="0,0,130,24"/>
+<area href="class_transformable_object.html" title="Klasa TransformableObject reprezentuje obiekt 2D, który można poddać transformacjom." alt="TransformableObject" shape="rect" coords="140,0,270,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Metody publiczne</h2></td></tr>
+<tr class="memitem:a1e3c671c11f4211ae9e98a31ace37126" id="r_a1e3c671c11f4211ae9e98a31ace37126"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e3c671c11f4211ae9e98a31ace37126">Polygon</a> (const std::vector&lt; SDL_Point &gt; &amp;pts, SDL_Color fillColor={ 200, 200, 200, 255 }, SDL_Color outlineColor={ 0, 0, 0, 255 })</td></tr>
+<tr class="memdesc:a1e3c671c11f4211ae9e98a31ace37126"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor klasy <a class="el" href="class_polygon.html" title="Klasa Polygon reprezentująca wielokąt w przestrzeni 2D.">Polygon</a>.  <br /></td></tr>
+<tr class="separator:a1e3c671c11f4211ae9e98a31ace37126"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb622cb996558463f20712fd6fcd4c5f" id="r_abb622cb996558463f20712fd6fcd4c5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb622cb996558463f20712fd6fcd4c5f">Draw</a> (<a class="el" href="class_primitive_renderer.html">PrimitiveRenderer</a> &amp;renderer) const</td></tr>
+<tr class="memdesc:abb622cb996558463f20712fd6fcd4c5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rysuje wielokąt za pomocą <code><a class="el" href="class_primitive_renderer.html" title="Klasa PrimitiveRenderer do rysowania prymitywów w przestrzeni 2D.">PrimitiveRenderer</a></code>.  <br /></td></tr>
+<tr class="separator:abb622cb996558463f20712fd6fcd4c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30cc044b83a58c67b20c27d9c4462886" id="r_a30cc044b83a58c67b20c27d9c4462886"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30cc044b83a58c67b20c27d9c4462886">Render</a> (SDL_Renderer *renderer) override</td></tr>
+<tr class="memdesc:a30cc044b83a58c67b20c27d9c4462886"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renderuje wielokąt na ekranie przy użyciu SDL.  <br /></td></tr>
+<tr class="separator:a30cc044b83a58c67b20c27d9c4462886"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afddecb7e77e139d08722814cec52b282" id="r_afddecb7e77e139d08722814cec52b282"><td class="memItemLeft" align="right" valign="top">nlohmann::json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afddecb7e77e139d08722814cec52b282">ToJson</a> () const override</td></tr>
+<tr class="memdesc:afddecb7e77e139d08722814cec52b282"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konwertuje stan wielokąta do formatu JSON.  <br /></td></tr>
+<tr class="separator:afddecb7e77e139d08722814cec52b282"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cabb4678f728019eb43757d0e3531b7" id="r_a1cabb4678f728019eb43757d0e3531b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1cabb4678f728019eb43757d0e3531b7">Translate</a> (float dx, float dy) override</td></tr>
+<tr class="memdesc:a1cabb4678f728019eb43757d0e3531b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translacja wielokąta o zadane przesunięcie.  <br /></td></tr>
+<tr class="separator:a1cabb4678f728019eb43757d0e3531b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5917b3b968ad563e10c03d8a51c0c82" id="r_ac5917b3b968ad563e10c03d8a51c0c82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5917b3b968ad563e10c03d8a51c0c82">Rotate</a> (float angleRad) override</td></tr>
+<tr class="memdesc:ac5917b3b968ad563e10c03d8a51c0c82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotacja wielokąta o zadany kąt.  <br /></td></tr>
+<tr class="separator:ac5917b3b968ad563e10c03d8a51c0c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ac7b2d5c390906c4002521675ca943e" id="r_a3ac7b2d5c390906c4002521675ca943e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ac7b2d5c390906c4002521675ca943e">Scale</a> (float sx, float sy) override</td></tr>
+<tr class="memdesc:a3ac7b2d5c390906c4002521675ca943e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skalowanie wielokąta.  <br /></td></tr>
+<tr class="separator:a3ac7b2d5c390906c4002521675ca943e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_game_object"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_game_object')"><img src="closed.png" alt="-"/>&#160;Metody publiczne dziedziczone z <a class="el" href="class_game_object.html">GameObject</a></td></tr>
+<tr class="memitem:a7aa1d3e4bc853e5395d30794edd547d9 inherit pub_methods_class_game_object" id="r_a7aa1d3e4bc853e5395d30794edd547d9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a7aa1d3e4bc853e5395d30794edd547d9">GameObject</a> (const std::string &amp;<a class="el" href="class_game_object.html#af542b33c8de269343e22c5629e6b66c0">name</a>=&quot;GameObject&quot;)</td></tr>
+<tr class="memdesc:a7aa1d3e4bc853e5395d30794edd547d9 inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor klasy <a class="el" href="class_game_object.html" title="Klasa GameObject reprezentująca obiekt w grze.">GameObject</a>.  <br /></td></tr>
+<tr class="separator:a7aa1d3e4bc853e5395d30794edd547d9 inherit pub_methods_class_game_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab82dfdb656f9051c0587e6593b2dda97 inherit pub_methods_class_game_object" id="r_ab82dfdb656f9051c0587e6593b2dda97"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#ab82dfdb656f9051c0587e6593b2dda97">~GameObject</a> ()</td></tr>
+<tr class="memdesc:ab82dfdb656f9051c0587e6593b2dda97 inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruktor klasy <a class="el" href="class_game_object.html" title="Klasa GameObject reprezentująca obiekt w grze.">GameObject</a>.  <br /></td></tr>
+<tr class="separator:ab82dfdb656f9051c0587e6593b2dda97 inherit pub_methods_class_game_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab63d5908c6fb124b2564fba447b2867b inherit pub_methods_class_game_object" id="r_ab63d5908c6fb124b2564fba447b2867b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#ab63d5908c6fb124b2564fba447b2867b">Update</a> (float deltaTime)</td></tr>
+<tr class="memdesc:ab63d5908c6fb124b2564fba447b2867b inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metoda aktualizująca obiekt.  <br /></td></tr>
+<tr class="separator:ab63d5908c6fb124b2564fba447b2867b inherit pub_methods_class_game_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84df71ae6f557c1d764677219b492693 inherit pub_methods_class_game_object" id="r_a84df71ae6f557c1d764677219b492693"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a84df71ae6f557c1d764677219b492693">GetName</a> () const</td></tr>
+<tr class="memdesc:a84df71ae6f557c1d764677219b492693 inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca nazwę obiektu.  <br /></td></tr>
+<tr class="separator:a84df71ae6f557c1d764677219b492693 inherit pub_methods_class_game_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_transformable_object"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_transformable_object')"><img src="closed.png" alt="-"/>&#160;Metody publiczne dziedziczone z <a class="el" href="class_transformable_object.html">TransformableObject</a></td></tr>
+<tr class="memitem:af2966e8c6531e6bbb0ed276beb4ddc8a inherit pub_methods_class_transformable_object" id="r_af2966e8c6531e6bbb0ed276beb4ddc8a"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformable_object.html#af2966e8c6531e6bbb0ed276beb4ddc8a">~TransformableObject</a> ()=default</td></tr>
+<tr class="memdesc:af2966e8c6531e6bbb0ed276beb4ddc8a inherit pub_methods_class_transformable_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wirtualny destruktor.  <br /></td></tr>
+<tr class="separator:af2966e8c6531e6bbb0ed276beb4ddc8a inherit pub_methods_class_transformable_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac4e90af6fac29d9d3168733dd80c1a5 inherit pub_methods_class_transformable_object" id="r_aac4e90af6fac29d9d3168733dd80c1a5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_vector2.html">Vector2</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformable_object.html#aac4e90af6fac29d9d3168733dd80c1a5">GetPosition</a> () const</td></tr>
+<tr class="memdesc:aac4e90af6fac29d9d3168733dd80c1a5 inherit pub_methods_class_transformable_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca obecną pozycję obiektu.  <br /></td></tr>
+<tr class="separator:aac4e90af6fac29d9d3168733dd80c1a5 inherit pub_methods_class_transformable_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a9421b1294e6fc45cdfe72c98fb5f3d inherit pub_methods_class_transformable_object" id="r_a1a9421b1294e6fc45cdfe72c98fb5f3d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformable_object.html#a1a9421b1294e6fc45cdfe72c98fb5f3d">GetRotation</a> () const</td></tr>
+<tr class="memdesc:a1a9421b1294e6fc45cdfe72c98fb5f3d inherit pub_methods_class_transformable_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca obecny kąt obrotu obiektu.  <br /></td></tr>
+<tr class="separator:a1a9421b1294e6fc45cdfe72c98fb5f3d inherit pub_methods_class_transformable_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e1e3249266fb19fac86479656bbbaed inherit pub_methods_class_transformable_object" id="r_a1e1e3249266fb19fac86479656bbbaed"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_vector2.html">Vector2</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformable_object.html#a1e1e3249266fb19fac86479656bbbaed">GetScale</a> () const</td></tr>
+<tr class="memdesc:a1e1e3249266fb19fac86479656bbbaed inherit pub_methods_class_transformable_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca obecne wartości skali obiektu.  <br /></td></tr>
+<tr class="separator:a1e1e3249266fb19fac86479656bbbaed inherit pub_methods_class_transformable_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46560109bcc5a046ad6e5d64f3c5e1eb inherit pub_methods_class_transformable_object" id="r_a46560109bcc5a046ad6e5d64f3c5e1eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformable_object.html#a46560109bcc5a046ad6e5d64f3c5e1eb">SetPosition</a> (const <a class="el" href="struct_vector2.html">Vector2</a> &amp;p)</td></tr>
+<tr class="memdesc:a46560109bcc5a046ad6e5d64f3c5e1eb inherit pub_methods_class_transformable_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustala pozycję obiektu.  <br /></td></tr>
+<tr class="separator:a46560109bcc5a046ad6e5d64f3c5e1eb inherit pub_methods_class_transformable_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3f5a85e22144e62195f182efe7e917c inherit pub_methods_class_transformable_object" id="r_ac3f5a85e22144e62195f182efe7e917c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformable_object.html#ac3f5a85e22144e62195f182efe7e917c">SetRotation</a> (float r)</td></tr>
+<tr class="memdesc:ac3f5a85e22144e62195f182efe7e917c inherit pub_methods_class_transformable_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustala kąt obrotu obiektu.  <br /></td></tr>
+<tr class="separator:ac3f5a85e22144e62195f182efe7e917c inherit pub_methods_class_transformable_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa44d115204c4c50c6def3f0b4b50c96f inherit pub_methods_class_transformable_object" id="r_aa44d115204c4c50c6def3f0b4b50c96f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformable_object.html#aa44d115204c4c50c6def3f0b4b50c96f">SetScale</a> (const <a class="el" href="struct_vector2.html">Vector2</a> &amp;s)</td></tr>
+<tr class="memdesc:aa44d115204c4c50c6def3f0b4b50c96f inherit pub_methods_class_transformable_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustala skalę obiektu.  <br /></td></tr>
+<tr class="separator:aa44d115204c4c50c6def3f0b4b50c96f inherit pub_methods_class_transformable_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Dodatkowe dziedziczone składowe</h2></td></tr>
+<tr class="inherit_header pub_attribs_class_game_object"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_class_game_object')"><img src="closed.png" alt="-"/>&#160;Atrybuty publiczne dziedziczone z <a class="el" href="class_game_object.html">GameObject</a></td></tr>
+<tr class="memitem:a7b3fe962887a1512fade34a2d9427be6 inherit pub_attribs_class_game_object" id="r_a7b3fe962887a1512fade34a2d9427be6"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="struct_vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>position</b> { 0.0f, 0.0f }</td></tr>
+<tr class="memdesc:a7b3fe962887a1512fade34a2d9427be6 inherit pub_attribs_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Współrzędna X i Y obiektu. <br /></td></tr>
+<tr class="separator:a7b3fe962887a1512fade34a2d9427be6 inherit pub_attribs_class_game_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac55f6ebdf4cfbab508680ad7290fb26c inherit pub_attribs_class_game_object" id="r_ac55f6ebdf4cfbab508680ad7290fb26c"><td class="memItemLeft" align="right" valign="top">
+float&#160;</td><td class="memItemRight" valign="bottom"><b>rotation</b> = 0.0f</td></tr>
+<tr class="memdesc:ac55f6ebdf4cfbab508680ad7290fb26c inherit pub_attribs_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotacja obiektu w stopniach. <br /></td></tr>
+<tr class="separator:ac55f6ebdf4cfbab508680ad7290fb26c inherit pub_attribs_class_game_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa535bb6b3b273bd87c08cf6cc9feaea7 inherit pub_attribs_class_game_object" id="r_aa535bb6b3b273bd87c08cf6cc9feaea7"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="struct_vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>scale</b> { 1.0f, 1.0f }</td></tr>
+<tr class="memdesc:aa535bb6b3b273bd87c08cf6cc9feaea7 inherit pub_attribs_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skala obiektu w kierunkach X i Y. <br /></td></tr>
+<tr class="separator:aa535bb6b3b273bd87c08cf6cc9feaea7 inherit pub_attribs_class_game_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7535ae769c1f801baf9469105ed7d38f inherit pub_attribs_class_game_object" id="r_a7535ae769c1f801baf9469105ed7d38f"><td class="memItemLeft" align="right" valign="top">
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isActive</b> = true</td></tr>
+<tr class="memdesc:a7535ae769c1f801baf9469105ed7d38f inherit pub_attribs_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flaga aktywności obiektu. <br /></td></tr>
+<tr class="separator:a7535ae769c1f801baf9469105ed7d38f inherit pub_attribs_class_game_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af542b33c8de269343e22c5629e6b66c0 inherit pub_attribs_class_game_object" id="r_af542b33c8de269343e22c5629e6b66c0"><td class="memItemLeft" align="right" valign="top">
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+<tr class="memdesc:af542b33c8de269343e22c5629e6b66c0 inherit pub_attribs_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nazwa obiektu. <br /></td></tr>
+<tr class="separator:af542b33c8de269343e22c5629e6b66c0 inherit pub_attribs_class_game_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_transformable_object"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_transformable_object')"><img src="closed.png" alt="-"/>&#160;Atrybuty chronione dziedziczone z <a class="el" href="class_transformable_object.html">TransformableObject</a></td></tr>
+<tr class="memitem:a434033f346bedc402e8aaf232d2804f5 inherit pro_attribs_class_transformable_object" id="r_a434033f346bedc402e8aaf232d2804f5"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="struct_vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>position</b> { 0,0 }</td></tr>
+<tr class="memdesc:a434033f346bedc402e8aaf232d2804f5 inherit pro_attribs_class_transformable_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pozycja obiektu w przestrzeni 2D. <br /></td></tr>
+<tr class="separator:a434033f346bedc402e8aaf232d2804f5 inherit pro_attribs_class_transformable_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c302fb52e2440bff2243adbd1f6b0c3 inherit pro_attribs_class_transformable_object" id="r_a9c302fb52e2440bff2243adbd1f6b0c3"><td class="memItemLeft" align="right" valign="top">
+float&#160;</td><td class="memItemRight" valign="bottom"><b>rotation</b> { 0 }</td></tr>
+<tr class="memdesc:a9c302fb52e2440bff2243adbd1f6b0c3 inherit pro_attribs_class_transformable_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kąt obrotu obiektu w radianach. <br /></td></tr>
+<tr class="separator:a9c302fb52e2440bff2243adbd1f6b0c3 inherit pro_attribs_class_transformable_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0dbd7e777f9073bcd2647d4f7df1075 inherit pro_attribs_class_transformable_object" id="r_ae0dbd7e777f9073bcd2647d4f7df1075"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="struct_vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>scale_</b> { 1,1 }</td></tr>
+<tr class="memdesc:ae0dbd7e777f9073bcd2647d4f7df1075 inherit pro_attribs_class_transformable_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skala obiektu w osiach X i Y. <br /></td></tr>
+<tr class="separator:ae0dbd7e777f9073bcd2647d4f7df1075 inherit pro_attribs_class_transformable_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Opis szczegółowy</h2>
+<div class="textblock"><p>Klasa <a class="el" href="class_polygon.html" title="Klasa Polygon reprezentująca wielokąt w przestrzeni 2D.">Polygon</a> reprezentująca wielokąt w przestrzeni 2D. </p>
+<p>Klasa ta przechowuje wierzchołki wielokąta, umożliwia jego rysowanie, oraz pozwala na zastosowanie transformacji, takich jak translacja, rotacja i skalowanie. Dodatkowo, klasa ta pozwala na zapisanie obiektu do formatu JSON. </p>
+</div><h2 class="groupheader">Dokumentacja konstruktora i destruktora</h2>
+<a id="a1e3c671c11f4211ae9e98a31ace37126" name="a1e3c671c11f4211ae9e98a31ace37126"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e3c671c11f4211ae9e98a31ace37126">&#9670;&#160;</a></span>Polygon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Polygon::Polygon </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; SDL_Point &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>pts</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Color</td>          <td class="paramname"><span class="paramname"><em>fill</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{&#160;200,200,200,255&#160;}</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Color</td>          <td class="paramname"><span class="paramname"><em>outline</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{&#160;0,0,0,255&#160;}</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Konstruktor klasy <a class="el" href="class_polygon.html" title="Klasa Polygon reprezentująca wielokąt w przestrzeni 2D.">Polygon</a>. </p>
+<p>Konstruktor klasy <code><a class="el" href="class_polygon.html" title="Klasa Polygon reprezentująca wielokąt w przestrzeni 2D.">Polygon</a></code>.</p>
+<p>Inicjalizuje wielokąt na podstawie wektora punktów (współrzędnych wierzchołków).</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pts</td><td>Wektor punktów (SDL_Point), które określają wierzchołki wielokąta. </td></tr>
+    <tr><td class="paramname">fillColor</td><td>Kolor wypełnienia wielokąta (domyślnie: szary). </td></tr>
+    <tr><td class="paramname">outlineColor</td><td>Kolor obramowania wielokąta (domyślnie: czarny).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Tworzy obiekt <code><a class="el" href="class_polygon.html" title="Klasa Polygon reprezentująca wielokąt w przestrzeni 2D.">Polygon</a></code>, który reprezentuje wielokąt w przestrzeni 2D. Konstruktor oblicza środek ciężkości (centroid) wielokąta i przesuwa go do tego punktu.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pts</td><td>Wektor punktów, które tworzą wierzchołki wielokąta. </td></tr>
+    <tr><td class="paramname">fill</td><td>Kolor wypełnienia wielokąta. </td></tr>
+    <tr><td class="paramname">outline</td><td>Kolor obrysu wielokąta. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentacja funkcji składowych</h2>
+<a id="abb622cb996558463f20712fd6fcd4c5f" name="abb622cb996558463f20712fd6fcd4c5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb622cb996558463f20712fd6fcd4c5f">&#9670;&#160;</a></span>Draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Polygon::Draw </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_primitive_renderer.html">PrimitiveRenderer</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rdr</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rysuje wielokąt za pomocą <code><a class="el" href="class_primitive_renderer.html" title="Klasa PrimitiveRenderer do rysowania prymitywów w przestrzeni 2D.">PrimitiveRenderer</a></code>. </p>
+<p>Rysuje wielokąt przy użyciu renderer'a.</p>
+<p>Metoda ta wykorzystuje renderer do narysowania wielokąta w przestrzeni 2D.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>Renderer używany do rysowania.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Metoda ta oblicza końcową pozycję, rotację i skalę w przestrzeni świata, a następnie rysuje wypełniony i obrysowany wielokąt.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rdr</td><td>Obiekt <code><a class="el" href="class_primitive_renderer.html" title="Klasa PrimitiveRenderer do rysowania prymitywów w przestrzeni 2D.">PrimitiveRenderer</a></code> używany do rysowania wielokąta. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a30cc044b83a58c67b20c27d9c4462886" name="a30cc044b83a58c67b20c27d9c4462886"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30cc044b83a58c67b20c27d9c4462886">&#9670;&#160;</a></span>Render()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Polygon::Render </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>renderer</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Renderuje wielokąt na ekranie przy użyciu SDL. </p>
+<p>Renderuje wielokąt przy użyciu SDL_Renderer.</p>
+<p>Ta metoda wywołuje funkcje renderujące SDL, aby wyświetlić wielokąt na ekranie.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>Renderer SDL używany do renderowania.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Metoda ta wywołuje funkcję <code>Draw</code> przy użyciu obiektu <code><a class="el" href="class_primitive_renderer.html" title="Klasa PrimitiveRenderer do rysowania prymitywów w przestrzeni 2D.">PrimitiveRenderer</a></code>.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>Renderer SDL3 do renderowania wielokąta. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplementowana z <a class="el" href="class_game_object.html#ab91cf838eb1a0aad70a489439cfbf215">GameObject</a>.</p>
+
+</div>
+</div>
+<a id="ac5917b3b968ad563e10c03d8a51c0c82" name="ac5917b3b968ad563e10c03d8a51c0c82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5917b3b968ad563e10c03d8a51c0c82">&#9670;&#160;</a></span>Rotate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Polygon::Rotate </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>angleRad</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Rotacja wielokąta o zadany kąt. </p>
+<p>Rotacja wielokąta w przestrzeni 2D.</p>
+<p>Rotuje wielokąt o podany kąt (w radianach).</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angleRad</td><td>Kąt rotacji w radianach.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Ta metoda ustawia rotację wielokąta, ale nie wpływa na wizualną reprezentację.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angleRad</td><td>Kąt rotacji w radianach. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplementowana z <a class="el" href="class_transformable_object.html#a4f1bd5fde66ce2d37070d5911b89d829">TransformableObject</a>.</p>
+
+</div>
+</div>
+<a id="a3ac7b2d5c390906c4002521675ca943e" name="a3ac7b2d5c390906c4002521675ca943e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ac7b2d5c390906c4002521675ca943e">&#9670;&#160;</a></span>Scale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Polygon::Scale </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>sx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>sy</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Skalowanie wielokąta. </p>
+<p>Skalowanie wielokąta w przestrzeni 2D.</p>
+<p>Skalowanie wielokąta względem osi X i Y.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sx</td><td>Skalowanie w osi X. </td></tr>
+    <tr><td class="paramname">sy</td><td>Skalowanie w osi Y.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Ta metoda ustawia skalę wielokąta, ale nie wpływa na wizualną reprezentację.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sx</td><td>Skala wielokąta w osi X. </td></tr>
+    <tr><td class="paramname">sy</td><td>Skala wielokąta w osi Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplementowana z <a class="el" href="class_transformable_object.html#adabdaad4902302a5cda9bf4172764b1b">TransformableObject</a>.</p>
+
+</div>
+</div>
+<a id="afddecb7e77e139d08722814cec52b282" name="afddecb7e77e139d08722814cec52b282"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afddecb7e77e139d08722814cec52b282">&#9670;&#160;</a></span>ToJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">nlohmann::json Polygon::ToJson </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Konwertuje stan wielokąta do formatu JSON. </p>
+<p>Zwraca reprezentację wielokąta w formacie JSON.</p>
+<p>Umożliwia zapisanie stanu wielokąta (wierzchołków, kolorów) do formatu JSON.</p>
+<dl class="section return"><dt>Zwraca</dt><dd>nlohmann::json Reprezentacja obiektu wielokąta w formacie JSON.</dd></dl>
+<p>Ta metoda generuje dane JSON, które zawierają informacje o wierzchołkach, kolorach, pozycji, rotacji i skali wielokąta.</p>
+<dl class="section return"><dt>Zwraca</dt><dd>Obiekt JSON zawierający dane o wielokącie (punkty, kolory, pozycja, rotacja, skala). </dd></dl>
+
+<p>Implementuje <a class="el" href="class_game_object.html#a1c56968d3d20cc9b5d9ac1dc9cb0150e">GameObject</a>.</p>
+
+</div>
+</div>
+<a id="a1cabb4678f728019eb43757d0e3531b7" name="a1cabb4678f728019eb43757d0e3531b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cabb4678f728019eb43757d0e3531b7">&#9670;&#160;</a></span>Translate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Polygon::Translate </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dy</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Translacja wielokąta o zadane przesunięcie. </p>
+<p>Translacja wielokąta w przestrzeni 2D.</p>
+<p>Przesuwa wielokąt o wektor (dx, dy).</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dx</td><td>Przesunięcie w osi X. </td></tr>
+    <tr><td class="paramname">dy</td><td>Przesunięcie w osi Y.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Ta metoda przesuwa wielokąt o określony wektor przesunięcia (dx, dy). Transformacje takie jak translacja są zapisywane w obiekcie, ale nie wpływają na wizualną reprezentację.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dx</td><td>Przemieszczenie wielokąta w osi X. </td></tr>
+    <tr><td class="paramname">dy</td><td>Przemieszczenie wielokąta w osi Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplementowana z <a class="el" href="class_transformable_object.html#a817bbb88672ebc3fbf020da5d9f4ddf4">TransformableObject</a>.</p>
+
+</div>
+</div>
+<hr/>Dokumentacja dla tej klasy została wygenerowana z plików:<ul>
+<li>Engine/include/<a class="el" href="_polygon_8h_source.html">Polygon.h</a></li>
+<li>Engine/src/<a class="el" href="_polygon_8cpp.html">Polygon.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_polygon.html">Polygon</a></li>
+    <li class="footer">Wygenerowano za pomocą <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['scale_0',['Scale',['../class_circle.html#ad6ca355c954ede58e1de9d8aef1c185c',1,'Circle::Scale()'],['../class_ellipse.html#a2238101882927634727557e21d1509e5',1,'Ellipse::Scale()'],['../class_line.html#af47fb1469b1ed286d93873780a8d1613',1,'Line::Scale()'],['../class_point2_d.html#ad97e9d84e309ed494f26fdf418bd5ec2',1,'Point2D::Scale()'],['../class_polygon.html#a3ac7b2d5c390906c4002521675ca943e',1,'Polygon::Scale()'],['../class_square.html#a08e45a404372fb8c2a8d455225303df2',1,'Square::Scale()'],['../struct_mat3.html#ad7f51049ca1c6814d9909b6311fa3de2',1,'Mat3::Scale()'],['../class_transformable_object.html#adabdaad4902302a5cda9bf4172764b1b',1,'TransformableObject::Scale()']]],
+  ['serializetojson_1',['SerializeToJson',['../class_scene.html#a7ce837aea8e2b0b23e5fa7fc749ff85d',1,'Scene']]],
+  ['setactivescene_2',['SetActiveScene',['../class_engine.html#ac4838aec231761096214d50b87f37a98',1,'Engine']]],
+  ['setcoordinates_3',['SetCoordinates',['../class_point2_d.html#a1482f9aad7f00d328c082bb4c77b6a55',1,'Point2D']]],
+  ['setdirection_4',['SetDirection',['../class_player.html#a6101730eaa1bfc8e700b7f693d5b5a66',1,'Player']]],
+  ['setposition_5',['SetPosition',['../class_transformable_object.html#a46560109bcc5a046ad6e5d64f3c5e1eb',1,'TransformableObject']]],
+  ['setprocesseventsenabled_6',['SetProcessEventsEnabled',['../class_engine.html#a67598ca13624aba6fbe196b90c91be24',1,'Engine']]],
+  ['setrotation_7',['SetRotation',['../class_transformable_object.html#ac3f5a85e22144e62195f182efe7e917c',1,'TransformableObject']]],
+  ['setscale_8',['SetScale',['../class_transformable_object.html#aa44d115204c4c50c6def3f0b4b50c96f',1,'TransformableObject']]],
+  ['setx_9',['SetX',['../class_point2_d.html#a19de61ea984bbfe7db5e357df9bce249',1,'Point2D']]],
+  ['sety_10',['SetY',['../class_point2_d.html#a167114ece546ae7db3479cfb6b0c5b64',1,'Point2D']]],
+  ['shutdown_11',['Shutdown',['../class_engine.html#a3dbd2c0a65e642baa7eaa97caa6e4e64',1,'Engine']]],
+  ['shutdownimgui_12',['ShutdownImGui',['../class_editor_u_i.html#ad9ce34f43e396f951e4d477198029f6a',1,'EditorUI']]],
+  ['spriteobject_13',['SpriteObject',['../class_sprite_object.html#a3a7f7539b924ff6740d62f033cd88a60',1,'SpriteObject']]],
+  ['square_14',['Square',['../class_square.html#a6a2aaee4bb752ede4a9e5257ecb0bf96',1,'Square']]],
+  ['stop_15',['Stop',['../class_engine.html#a55059f0c0a33f3a84300a89ebd10b855',1,'Engine']]]
+];

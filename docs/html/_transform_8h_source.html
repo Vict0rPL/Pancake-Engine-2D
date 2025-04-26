@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Pancake Engine 2D: Plik źródłowy Engine/include/Transform.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Pancake Engine 2D
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Szukaj" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano za pomocą Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_transform_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Wczytywanie...</div>
+<div class="SRStatus" id="Searching">Szukanie...</div>
+<div class="SRStatus" id="NoMatches">Brak dopasowań</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Transform.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_transform_8h.html">Idź do dokumentacji tego pliku.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="struct_mat3.html">   21</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_mat3.html">Mat3</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="struct_mat3.html#a2256e1928f3cec5e329c09442b87d4bc">   22</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_mat3.html#a2256e1928f3cec5e329c09442b87d4bc">m</a>[3][3]; </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span></div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="struct_mat3.html#a0f1e9c6862cf44cf3100619381f84be4">   33</a></span>    <span class="keyword">static</span> <a class="code hl_struct" href="struct_mat3.html">Mat3</a> <a class="code hl_function" href="struct_mat3.html#a0f1e9c6862cf44cf3100619381f84be4">Translate</a>(<span class="keywordtype">float</span> tx, <span class="keywordtype">float</span> ty) {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">return</span> <a class="code hl_struct" href="struct_mat3.html">Mat3</a>{ {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>          {1, 0, tx},</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>          {0, 1, ty},</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>          {0, 0, 1 }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        } };</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    }</div>
+</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="struct_mat3.html#a84529eb2ca4ddadba9085dc9847916ed">   49</a></span>    <span class="keyword">static</span> <a class="code hl_struct" href="struct_mat3.html">Mat3</a> <a class="code hl_function" href="struct_mat3.html#a84529eb2ca4ddadba9085dc9847916ed">Rotate</a>(<span class="keywordtype">float</span> radians) {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordtype">float</span> c = std::cos(radians), s = std::sin(radians);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">return</span> <a class="code hl_struct" href="struct_mat3.html">Mat3</a>{ {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>          { c, -s, 0 },</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>          { s,  c, 0 },</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>          { 0,  0, 1 }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        } };</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
+</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span></div>
+<div class="foldopen" id="foldopen00067" data-start="{" data-end="}">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="struct_mat3.html#ad7f51049ca1c6814d9909b6311fa3de2">   67</a></span>    <span class="keyword">static</span> <a class="code hl_struct" href="struct_mat3.html">Mat3</a> <a class="code hl_function" href="struct_mat3.html#ad7f51049ca1c6814d9909b6311fa3de2">Scale</a>(<span class="keywordtype">float</span> sx, <span class="keywordtype">float</span> sy) {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">return</span> <a class="code hl_struct" href="struct_mat3.html">Mat3</a>{ {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>          { sx,  0,  0 },</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>          {  0, sy,  0 },</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>          {  0,  0,  1 }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        } };</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    }</div>
+</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span></div>
+<div class="foldopen" id="foldopen00083" data-start="{" data-end="}">
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="struct_mat3.html#a7343a56a46d6c74871d92cccdf4629b9">   83</a></span>    <a class="code hl_struct" href="struct_mat3.html">Mat3</a> <a class="code hl_function" href="struct_mat3.html#a7343a56a46d6c74871d92cccdf4629b9">operator*</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_mat3.html">Mat3</a>&amp; o)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <a class="code hl_struct" href="struct_mat3.html">Mat3</a> r{};</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; i++)</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 3; j++)</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                r.<a class="code hl_variable" href="struct_mat3.html#a2256e1928f3cec5e329c09442b87d4bc">m</a>[i][j] = <a class="code hl_variable" href="struct_mat3.html#a2256e1928f3cec5e329c09442b87d4bc">m</a>[i][0] * o.<a class="code hl_variable" href="struct_mat3.html#a2256e1928f3cec5e329c09442b87d4bc">m</a>[0][j]</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            + <a class="code hl_variable" href="struct_mat3.html#a2256e1928f3cec5e329c09442b87d4bc">m</a>[i][1] * o.<a class="code hl_variable" href="struct_mat3.html#a2256e1928f3cec5e329c09442b87d4bc">m</a>[1][j]</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                + <a class="code hl_variable" href="struct_mat3.html#a2256e1928f3cec5e329c09442b87d4bc">m</a>[i][2] * o.<a class="code hl_variable" href="struct_mat3.html#a2256e1928f3cec5e329c09442b87d4bc">m</a>[2][j];</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                <span class="keywordflow">return</span> r;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    }</div>
+</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>};</div>
+</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span></div>
+<div class="foldopen" id="foldopen00103" data-start="{" data-end="}">
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="_transform_8h.html#a796c3736218119978326964c08f208f6">  103</a></span><span class="keyword">inline</span> <a class="code hl_struct" href="struct_vector2.html">Vector2</a> <a class="code hl_function" href="_transform_8h.html#a796c3736218119978326964c08f208f6">operator*</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_mat3.html">Mat3</a>&amp; M, <span class="keyword">const</span> <a class="code hl_struct" href="struct_vector2.html">Vector2</a>&amp; v) {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordflow">return</span> {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      M.<a class="code hl_variable" href="struct_mat3.html#a2256e1928f3cec5e329c09442b87d4bc">m</a>[0][0] * v.x + M.<a class="code hl_variable" href="struct_mat3.html#a2256e1928f3cec5e329c09442b87d4bc">m</a>[0][1] * v.y + M.<a class="code hl_variable" href="struct_mat3.html#a2256e1928f3cec5e329c09442b87d4bc">m</a>[0][2],</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      M.<a class="code hl_variable" href="struct_mat3.html#a2256e1928f3cec5e329c09442b87d4bc">m</a>[1][0] * v.x + M.<a class="code hl_variable" href="struct_mat3.html#a2256e1928f3cec5e329c09442b87d4bc">m</a>[1][1] * v.y + M.<a class="code hl_variable" href="struct_mat3.html#a2256e1928f3cec5e329c09442b87d4bc">m</a>[1][2]</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    };</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>}</div>
+</div>
+<div class="ttc" id="a_transform_8h_html_a796c3736218119978326964c08f208f6"><div class="ttname"><a href="_transform_8h.html#a796c3736218119978326964c08f208f6">operator*</a></div><div class="ttdeci">Vector2 operator*(const Mat3 &amp;M, const Vector2 &amp;v)</div><div class="ttdoc">Operator mnożenia macierzy 3x3 i wektora 2D.</div><div class="ttdef"><b>Definicja</b> Transform.h:103</div></div>
+<div class="ttc" id="astruct_mat3_html"><div class="ttname"><a href="struct_mat3.html">Mat3</a></div><div class="ttdoc">Struktura Mat3 reprezentująca macierz 3x3.</div><div class="ttdef"><b>Definicja</b> Transform.h:21</div></div>
+<div class="ttc" id="astruct_mat3_html_a0f1e9c6862cf44cf3100619381f84be4"><div class="ttname"><a href="struct_mat3.html#a0f1e9c6862cf44cf3100619381f84be4">Mat3::Translate</a></div><div class="ttdeci">static Mat3 Translate(float tx, float ty)</div><div class="ttdoc">Tworzy macierz przesunięcia.</div><div class="ttdef"><b>Definicja</b> Transform.h:33</div></div>
+<div class="ttc" id="astruct_mat3_html_a2256e1928f3cec5e329c09442b87d4bc"><div class="ttname"><a href="struct_mat3.html#a2256e1928f3cec5e329c09442b87d4bc">Mat3::m</a></div><div class="ttdeci">float m[3][3]</div><div class="ttdoc">Tablica przechowująca elementy macierzy 3x3.</div><div class="ttdef"><b>Definicja</b> Transform.h:22</div></div>
+<div class="ttc" id="astruct_mat3_html_a7343a56a46d6c74871d92cccdf4629b9"><div class="ttname"><a href="struct_mat3.html#a7343a56a46d6c74871d92cccdf4629b9">Mat3::operator*</a></div><div class="ttdeci">Mat3 operator*(const Mat3 &amp;o) const</div><div class="ttdoc">Mnoży dwie macierze 3x3.</div><div class="ttdef"><b>Definicja</b> Transform.h:83</div></div>
+<div class="ttc" id="astruct_mat3_html_a84529eb2ca4ddadba9085dc9847916ed"><div class="ttname"><a href="struct_mat3.html#a84529eb2ca4ddadba9085dc9847916ed">Mat3::Rotate</a></div><div class="ttdeci">static Mat3 Rotate(float radians)</div><div class="ttdoc">Tworzy macierz obrotu.</div><div class="ttdef"><b>Definicja</b> Transform.h:49</div></div>
+<div class="ttc" id="astruct_mat3_html_ad7f51049ca1c6814d9909b6311fa3de2"><div class="ttname"><a href="struct_mat3.html#ad7f51049ca1c6814d9909b6311fa3de2">Mat3::Scale</a></div><div class="ttdeci">static Mat3 Scale(float sx, float sy)</div><div class="ttdoc">Tworzy macierz skalowania.</div><div class="ttdef"><b>Definicja</b> Transform.h:67</div></div>
+<div class="ttc" id="astruct_vector2_html"><div class="ttname"><a href="struct_vector2.html">Vector2</a></div><div class="ttdoc">Struktura wektora 2D.</div><div class="ttdef"><b>Definicja</b> GameObject.h:23</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_0b6ee6e7e9547e675db4add2e5de97da.html">Engine</a></li><li class="navelem"><a class="el" href="dir_1dfe4a86cee15d5d6902f8c724dcf913.html">include</a></li><li class="navelem"><a class="el" href="_transform_8h.html">Transform.h</a></li>
+    <li class="footer">Wygenerowano za pomocą <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

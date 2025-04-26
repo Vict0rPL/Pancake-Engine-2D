@@ -1,19 +1,51 @@
-﻿#include "PrimitiveRenderer.h"
+/**
+ * @file PrimitiveRenderer.cpp
+ * @brief Implementacja klasy `PrimitiveRenderer` odpowiedzialnej za rysowanie podstawowych prymitywów geometrycznych w SDL.
+ *
+ * Klasa `PrimitiveRenderer` dostarcza metody do rysowania punktów, linii, prostokątów, okręgów, elips oraz wielokątów. Obejmuje również wypełnianie tych prymitywów odpowiednimi kolorami.
+ */
+
+#include "PrimitiveRenderer.h"
 #include <cmath>
 #include <algorithm>
 
-// Konstruktor
+ /**
+  * @brief Konstruktor klasy `PrimitiveRenderer`.
+  *
+  * Inicjalizuje obiekt `PrimitiveRenderer`, który będzie używany do rysowania prymitywów geometrycznych przy pomocy obiektu `SDL_Renderer`.
+  *
+  * @param renderer Wskaźnik na renderer SDL, który będzie używany do rysowania.
+  */
 PrimitiveRenderer::PrimitiveRenderer(SDL_Renderer* renderer)
     : renderer(renderer)
 {
 }
 
+/**
+ * @brief Rysuje pojedynczy punkt na ekranie.
+ *
+ * Metoda ustawia kolor rysowania i rysuje punkt w zadanej pozycji.
+ *
+ * @param x Współrzędna X punktu.
+ * @param y Współrzędna Y punktu.
+ * @param color Kolor punktu.
+ */
 void PrimitiveRenderer::DrawPoint(int x, int y, SDL_Color color) {
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
     SDL_RenderPoint(renderer, x, y);
 }
 
-// Rysowanie linii metodą przyrostową
+/**
+ * @brief Rysuje linię między dwoma punktami.
+ *
+ * Metoda używa algorytmu przyrostowego do narysowania linii pomiędzy punktami (x0, y0) a (x1, y1).
+ *
+ * @param x0 Współrzędna X pierwszego punktu.
+ * @param y0 Współrzędna Y pierwszego punktu.
+ * @param x1 Współrzędna X drugiego punktu.
+ * @param y1 Współrzędna Y drugiego punktu.
+ * @param color Kolor linii.
+ */
 void PrimitiveRenderer::DrawLine(int x0, int y0, int x1, int y1, SDL_Color color) {
     int dx = abs(x1 - x0);
     int dy = abs(y1 - y0);
@@ -39,23 +71,50 @@ void PrimitiveRenderer::DrawLine(int x0, int y0, int x1, int y1, SDL_Color color
     DrawPoint(x1, y1, color);
 }
 
-// Wypełnienie kwadratu algorytmem poziomych linii
+/**
+ * @brief Wypełnia kwadrat w zadanej pozycji i rozmiarze.
+ *
+ * Metoda wypełnia kwadrat o zadanym rozmiarze i kolorze, rysując poziome linie.
+ *
+ * @param x Współrzędna X lewego górnego rogu kwadratu.
+ * @param y Współrzędna Y lewego górnego rogu kwadratu.
+ * @param size Rozmiar kwadratu.
+ * @param color Kolor wypełnienia kwadratu.
+ */
 void PrimitiveRenderer::FillSquare(int x, int y, int size, SDL_Color color) {
     for (int dy = 0; dy < size; ++dy) {
         DrawLine(x, y + dy, x + size - 1, y + dy, color);
     }
 }
 
-// Rysowanie kwadratu (przyjmujemy, że (x,y) to lewy górny róg)
+/**
+ * @brief Rysuje kontur kwadratu w zadanej pozycji i rozmiarze.
+ *
+ * Metoda rysuje kwadrat, traktując (x, y) jako lewy górny róg, rysując cztery linie.
+ *
+ * @param x Współrzędna X lewego górnego rogu kwadratu.
+ * @param y Współrzędna Y lewego górnego rogu kwadratu.
+ * @param size Rozmiar kwadratu.
+ * @param color Kolor konturu kwadratu.
+ */
 void PrimitiveRenderer::DrawSquare(int x, int y, int size, SDL_Color color) {
-    // Rysujemy cztery boki jako linie
+    // Rysowanie czterech boków kwadratu
     DrawLine(x, y, x + size, y, color);           // góra
     DrawLine(x + size, y, x + size, y + size, color); // prawa strona
     DrawLine(x + size, y + size, x, y + size, color); // dół
     DrawLine(x, y + size, x, y, color);             // lewa strona
 }
 
-// Wypełnienie i obrys okręgu (FillCircle + DrawCircle)
+/**
+ * @brief Wypełnia okrąg w zadanej pozycji i promieniu.
+ *
+ * Metoda rysuje okrąg wypełniony w zadanej pozycji (x0, y0) oraz promieniu.
+ *
+ * @param x0 Współrzędna X środka okręgu.
+ * @param y0 Współrzędna Y środka okręgu.
+ * @param radius Promień okręgu.
+ * @param color Kolor wypełnienia okręgu.
+ */
 void PrimitiveRenderer::FillCircle(int x0, int y0, int radius, SDL_Color color) {
     for (int dy = -radius; dy <= radius; ++dy) {
         int dx = static_cast<int>(std::floor(std::sqrt(radius * radius - dy * dy)));
@@ -66,6 +125,16 @@ void PrimitiveRenderer::FillCircle(int x0, int y0, int radius, SDL_Color color) 
     }
 }
 
+/**
+ * @brief Rysuje kontur okręgu w zadanej pozycji i promieniu.
+ *
+ * Metoda rysuje kontur okręgu w zadanej pozycji (x0, y0) oraz promieniu, używając algorytmu rysowania okręgu.
+ *
+ * @param x0 Współrzędna X środka okręgu.
+ * @param y0 Współrzędna Y środka okręgu.
+ * @param radius Promień okręgu.
+ * @param color Kolor konturu okręgu.
+ */
 void PrimitiveRenderer::DrawCircle(int x0, int y0, int radius, SDL_Color color) {
     int x = 0, y = radius;
     int d = 1 - radius;
@@ -84,7 +153,17 @@ void PrimitiveRenderer::DrawCircle(int x0, int y0, int radius, SDL_Color color) 
     }
 }
 
-// Wypełnienie i obrys elipsy
+/**
+ * @brief Wypełnia elipsę w zadanej pozycji i rozmiarach.
+ *
+ * Metoda wypełnia elipsę w zadanej pozycji (x0, y0) oraz promieniach rx i ry.
+ *
+ * @param x0 Współrzędna X środka elipsy.
+ * @param y0 Współrzędna Y środka elipsy.
+ * @param rx Promień elipsy w osi X.
+ * @param ry Promień elipsy w osi Y.
+ * @param color Kolor wypełnienia elipsy.
+ */
 void PrimitiveRenderer::FillEllipse(int x0, int y0, int rx, int ry, SDL_Color color) {
     for (int dy = -ry; dy <= ry; ++dy) {
         float frac = 1.0f - float(dy * dy) / (ry * ry);
@@ -96,8 +175,18 @@ void PrimitiveRenderer::FillEllipse(int x0, int y0, int rx, int ry, SDL_Color co
     }
 }
 
+/**
+ * @brief Rysuje kontur elipsy w zadanej pozycji i rozmiarach.
+ *
+ * Metoda rysuje kontur elipsy w zadanej pozycji (x0, y0) oraz promieniach rx i ry.
+ *
+ * @param x0 Współrzędna X środka elipsy.
+ * @param y0 Współrzędna Y środka elipsy.
+ * @param rx Promień elipsy w osi X.
+ * @param ry Promień elipsy w osi Y.
+ * @param color Kolor konturu elipsy.
+ */
 void PrimitiveRenderer::DrawEllipse(int x0, int y0, int rx, int ry, SDL_Color color) {
-    // algorytm midpoint elipsy jak wcześniej
     int x = 0, y = ry;
     long rxSq = long(rx) * rx, rySq = long(ry) * ry;
     long d1 = rySq - rxSq * ry + rxSq / 4;
@@ -123,7 +212,14 @@ void PrimitiveRenderer::DrawEllipse(int x0, int y0, int rx, int ry, SDL_Color co
     }
 }
 
-// Wypełnienie i obrys wielokąta (scanline fill + DrawPolygon)
+/**
+ * @brief Wypełnia wielokąt w zadanej pozycji z kolorami.
+ *
+ * Metoda wypełnia wielokąt z zadanymi punktami i kolorem za pomocą algorytmu linii skanowania.
+ *
+ * @param pts Wektor punktów wierzchołków wielokąta.
+ * @param color Kolor wypełnienia.
+ */
 void PrimitiveRenderer::FillPolygon(const std::vector<SDL_Point>& pts, SDL_Color color) {
     if (pts.size() < 3) return;
     int minY = pts[0].y, maxY = pts[0].y;
@@ -146,6 +242,14 @@ void PrimitiveRenderer::FillPolygon(const std::vector<SDL_Point>& pts, SDL_Color
     }
 }
 
+/**
+ * @brief Rysuje kontur wielokąta.
+ *
+ * Metoda rysuje kontur wielokąta, łącząc kolejne punkty linii.
+ *
+ * @param pts Wektor punktów wierzchołków wielokąta.
+ * @param color Kolor konturu.
+ */
 void PrimitiveRenderer::DrawPolygon(const std::vector<SDL_Point>& pts, SDL_Color color) {
     if (pts.size() < 2) return;
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);

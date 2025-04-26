@@ -1,0 +1,567 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Pancake Engine 2D: Dokumentacja klasy Scene</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Pancake Engine 2D
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Szukaj" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano za pomocą Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_scene.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Wczytywanie...</div>
+<div class="SRStatus" id="Searching">Szukanie...</div>
+<div class="SRStatus" id="NoMatches">Brak dopasowań</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Metody publiczne</a> &#124;
+<a href="#pub-static-methods">Statyczne metody publiczne</a> &#124;
+<a href="#pub-attribs">Atrybuty publiczne</a> &#124;
+<a href="class_scene-members.html">Lista wszystkich składowych</a>  </div>
+  <div class="headertitle"><div class="title">Dokumentacja klasy Scene</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Klasa <a class="el" href="class_scene.html" title="Klasa Scene reprezentująca scenę w grze.">Scene</a> reprezentująca scenę w grze.  
+ <a href="#details">Więcej...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_scene_8h_source.html">Scene.h</a>&gt;</code></p>
+<div class="dynheader">
+Diagram dziedziczenia dla Scene</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_scene.png" usemap="#Scene_map" alt=""/>
+  <map id="Scene_map" name="Scene_map">
+<area href="class_game.html" title="Klasa Game reprezentuje właściwą rozgrywkę, dziedziczy po Scene." alt="Game" shape="rect" coords="0,56,48,80"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Metody publiczne</h2></td></tr>
+<tr class="memitem:af6e09d91ebd10ae9cc7c12c39d06386c" id="r_af6e09d91ebd10ae9cc7c12c39d06386c"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6e09d91ebd10ae9cc7c12c39d06386c">~Scene</a> ()=default</td></tr>
+<tr class="memdesc:af6e09d91ebd10ae9cc7c12c39d06386c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wirtualny destruktor klasy <a class="el" href="class_scene.html" title="Klasa Scene reprezentująca scenę w grze.">Scene</a>.  <br /></td></tr>
+<tr class="separator:af6e09d91ebd10ae9cc7c12c39d06386c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a713d060066da92edadc18c9a1e710833" id="r_a713d060066da92edadc18c9a1e710833"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a713d060066da92edadc18c9a1e710833">Load</a> ()</td></tr>
+<tr class="memdesc:a713d060066da92edadc18c9a1e710833"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ładuje zasoby i ustawia stan początkowy sceny.  <br /></td></tr>
+<tr class="separator:a713d060066da92edadc18c9a1e710833"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e2bf79699b0c05bd353fade7b380ad7" id="r_a7e2bf79699b0c05bd353fade7b380ad7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e2bf79699b0c05bd353fade7b380ad7">Update</a> (float deltaTime)</td></tr>
+<tr class="memdesc:a7e2bf79699b0c05bd353fade7b380ad7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualizuje scenę i wszystkie jej obiekty w danym klatce.  <br /></td></tr>
+<tr class="separator:a7e2bf79699b0c05bd353fade7b380ad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec36bc81d06887f3145b92ee2a29d341" id="r_aec36bc81d06887f3145b92ee2a29d341"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec36bc81d06887f3145b92ee2a29d341">Render</a> (SDL_Renderer *renderer)</td></tr>
+<tr class="memdesc:aec36bc81d06887f3145b92ee2a29d341"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renderuje scenę na ekranie.  <br /></td></tr>
+<tr class="separator:aec36bc81d06887f3145b92ee2a29d341"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22e7c431a364475b436125b5087475f1" id="r_a22e7c431a364475b436125b5087475f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22e7c431a364475b436125b5087475f1">AddGameObject</a> (std::unique_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; gameObject)</td></tr>
+<tr class="memdesc:a22e7c431a364475b436125b5087475f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje obiekt gry do sceny.  <br /></td></tr>
+<tr class="separator:a22e7c431a364475b436125b5087475f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5a7f33434de3375ae443fd26354bdd6" id="r_aa5a7f33434de3375ae443fd26354bdd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5a7f33434de3375ae443fd26354bdd6">MarkForRemoval</a> (<a class="el" href="class_game_object.html">GameObject</a> *obj)</td></tr>
+<tr class="memdesc:aa5a7f33434de3375ae443fd26354bdd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Oznacza obiekt gry do usunięcia z sceny.  <br /></td></tr>
+<tr class="separator:aa5a7f33434de3375ae443fd26354bdd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ce837aea8e2b0b23e5fa7fc749ff85d" id="r_a7ce837aea8e2b0b23e5fa7fc749ff85d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ce837aea8e2b0b23e5fa7fc749ff85d">SerializeToJson</a> (const std::string &amp;filename) const</td></tr>
+<tr class="memdesc:a7ce837aea8e2b0b23e5fa7fc749ff85d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializuje scenę do pliku JSON.  <br /></td></tr>
+<tr class="separator:a7ce837aea8e2b0b23e5fa7fc749ff85d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfdc9d9e218ddcd45858ac1d647a3b95" id="r_abfdc9d9e218ddcd45858ac1d647a3b95"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfdc9d9e218ddcd45858ac1d647a3b95">GetGameObjects</a> ()</td></tr>
+<tr class="memdesc:abfdc9d9e218ddcd45858ac1d647a3b95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca referencję do listy obiektów gry w scenie.  <br /></td></tr>
+<tr class="separator:abfdc9d9e218ddcd45858ac1d647a3b95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d3644346c803005f9521eae04621643" id="r_a7d3644346c803005f9521eae04621643"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d3644346c803005f9521eae04621643">GetGameObjects</a> () const</td></tr>
+<tr class="memdesc:a7d3644346c803005f9521eae04621643"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca stałą referencję do listy obiektów gry w scenie.  <br /></td></tr>
+<tr class="separator:a7d3644346c803005f9521eae04621643"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Statyczne metody publiczne</h2></td></tr>
+<tr class="memitem:a19d018e2e6e477055c0670e9f339886f" id="r_a19d018e2e6e477055c0670e9f339886f"><td class="memItemLeft" align="right" valign="top">static std::unique_ptr&lt; <a class="el" href="class_scene.html">Scene</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19d018e2e6e477055c0670e9f339886f">LoadFromJson</a> (const std::string &amp;filename, SDL_Renderer *renderer)</td></tr>
+<tr class="memdesc:a19d018e2e6e477055c0670e9f339886f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ładuje scenę z pliku JSON.  <br /></td></tr>
+<tr class="separator:a19d018e2e6e477055c0670e9f339886f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Atrybuty publiczne</h2></td></tr>
+<tr class="memitem:a3348c13e73b0fb77aa1a143c05910479" id="r_a3348c13e73b0fb77aa1a143c05910479"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_game_object.html">GameObject</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3348c13e73b0fb77aa1a143c05910479">objectsToRemove</a></td></tr>
+<tr class="memdesc:a3348c13e73b0fb77aa1a143c05910479"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lista obiektów gry, które zostały oznaczone do usunięcia.  <br /></td></tr>
+<tr class="separator:a3348c13e73b0fb77aa1a143c05910479"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Opis szczegółowy</h2>
+<div class="textblock"><p>Klasa <a class="el" href="class_scene.html" title="Klasa Scene reprezentująca scenę w grze.">Scene</a> reprezentująca scenę w grze. </p>
+<p>Scena to miejsce, w którym znajdują się obiekty gry. Ta klasa umożliwia zarządzanie obiektami gry, ich ładowanie, aktualizowanie oraz renderowanie. Dodatkowo obsługuje serializację i deserializację stanu sceny do i z plików JSON. </p>
+</div><h2 class="groupheader">Dokumentacja konstruktora i destruktora</h2>
+<a id="af6e09d91ebd10ae9cc7c12c39d06386c" name="af6e09d91ebd10ae9cc7c12c39d06386c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6e09d91ebd10ae9cc7c12c39d06386c">&#9670;&#160;</a></span>~Scene()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Scene::~Scene </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wirtualny destruktor klasy <a class="el" href="class_scene.html" title="Klasa Scene reprezentująca scenę w grze.">Scene</a>. </p>
+<p>Destruktor jest wirtualny, aby umożliwić poprawne usuwanie obiektów dziedziczących. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentacja funkcji składowych</h2>
+<a id="a22e7c431a364475b436125b5087475f1" name="a22e7c431a364475b436125b5087475f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22e7c431a364475b436125b5087475f1">&#9670;&#160;</a></span>AddGameObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Scene::AddGameObject </td>
+          <td>(</td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>gameObject</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dodaje obiekt gry do sceny. </p>
+<p>Dodaje obiekt do sceny.</p>
+<p>Metoda ta dodaje nowy obiekt gry do listy obiektów w scenie.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gameObject</td><td>Unikalny wskaźnik na obiekt gry, który ma zostać dodany do sceny.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Metoda dodaje nowy obiekt do sceny. Obiekt jest przekazywany jako unikalny wskaźnik.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gameObject</td><td>Unikalny wskaźnik na obiekt do dodania do sceny. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abfdc9d9e218ddcd45858ac1d647a3b95" name="abfdc9d9e218ddcd45858ac1d647a3b95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfdc9d9e218ddcd45858ac1d647a3b95">&#9670;&#160;</a></span>GetGameObjects() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; &gt; &amp; Scene::GetGameObjects </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Zwraca referencję do listy obiektów gry w scenie. </p>
+<p>Metoda ta pozwala na dostęp do listy obiektów gry, która znajduje się w scenie.</p>
+<dl class="section return"><dt>Zwraca</dt><dd>Zwraca referencję do wektora obiektów gry. </dd></dl>
+
+</div>
+</div>
+<a id="a7d3644346c803005f9521eae04621643" name="a7d3644346c803005f9521eae04621643"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d3644346c803005f9521eae04621643">&#9670;&#160;</a></span>GetGameObjects() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; &gt; &amp; Scene::GetGameObjects </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Zwraca stałą referencję do listy obiektów gry w scenie. </p>
+<p>Metoda ta pozwala na dostęp do listy obiektów gry w scenie, ale w trybie tylko do odczytu.</p>
+<dl class="section return"><dt>Zwraca</dt><dd>Zwraca stałą referencję do wektora obiektów gry. </dd></dl>
+
+</div>
+</div>
+<a id="a713d060066da92edadc18c9a1e710833" name="a713d060066da92edadc18c9a1e710833"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a713d060066da92edadc18c9a1e710833">&#9670;&#160;</a></span>Load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Scene::Load </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ładuje zasoby i ustawia stan początkowy sceny. </p>
+<p>Inicjalizuje scenę.</p>
+<p>Metoda ta jest wywoływana po aktywowaniu sceny. Można zaimplementować w niej ładowanie zasobów i ustawianie początkowego stanu.</p>
+<p>Ta metoda jest odpowiedzialna za ewentualne dodanie domyślnych obiektów do sceny, jeśli zajdzie taka potrzeba w przyszłości. </p>
+
+<p>Reimplementowana w <a class="el" href="class_game.html#a63a2d7a6e0022bbf24e0113fe40739cc">Game</a>.</p>
+
+</div>
+</div>
+<a id="a19d018e2e6e477055c0670e9f339886f" name="a19d018e2e6e477055c0670e9f339886f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19d018e2e6e477055c0670e9f339886f">&#9670;&#160;</a></span>LoadFromJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="class_scene.html">Scene</a> &gt; Scene::LoadFromJson </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>filename</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>renderer</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ładuje scenę z pliku JSON. </p>
+<p>Ładuje scenę z pliku JSON i tworzy obiekty na podstawie zapisanych danych.</p>
+<p>Metoda statyczna, która ładuje stan sceny z pliku JSON i zwraca wskaźnik do nowej instancji sceny.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>Nazwa pliku JSON, z którego ma zostać wczytana scena. </td></tr>
+    <tr><td class="paramname">renderer</td><td>Wskaźnik do renderera SDL, który będzie używany w scenie. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>Zwraca unikalny wskaźnik na załadowaną scenę.</dd></dl>
+<p>Metoda ta odczytuje plik JSON, wczytuje informacje o obiektach w grze i tworzy odpowiednie obiekty, które następnie dodaje do nowej instancji sceny.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>Nazwa pliku JSON, z którego scena ma zostać załadowana. </td></tr>
+    <tr><td class="paramname">renderer</td><td>Wskaźnik na renderer SDL, który może być użyty przy ładowaniu obiektów gry, np. gracza. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>Unikalny wskaźnik na nową scenę załadowaną z pliku. </dd></dl>
+
+</div>
+</div>
+<a id="aa5a7f33434de3375ae443fd26354bdd6" name="aa5a7f33434de3375ae443fd26354bdd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5a7f33434de3375ae443fd26354bdd6">&#9670;&#160;</a></span>MarkForRemoval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Scene::MarkForRemoval </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_game_object.html">GameObject</a> *</td>          <td class="paramname"><span class="paramname"><em>obj</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Oznacza obiekt gry do usunięcia z sceny. </p>
+<p>Oznacza obiekt do usunięcia z gry.</p>
+<p>Metoda ta pozwala oznaczyć obiekt gry do usunięcia z listy obiektów w scenie.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">obj</td><td>Wskaźnik na obiekt, który ma zostać usunięty.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Metoda ta dodaje obiekt do listy obiektów, które mają zostać usunięte po zakończeniu bieżącej klatki aktualizacji.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">obj</td><td>Wskaźnik na obiekt do usunięcia. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aec36bc81d06887f3145b92ee2a29d341" name="aec36bc81d06887f3145b92ee2a29d341"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec36bc81d06887f3145b92ee2a29d341">&#9670;&#160;</a></span>Render()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Scene::Render </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>renderer</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Renderuje scenę na ekranie. </p>
+<p>Renderuje wszystkie obiekty w scenie.</p>
+<p>Metoda ta jest wywoływana w każdej klatce gry, aby narysować obiekty w scenie.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>Wskaźnik do renderera SDL, który będzie używany do rysowania.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Ta metoda renderuje wszystkie obiekty w scenie za pomocą podanego renderer'a SDL.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>Wskaźnik na obiekt SDL_Renderer, który będzie używany do rysowania obiektów. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplementowana w <a class="el" href="class_game.html#a76f4bb61a089314b0a808ad3afb716e2">Game</a>.</p>
+
+</div>
+</div>
+<a id="a7ce837aea8e2b0b23e5fa7fc749ff85d" name="a7ce837aea8e2b0b23e5fa7fc749ff85d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ce837aea8e2b0b23e5fa7fc749ff85d">&#9670;&#160;</a></span>SerializeToJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Scene::SerializeToJson </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>filename</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Serializuje scenę do pliku JSON. </p>
+<p>Serializuje scenę do formatu JSON i zapisuje do pliku.</p>
+<p>Metoda ta zapisuje stan sceny (w tym wszystkie obiekty gry) do pliku JSON.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>Nazwa pliku, do którego ma zostać zapisana scena. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>Zwraca wartość true, jeśli operacja zakończyła się sukcesem, w przeciwnym razie false.</dd></dl>
+<p>Metoda zapisuje wszystkie obiekty gry w scenie do pliku w formacie JSON. Każdy obiekt jest przekształcany na odpowiednią reprezentację JSON.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>Nazwa pliku, do którego scena zostanie zapisana. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Zwraca</dt><dd>Zwraca true, jeśli zapis do pliku zakończył się powodzeniem, w przeciwnym razie false. </dd></dl>
+
+</div>
+</div>
+<a id="a7e2bf79699b0c05bd353fade7b380ad7" name="a7e2bf79699b0c05bd353fade7b380ad7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e2bf79699b0c05bd353fade7b380ad7">&#9670;&#160;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Scene::Update </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>deltaTime</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Aktualizuje scenę i wszystkie jej obiekty w danym klatce. </p>
+<p>Aktualizuje wszystkie obiekty w scenie.</p>
+<p>Metoda ta jest wywoływana w każdej klatce gry. Powinna aktualizować stan obiektów w scenie, na przykład w celu wykonania logiki gry.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deltaTime</td><td>Czas, jaki upłynął od ostatniej klatki (w sekundach).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Metoda ta jest odpowiedzialna za zaktualizowanie wszystkich obiektów w scenie na podstawie upływającego czasu (deltaTime). Dodatkowo usuwa obiekty, które zostały oznaczone do usunięcia.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deltaTime</td><td>Czas, który minął od ostatniej aktualizacji (w sekundach). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplementowana w <a class="el" href="class_game.html#a8bcf6c2af098a041d84581f94f0b9b88">Game</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentacja atrybutów składowych</h2>
+<a id="a3348c13e73b0fb77aa1a143c05910479" name="a3348c13e73b0fb77aa1a143c05910479"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3348c13e73b0fb77aa1a143c05910479">&#9670;&#160;</a></span>objectsToRemove</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="class_game_object.html">GameObject</a>*&gt; Scene::objectsToRemove</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lista obiektów gry, które zostały oznaczone do usunięcia. </p>
+<p>Obiekty na tej liście będą usuwane w czasie aktualizacji sceny. </p>
+
+</div>
+</div>
+<hr/>Dokumentacja dla tej klasy została wygenerowana z plików:<ul>
+<li>Engine/include/<a class="el" href="_scene_8h_source.html">Scene.h</a></li>
+<li>Engine/src/<a class="el" href="_scene_8cpp.html">Scene.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_scene.html">Scene</a></li>
+    <li class="footer">Wygenerowano za pomocą <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

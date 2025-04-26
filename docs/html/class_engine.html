@@ -1,0 +1,516 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Pancake Engine 2D: Dokumentacja klasy Engine</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Pancake Engine 2D
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Szukaj" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano za pomocą Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_engine.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Wczytywanie...</div>
+<div class="SRStatus" id="Searching">Szukanie...</div>
+<div class="SRStatus" id="NoMatches">Brak dopasowań</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Metody publiczne</a> &#124;
+<a href="class_engine-members.html">Lista wszystkich składowych</a>  </div>
+  <div class="headertitle"><div class="title">Dokumentacja klasy Engine</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Klasa <a class="el" href="class_engine.html" title="Klasa Engine zarządza główną logiką gry: aktualizacją, renderowaniem, obsługą zdarzeń oraz scenami.">Engine</a> zarządza główną logiką gry: aktualizacją, renderowaniem, obsługą zdarzeń oraz scenami.  
+ <a href="#details">Więcej...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_engine_8h_source.html">Engine.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Metody publiczne</h2></td></tr>
+<tr class="memitem:a8c98683b0a3aa28d8ab72a8bcd0d52f2" id="r_a8c98683b0a3aa28d8ab72a8bcd0d52f2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c98683b0a3aa28d8ab72a8bcd0d52f2">Engine</a> ()</td></tr>
+<tr class="memdesc:a8c98683b0a3aa28d8ab72a8bcd0d52f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor klasy <a class="el" href="class_engine.html" title="Klasa Engine zarządza główną logiką gry: aktualizacją, renderowaniem, obsługą zdarzeń oraz scenami.">Engine</a>.  <br /></td></tr>
+<tr class="separator:a8c98683b0a3aa28d8ab72a8bcd0d52f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ef7030a089ecb30bbfcb9e43094717a" id="r_a8ef7030a089ecb30bbfcb9e43094717a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ef7030a089ecb30bbfcb9e43094717a">~Engine</a> ()</td></tr>
+<tr class="memdesc:a8ef7030a089ecb30bbfcb9e43094717a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruktor klasy <a class="el" href="class_engine.html" title="Klasa Engine zarządza główną logiką gry: aktualizacją, renderowaniem, obsługą zdarzeń oraz scenami.">Engine</a>.  <br /></td></tr>
+<tr class="separator:a8ef7030a089ecb30bbfcb9e43094717a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11baa1640d1f89e3cf8d1887a9621032" id="r_a11baa1640d1f89e3cf8d1887a9621032"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11baa1640d1f89e3cf8d1887a9621032">Initialize</a> ()</td></tr>
+<tr class="memdesc:a11baa1640d1f89e3cf8d1887a9621032"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje silnik gry (tworzy okno, renderer itd.).  <br /></td></tr>
+<tr class="separator:a11baa1640d1f89e3cf8d1887a9621032"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dbd2c0a65e642baa7eaa97caa6e4e64" id="r_a3dbd2c0a65e642baa7eaa97caa6e4e64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3dbd2c0a65e642baa7eaa97caa6e4e64">Shutdown</a> ()</td></tr>
+<tr class="memdesc:a3dbd2c0a65e642baa7eaa97caa6e4e64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Czyści zasoby i zamyka silnik.  <br /></td></tr>
+<tr class="separator:a3dbd2c0a65e642baa7eaa97caa6e4e64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6df2472f4cc7239293583fc08b2e5bc1" id="r_a6df2472f4cc7239293583fc08b2e5bc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6df2472f4cc7239293583fc08b2e5bc1">Update</a> (float deltaTime)</td></tr>
+<tr class="memdesc:a6df2472f4cc7239293583fc08b2e5bc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualizuje stan silnika — wywoływane w każdej klatce przez edytor (główną pętlę).  <br /></td></tr>
+<tr class="separator:a6df2472f4cc7239293583fc08b2e5bc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acde70aed0043e2e2091d0bb6cce8e3c1" id="r_acde70aed0043e2e2091d0bb6cce8e3c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acde70aed0043e2e2091d0bb6cce8e3c1">Render</a> ()</td></tr>
+<tr class="memdesc:acde70aed0043e2e2091d0bb6cce8e3c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renderuje aktualną scenę.  <br /></td></tr>
+<tr class="separator:acde70aed0043e2e2091d0bb6cce8e3c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4838aec231761096214d50b87f37a98" id="r_ac4838aec231761096214d50b87f37a98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4838aec231761096214d50b87f37a98">SetActiveScene</a> (std::unique_ptr&lt; <a class="el" href="class_scene.html">Scene</a> &gt; newScene)</td></tr>
+<tr class="memdesc:ac4838aec231761096214d50b87f37a98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia aktywną scenę.  <br /></td></tr>
+<tr class="separator:ac4838aec231761096214d50b87f37a98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae84d252557f8d57145b33aa1c30e2ef8" id="r_ae84d252557f8d57145b33aa1c30e2ef8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_scene.html">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae84d252557f8d57145b33aa1c30e2ef8">GetActiveScene</a> () const</td></tr>
+<tr class="memdesc:ae84d252557f8d57145b33aa1c30e2ef8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca wskaźnik do aktualnie aktywnej sceny.  <br /></td></tr>
+<tr class="separator:ae84d252557f8d57145b33aa1c30e2ef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab522aeb18c509b1e02247780255bede" id="r_aab522aeb18c509b1e02247780255bede"><td class="memItemLeft" align="right" valign="top">SDL_Window *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab522aeb18c509b1e02247780255bede">GetWindow</a> () const</td></tr>
+<tr class="memdesc:aab522aeb18c509b1e02247780255bede"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca wskaźnik do okna SDL (potrzebne np. do inicjalizacji ImGui).  <br /></td></tr>
+<tr class="separator:aab522aeb18c509b1e02247780255bede"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f9497105f6b0c207c445bcc478121a0" id="r_a7f9497105f6b0c207c445bcc478121a0"><td class="memItemLeft" align="right" valign="top">SDL_Renderer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f9497105f6b0c207c445bcc478121a0">GetRenderer</a> () const</td></tr>
+<tr class="memdesc:a7f9497105f6b0c207c445bcc478121a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca wskaźnik do renderera SDL.  <br /></td></tr>
+<tr class="separator:a7f9497105f6b0c207c445bcc478121a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96fbaebec1936cf4440f93b59a7c5148" id="r_a96fbaebec1936cf4440f93b59a7c5148"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96fbaebec1936cf4440f93b59a7c5148">IsRunning</a> () const</td></tr>
+<tr class="memdesc:a96fbaebec1936cf4440f93b59a7c5148"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sprawdza, czy silnik jest aktualnie uruchomiony.  <br /></td></tr>
+<tr class="separator:a96fbaebec1936cf4440f93b59a7c5148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55059f0c0a33f3a84300a89ebd10b855" id="r_a55059f0c0a33f3a84300a89ebd10b855"><td class="memItemLeft" align="right" valign="top"><a id="a55059f0c0a33f3a84300a89ebd10b855" name="a55059f0c0a33f3a84300a89ebd10b855"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Stop</b> ()</td></tr>
+<tr class="memdesc:a55059f0c0a33f3a84300a89ebd10b855"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zatrzymuje działanie silnika. <br /></td></tr>
+<tr class="separator:a55059f0c0a33f3a84300a89ebd10b855"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67598ca13624aba6fbe196b90c91be24" id="r_a67598ca13624aba6fbe196b90c91be24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67598ca13624aba6fbe196b90c91be24">SetProcessEventsEnabled</a> (bool enabled)</td></tr>
+<tr class="memdesc:a67598ca13624aba6fbe196b90c91be24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia, czy zdarzenia SDL mają być przetwarzane.  <br /></td></tr>
+<tr class="separator:a67598ca13624aba6fbe196b90c91be24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac86981cb73d339b5f0c22e85243e0f18" id="r_ac86981cb73d339b5f0c22e85243e0f18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac86981cb73d339b5f0c22e85243e0f18">FindPlayer</a> ()</td></tr>
+<tr class="memdesc:ac86981cb73d339b5f0c22e85243e0f18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wyszukuje obiekt gracza w aktywnej scenie.  <br /></td></tr>
+<tr class="separator:ac86981cb73d339b5f0c22e85243e0f18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Opis szczegółowy</h2>
+<div class="textblock"><p>Klasa <a class="el" href="class_engine.html" title="Klasa Engine zarządza główną logiką gry: aktualizacją, renderowaniem, obsługą zdarzeń oraz scenami.">Engine</a> zarządza główną logiką gry: aktualizacją, renderowaniem, obsługą zdarzeń oraz scenami. </p>
+</div><h2 class="groupheader">Dokumentacja konstruktora i destruktora</h2>
+<a id="a8c98683b0a3aa28d8ab72a8bcd0d52f2" name="a8c98683b0a3aa28d8ab72a8bcd0d52f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c98683b0a3aa28d8ab72a8bcd0d52f2">&#9670;&#160;</a></span>Engine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Engine::Engine </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Konstruktor klasy <a class="el" href="class_engine.html" title="Klasa Engine zarządza główną logiką gry: aktualizacją, renderowaniem, obsługą zdarzeń oraz scenami.">Engine</a>. </p>
+<p>Konstruktor klasy <code><a class="el" href="class_engine.html" title="Klasa Engine zarządza główną logiką gry: aktualizacją, renderowaniem, obsługą zdarzeń oraz scenami.">Engine</a></code>.</p>
+<p>Inicjalizuje wszystkie człony klasy <code><a class="el" href="class_engine.html" title="Klasa Engine zarządza główną logiką gry: aktualizacją, renderowaniem, obsługą zdarzeń oraz scenami.">Engine</a></code>, ustawiając stan gry na "nieuruchomiona".</p>
+<dl class="section note"><dt>Nota</dt><dd>Domyślnie wszystkie wskaźniki są ustawione na <code>nullptr</code>, a flaga <code>processEventsEnabled</code> jest ustawiona na <code>false</code>. </dd></dl>
+
+</div>
+</div>
+<a id="a8ef7030a089ecb30bbfcb9e43094717a" name="a8ef7030a089ecb30bbfcb9e43094717a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ef7030a089ecb30bbfcb9e43094717a">&#9670;&#160;</a></span>~Engine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Engine::~Engine </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destruktor klasy <a class="el" href="class_engine.html" title="Klasa Engine zarządza główną logiką gry: aktualizacją, renderowaniem, obsługą zdarzeń oraz scenami.">Engine</a>. </p>
+<p>Destruktor klasy <code><a class="el" href="class_engine.html" title="Klasa Engine zarządza główną logiką gry: aktualizacją, renderowaniem, obsługą zdarzeń oraz scenami.">Engine</a></code>.</p>
+<p>Zamyka i zwalnia zasoby silnika gry (okno, renderer), a następnie kończy działanie SDL. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentacja funkcji składowych</h2>
+<a id="ac86981cb73d339b5f0c22e85243e0f18" name="ac86981cb73d339b5f0c22e85243e0f18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac86981cb73d339b5f0c22e85243e0f18">&#9670;&#160;</a></span>FindPlayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::FindPlayer </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wyszukuje obiekt gracza w aktywnej scenie. </p>
+<p>Szuka obiektu gracza w aktywnej scenie.</p>
+<p>Funkcja ta przeszukuje wszystkie obiekty w aktywnej scenie i próbuje znaleźć obiekt klasy <code><a class="el" href="class_player.html" title="Klasa Player reprezentująca gracza w grze.">Player</a></code>. Jeśli obiekt gracza zostanie znaleziony, przypisuje go do zmiennej <code>player</code>. </p>
+
+</div>
+</div>
+<a id="ae84d252557f8d57145b33aa1c30e2ef8" name="ae84d252557f8d57145b33aa1c30e2ef8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae84d252557f8d57145b33aa1c30e2ef8">&#9670;&#160;</a></span>GetActiveScene()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_scene.html">Scene</a> * Engine::GetActiveScene </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zwraca wskaźnik do aktualnie aktywnej sceny. </p>
+<p>Zwraca wskaźnik do aktywnej sceny.</p>
+<dl class="section return"><dt>Zwraca</dt><dd>Wskaźnik do obiektu <a class="el" href="class_scene.html" title="Klasa Scene reprezentująca scenę w grze.">Scene</a>.</dd></dl>
+<p>Funkcja ta zwraca wskaźnik na aktualnie aktywną scenę.</p>
+<dl class="section return"><dt>Zwraca</dt><dd>Wskaźnik na obiekt <code><a class="el" href="class_scene.html" title="Klasa Scene reprezentująca scenę w grze.">Scene</a></code>, który reprezentuje aktywną scenę. </dd></dl>
+
+</div>
+</div>
+<a id="a7f9497105f6b0c207c445bcc478121a0" name="a7f9497105f6b0c207c445bcc478121a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f9497105f6b0c207c445bcc478121a0">&#9670;&#160;</a></span>GetRenderer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_Renderer * Engine::GetRenderer </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Zwraca wskaźnik do renderera SDL. </p>
+<dl class="section return"><dt>Zwraca</dt><dd>Wskaźnik na SDL_Renderer. </dd></dl>
+
+</div>
+</div>
+<a id="aab522aeb18c509b1e02247780255bede" name="aab522aeb18c509b1e02247780255bede"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab522aeb18c509b1e02247780255bede">&#9670;&#160;</a></span>GetWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_Window * Engine::GetWindow </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Zwraca wskaźnik do okna SDL (potrzebne np. do inicjalizacji ImGui). </p>
+<dl class="section return"><dt>Zwraca</dt><dd>Wskaźnik na SDL_Window. </dd></dl>
+
+</div>
+</div>
+<a id="a11baa1640d1f89e3cf8d1887a9621032" name="a11baa1640d1f89e3cf8d1887a9621032"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11baa1640d1f89e3cf8d1887a9621032">&#9670;&#160;</a></span>Initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Engine::Initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inicjalizuje silnik gry (tworzy okno, renderer itd.). </p>
+<p>Inicjalizuje silnik gry.</p>
+<dl class="section return"><dt>Zwraca</dt><dd>true jeśli inicjalizacja się powiodła, w przeciwnym wypadku false.</dd></dl>
+<p>Ta funkcja odpowiada za inicjalizację SDL, utworzenie okna, załadowanie ikony okna, stworzenie renderer'a, oraz załadowanie aktywnej sceny.</p>
+<dl class="section return"><dt>Zwraca</dt><dd><code>true</code> jeśli inicjalizacja przebiegła pomyślnie, <code>false</code> w przeciwnym przypadku. </dd></dl>
+
+</div>
+</div>
+<a id="a96fbaebec1936cf4440f93b59a7c5148" name="a96fbaebec1936cf4440f93b59a7c5148"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96fbaebec1936cf4440f93b59a7c5148">&#9670;&#160;</a></span>IsRunning()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Engine::IsRunning </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sprawdza, czy silnik jest aktualnie uruchomiony. </p>
+<dl class="section return"><dt>Zwraca</dt><dd>true jeśli silnik działa, false jeśli został zatrzymany. </dd></dl>
+
+</div>
+</div>
+<a id="acde70aed0043e2e2091d0bb6cce8e3c1" name="acde70aed0043e2e2091d0bb6cce8e3c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acde70aed0043e2e2091d0bb6cce8e3c1">&#9670;&#160;</a></span>Render()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::Render </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Renderuje aktualną scenę. </p>
+<p>Renderuje zawartość gry na ekranie.</p>
+<p>Funkcja ta rysuje scenę, czyszcząc ekran przed renderowaniem nowej klatki. </p>
+
+</div>
+</div>
+<a id="ac4838aec231761096214d50b87f37a98" name="ac4838aec231761096214d50b87f37a98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4838aec231761096214d50b87f37a98">&#9670;&#160;</a></span>SetActiveScene()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::SetActiveScene </td>
+          <td>(</td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="class_scene.html">Scene</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>newScene</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ustawia aktywną scenę. </p>
+<p>Ustawia nową aktywną scenę.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newScene</td><td>Wskaźnik na nową scenę (przekazywany jako unique_ptr).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Funkcja ta ustawia nową scenę, której zasoby są ładowane.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newScene</td><td>Wskaźnik na nową scenę, która ma zostać ustawiona jako aktywna. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a67598ca13624aba6fbe196b90c91be24" name="a67598ca13624aba6fbe196b90c91be24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67598ca13624aba6fbe196b90c91be24">&#9670;&#160;</a></span>SetProcessEventsEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::SetProcessEventsEnabled </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>enabled</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ustawia, czy zdarzenia SDL mają być przetwarzane. </p>
+<p>Włącza lub wyłącza przetwarzanie zdarzeń.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enabled</td><td>true aby przetwarzać zdarzenia, false aby je ignorować.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Funkcja ta umożliwia włączenie lub wyłączenie przetwarzania zdarzeń w silniku gry.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enabled</td><td>Flaga, która określa, czy przetwarzanie zdarzeń jest włączone. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3dbd2c0a65e642baa7eaa97caa6e4e64" name="a3dbd2c0a65e642baa7eaa97caa6e4e64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3dbd2c0a65e642baa7eaa97caa6e4e64">&#9670;&#160;</a></span>Shutdown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::Shutdown </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Czyści zasoby i zamyka silnik. </p>
+<p>Zamyka silnik gry i zwalnia zasoby.</p>
+<p>Funkcja ta niszczy renderer, okno i kończy działanie SDL. </p>
+
+</div>
+</div>
+<a id="a6df2472f4cc7239293583fc08b2e5bc1" name="a6df2472f4cc7239293583fc08b2e5bc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6df2472f4cc7239293583fc08b2e5bc1">&#9670;&#160;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::Update </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>deltaTime</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Aktualizuje stan silnika — wywoływane w każdej klatce przez edytor (główną pętlę). </p>
+<p>Aktualizuje stan gry na podstawie upływu czasu.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deltaTime</td><td>Czas (w sekundach) od ostatniej klatki.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Funkcja ta odpowiada za przetwarzanie zdarzeń, obsługę wejścia od gracza oraz aktualizację stanu aktywnej sceny.</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deltaTime</td><td>Czas, który upłynął od ostatniej aktualizacji. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>Dokumentacja dla tej klasy została wygenerowana z plików:<ul>
+<li>Engine/include/<a class="el" href="_engine_8h_source.html">Engine.h</a></li>
+<li>Engine/src/<a class="el" href="_engine_8cpp.html">Engine.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_engine.html">Engine</a></li>
+    <li class="footer">Wygenerowano za pomocą <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

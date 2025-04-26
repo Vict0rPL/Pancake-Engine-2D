@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Pancake Engine 2D: Plik źródłowy Engine/include/Line.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Pancake Engine 2D
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Szukaj" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano za pomocą Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_line_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Wczytywanie...</div>
+<div class="SRStatus" id="Searching">Szukanie...</div>
+<div class="SRStatus" id="NoMatches">Brak dopasowań</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Line.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_line_8h.html">Idź do dokumentacji tego pliku.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#ifndef LINE_H</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#define LINE_H</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="_game_object_8h.html">GameObject.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="_point2_d_8h.html">Point2D.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="_transformable_object_8h.html">TransformableObject.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="_primitive_renderer_8h.html">PrimitiveRenderer.h</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;nlohmann/json.hpp&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span></div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_line.html">   23</a></span><span class="keyword">class </span><a class="code hl_function" href="class_line.html#aef878deb3e81f0efdd369b59b5fc9be2">Line</a> : <span class="keyword">public</span> <a class="code hl_function" href="class_game_object.html#a7aa1d3e4bc853e5395d30794edd547d9">GameObject</a>, <span class="keyword">public</span> <a class="code hl_class" href="class_transformable_object.html">TransformableObject</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_function" href="class_line.html#aef878deb3e81f0efdd369b59b5fc9be2">Line</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_point2_d.html">Point2D</a>&amp; start, <span class="keyword">const</span> <a class="code hl_class" href="class_point2_d.html">Point2D</a>&amp; end);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_line.html#afc4df1b19ba7d16263bbd901bab6ad83">Draw</a>(<a class="code hl_class" href="class_primitive_renderer.html">PrimitiveRenderer</a>&amp; renderer) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_line.html#a6107bd3c30bf9b6a0a2cb266f9adb1f5">Render</a>(SDL_Renderer* renderer) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_line.html#af6f27c8dc360df1450cd1243f428c4a3">Translate</a>(<span class="keywordtype">float</span> dx, <span class="keywordtype">float</span> dy) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_line.html#a29b676d8aa42c9d76044ec28f912f52a">Rotate</a>(<span class="keywordtype">float</span> angleRad) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_line.html#af47fb1469b1ed286d93873780a8d1613">Scale</a>(<span class="keywordtype">float</span> sx, <span class="keywordtype">float</span> sy) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">virtual</span> nlohmann::json <a class="code hl_function" href="class_line.html#a77234e094fcd5947487aa2d5521b665e">ToJson</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <a class="code hl_class" href="class_point2_d.html">Point2D</a> startPoint;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <a class="code hl_class" href="class_point2_d.html">Point2D</a> endPoint;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    SDL_Color outlineColor;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>};</div>
+</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">#endif </span><span class="comment">// LINE_H</span></div>
+<div class="ttc" id="a_game_object_8h_html"><div class="ttname"><a href="_game_object_8h.html">GameObject.h</a></div><div class="ttdoc">Definicja klasy GameObject, będącej bazą dla obiektów gry.</div></div>
+<div class="ttc" id="a_point2_d_8h_html"><div class="ttname"><a href="_point2_d_8h.html">Point2D.h</a></div><div class="ttdoc">Definicja klasy Point2D, reprezentującej punkt w 2D.</div></div>
+<div class="ttc" id="a_primitive_renderer_8h_html"><div class="ttname"><a href="_primitive_renderer_8h.html">PrimitiveRenderer.h</a></div><div class="ttdoc">Definicja klasy PrimitiveRenderer do rysowania podstawowych prymitywów 2D przy użyciu SDL.</div></div>
+<div class="ttc" id="a_transformable_object_8h_html"><div class="ttname"><a href="_transformable_object_8h.html">TransformableObject.h</a></div><div class="ttdoc">Definicja klasy TransformableObject odpowiedzialnej za transformacje obiektów 2D w przestrzeni.</div></div>
+<div class="ttc" id="aclass_game_object_html_a7aa1d3e4bc853e5395d30794edd547d9"><div class="ttname"><a href="class_game_object.html#a7aa1d3e4bc853e5395d30794edd547d9">GameObject::GameObject</a></div><div class="ttdeci">GameObject(const std::string &amp;name=&quot;GameObject&quot;)</div><div class="ttdoc">Konstruktor klasy GameObject.</div><div class="ttdef"><b>Definicja</b> GameObject.cpp:20</div></div>
+<div class="ttc" id="aclass_line_html_a29b676d8aa42c9d76044ec28f912f52a"><div class="ttname"><a href="class_line.html#a29b676d8aa42c9d76044ec28f912f52a">Line::Rotate</a></div><div class="ttdeci">void Rotate(float angleRad) override</div><div class="ttdoc">Metoda rotująca linię o zadany kąt.</div><div class="ttdef"><b>Definicja</b> Line.cpp:92</div></div>
+<div class="ttc" id="aclass_line_html_a6107bd3c30bf9b6a0a2cb266f9adb1f5"><div class="ttname"><a href="class_line.html#a6107bd3c30bf9b6a0a2cb266f9adb1f5">Line::Render</a></div><div class="ttdeci">virtual void Render(SDL_Renderer *renderer) override</div><div class="ttdoc">Metoda renderująca linię.</div><div class="ttdef"><b>Definicja</b> Line.cpp:68</div></div>
+<div class="ttc" id="aclass_line_html_a77234e094fcd5947487aa2d5521b665e"><div class="ttname"><a href="class_line.html#a77234e094fcd5947487aa2d5521b665e">Line::ToJson</a></div><div class="ttdeci">virtual nlohmann::json ToJson() const override</div><div class="ttdoc">Metoda konwertująca linię do formatu JSON.</div><div class="ttdef"><b>Definicja</b> Line.cpp:116</div></div>
+<div class="ttc" id="aclass_line_html_aef878deb3e81f0efdd369b59b5fc9be2"><div class="ttname"><a href="class_line.html#aef878deb3e81f0efdd369b59b5fc9be2">Line::Line</a></div><div class="ttdeci">Line(const Point2D &amp;start, const Point2D &amp;end)</div><div class="ttdoc">Konstruktor klasy Line.</div><div class="ttdef"><b>Definicja</b> Line.cpp:22</div></div>
+<div class="ttc" id="aclass_line_html_af47fb1469b1ed286d93873780a8d1613"><div class="ttname"><a href="class_line.html#af47fb1469b1ed286d93873780a8d1613">Line::Scale</a></div><div class="ttdeci">void Scale(float sx, float sy) override</div><div class="ttdoc">Metoda skalująca linię.</div><div class="ttdef"><b>Definicja</b> Line.cpp:104</div></div>
+<div class="ttc" id="aclass_line_html_af6f27c8dc360df1450cd1243f428c4a3"><div class="ttname"><a href="class_line.html#af6f27c8dc360df1450cd1243f428c4a3">Line::Translate</a></div><div class="ttdeci">void Translate(float dx, float dy) override</div><div class="ttdoc">Metoda przesuwająca linię o wektor (dx, dy).</div><div class="ttdef"><b>Definicja</b> Line.cpp:81</div></div>
+<div class="ttc" id="aclass_line_html_afc4df1b19ba7d16263bbd901bab6ad83"><div class="ttname"><a href="class_line.html#afc4df1b19ba7d16263bbd901bab6ad83">Line::Draw</a></div><div class="ttdeci">virtual void Draw(PrimitiveRenderer &amp;renderer) const</div><div class="ttdoc">Metoda rysująca linię przy użyciu obiektu PrimitiveRenderer.</div><div class="ttdef"><b>Definicja</b> Line.cpp:40</div></div>
+<div class="ttc" id="aclass_point2_d_html"><div class="ttname"><a href="class_point2_d.html">Point2D</a></div><div class="ttdoc">Klasa Point2D reprezentująca punkt w 2D.</div><div class="ttdef"><b>Definicja</b> Point2D.h:21</div></div>
+<div class="ttc" id="aclass_primitive_renderer_html"><div class="ttname"><a href="class_primitive_renderer.html">PrimitiveRenderer</a></div><div class="ttdoc">Klasa PrimitiveRenderer do rysowania prymitywów w przestrzeni 2D.</div><div class="ttdef"><b>Definicja</b> PrimitiveRenderer.h:21</div></div>
+<div class="ttc" id="aclass_transformable_object_html"><div class="ttname"><a href="class_transformable_object.html">TransformableObject</a></div><div class="ttdoc">Klasa TransformableObject reprezentuje obiekt 2D, który można poddać transformacjom.</div><div class="ttdef"><b>Definicja</b> TransformableObject.h:23</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_0b6ee6e7e9547e675db4add2e5de97da.html">Engine</a></li><li class="navelem"><a class="el" href="dir_1dfe4a86cee15d5d6902f8c724dcf913.html">include</a></li><li class="navelem"><a class="el" href="_line_8h.html">Line.h</a></li>
+    <li class="footer">Wygenerowano za pomocą <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

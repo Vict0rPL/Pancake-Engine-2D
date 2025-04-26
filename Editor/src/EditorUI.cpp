@@ -1,4 +1,4 @@
-﻿// EditorUI.cpp
+// EditorUI.cpp
 #include "EditorUI.h"
 #include "Engine.h"
 #include "Scene.h"
@@ -17,15 +17,31 @@
 #include <filesystem> // C++17 or above for std::filesystem
 
 
+/**
+ * @brief Konstruktor klasy EditorUI.
+ *
+ * Inicjalizuje obiekt EditorUI, ustawiając początkowe wartości zmiennych.
+ * @param engine Wskaźnik na obiekt silnika gry.
+ */
 EditorUI::EditorUI(Engine* engine)
     : engineRef(engine), isRunning(true), projectFolderPath(""), waitingForPointClick(false)
 {
 }
 
+/**
+ * @brief Destruktor klasy EditorUI.
+ *
+ * Zamyka i sprząta zasoby związane z ImGui.
+ */
 EditorUI::~EditorUI() {
     ShutdownImGui();
 }
 
+/**
+ * @brief Inicjalizuje bibliotekę ImGui.
+ *
+ * Tworzy kontekst ImGui, ustawia style i inicjalizuje implementację dla SDL.
+ */
 void EditorUI::InitializeImGui() {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -35,13 +51,23 @@ void EditorUI::InitializeImGui() {
     ImGui_ImplSDLRenderer3_Init(engineRef->GetRenderer());
 }
 
+/**
+ * @brief Zamyka bibliotekę ImGui.
+ *
+ * Zwalnia zasoby i zamyka wszystkie instancje ImGui.
+ */
 void EditorUI::ShutdownImGui() {
     ImGui_ImplSDLRenderer3_Shutdown();
     ImGui_ImplSDL3_Shutdown();
     ImGui::DestroyContext();
 }
 
-// Helper function to ensure [projectFolder]/scenes exists
+/**
+ * @brief Pomocnicza funkcja zapewniająca istnienie folderu "scenes" w folderze projektu.
+ *
+ * Jeśli folder "scenes" nie istnieje, zostanie on utworzony.
+ * @param projectFolder Ścieżka do folderu projektu.
+ */
 void EditorUI::EnsureScenesFolderExists(const std::string& projectFolder) {
     std::filesystem::path scenesPath = std::filesystem::path(projectFolder) / "scenes";
     if (!std::filesystem::exists(scenesPath)) {
@@ -54,7 +80,11 @@ void EditorUI::EnsureScenesFolderExists(const std::string& projectFolder) {
     }
 }
 
-// Opens a native “select folder” dialog and loads the project
+/**
+ * @brief Otwiera okno dialogowe wyboru folderu i ładuje projekt.
+ *
+ * Umożliwia użytkownikowi wybór folderu projektu, a następnie ładuje go, jeżeli zawiera odpowiednie pliki.
+ */
 void EditorUI::LoadProjectFolder() {
     const char* path = tinyfd_selectFolderDialog("Select Existing Project Folder", nullptr);
     if (!path) return;
@@ -62,29 +92,33 @@ void EditorUI::LoadProjectFolder() {
     projectFolderPath = path;
     hasProject = true;
 
-    // make sure <project>/scenes exists
+    // Upewnij się, że folder <project>/scenes istnieje
     EnsureScenesFolderExists(projectFolderPath);
 
-    // our main scene JSON
+    // Ścieżka do głównej sceny JSON
     auto scenePath = std::filesystem::path(projectFolderPath)
         / "scenes"
         / defaultSceneFilename;
 
     if (std::filesystem::exists(scenePath)) {
-        // load it
+        // Ładuj scenę
         auto loaded = Scene::LoadFromJson(scenePath.string(), engineRef->GetRenderer());
         engineRef->SetActiveScene(std::move(loaded));
     }
     else {
-        // no scene yet: create an empty one, hook it up and immediately save
+        // Brak sceny: tworzymy pustą, przypinamy ją i natychmiast zapisujemy
         auto newScene = std::make_unique<Scene>();
         engineRef->SetActiveScene(std::move(newScene));
         engineRef->GetActiveScene()->SerializeToJson(scenePath.string());
     }
 }
 
-
-// Opens a native “choose directory” dialog and creates a new project there
+/**
+ * @brief Otwiera natywne okno dialogowe "wybierz folder" i tworzy nowy projekt w wybranej lokalizacji.
+ *
+ * Pozwala użytkownikowi wybrać folder, w którym zostanie utworzony nowy projekt. Tworzy folder projektu i subfolder "scenes".
+ * Następnie inicjalizuje pustą scenę i zapisuje ją.
+ */
 void EditorUI::CreateNewProjectFolder() {
     const char* path = tinyfd_selectFolderDialog("Select Where to Create New Project", nullptr);
     if (path) {
@@ -101,6 +135,11 @@ void EditorUI::CreateNewProjectFolder() {
     }
 }
 
+/**
+ * @brief Główna pętla aplikacji, która uruchamia edytor i przetwarza zdarzenia.
+ *
+ * Pętla gry, która kontroluje wczytanie sceny, przetwarza zdarzenia SDL oraz rysuje obiekty w zależności od aktywnego trybu rysowania.
+ */
 void EditorUI::Run() {
     const float fps = 60.0f;
     const float frameDelay = 1000.0f / fps;

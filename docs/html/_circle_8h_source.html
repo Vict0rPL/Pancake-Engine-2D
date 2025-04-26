@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Pancake Engine 2D: Plik źródłowy Engine/include/Circle.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Pancake Engine 2D
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Szukaj" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano za pomocą Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_circle_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Wczytywanie...</div>
+<div class="SRStatus" id="Searching">Szukanie...</div>
+<div class="SRStatus" id="NoMatches">Brak dopasowań</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Circle.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_circle_8h.html">Idź do dokumentacji tego pliku.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="_game_object_8h.html">GameObject.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="_transformable_object_8h.html">TransformableObject.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="_primitive_renderer_8h.html">PrimitiveRenderer.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;nlohmann/json.hpp&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="class_circle.html">   19</a></span><span class="keyword">class </span><a class="code hl_function" href="class_circle.html#aa3b18815977e60ef68cb933f839b2c50">Circle</a> : <span class="keyword">public</span> <a class="code hl_function" href="class_game_object.html#a7aa1d3e4bc853e5395d30794edd547d9">GameObject</a>, <span class="keyword">public</span> <a class="code hl_class" href="class_transformable_object.html">TransformableObject</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_function" href="class_circle.html#aa3b18815977e60ef68cb933f839b2c50">Circle</a>(<span class="keywordtype">int</span> cx, <span class="keywordtype">int</span> cy, <span class="keywordtype">int</span> r, SDL_Color fill, SDL_Color outline);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_circle.html#a57945bc63965eddf86fd9a7cf0718834">Draw</a>(<a class="code hl_class" href="class_primitive_renderer.html">PrimitiveRenderer</a>&amp; renderer) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_circle.html#a31cf6d000544623d109efb3c8a9d01cc">Render</a>(SDL_Renderer* renderer) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">virtual</span> nlohmann::json <a class="code hl_function" href="class_circle.html#a73a7a8768503547fc05c8c2589a2ca4a">ToJson</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">// Transformacje odziedziczone z TransformableObject:</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_circle.html#a08fb94feafa4f321e70b4ad83a5e62e1">Translate</a>(<span class="keywordtype">float</span> dx, <span class="keywordtype">float</span> dy) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_circle.html#a3be8fdd86d824c91a2aa168712121e3d">Rotate</a>(<span class="keywordtype">float</span> angleRad) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_circle.html#ad6ca355c954ede58e1de9d8aef1c185c">Scale</a>(<span class="keywordtype">float</span> sx, <span class="keywordtype">float</span> sy) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="class_circle.html#a9e685945b43cba00c15ca6e6b2ca1c2e">   83</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_circle.html#a9e685945b43cba00c15ca6e6b2ca1c2e">GetX</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> x; }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="class_circle.html#a681d4e73e38be3931c9a61db8220b1d5">   90</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_circle.html#a681d4e73e38be3931c9a61db8220b1d5">GetY</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> y; }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="class_circle.html#a616f7fcde6e9570d0aae9a3ee7dd3dc9">   97</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_circle.html#a616f7fcde6e9570d0aae9a3ee7dd3dc9">GetRadius</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> radius; }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span></div>
+<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="class_circle.html#abfd1d6287b33503a1846914e58fc9ada">  106</a></span>    SDL_FRect <a class="code hl_function" href="class_circle.html#abfd1d6287b33503a1846914e58fc9ada">GetRect</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keywordtype">float</span> radiusScaled = radius * ((<a class="code hl_function" href="class_transformable_object.html#a1e1e3249266fb19fac86479656bbbaed">GetScale</a>().x + <a class="code hl_function" href="class_transformable_object.html#a1e1e3249266fb19fac86479656bbbaed">GetScale</a>().y) * 0.5f);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">return</span> {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            <a class="code hl_function" href="class_transformable_object.html#aac4e90af6fac29d9d3168733dd80c1a5">GetPosition</a>().x - radiusScaled,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>            <a class="code hl_function" href="class_transformable_object.html#aac4e90af6fac29d9d3168733dd80c1a5">GetPosition</a>().y - radiusScaled,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            radiusScaled * 2.0f,</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            radiusScaled * 2.0f</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        };</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    }</div>
+</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordtype">int</span> x; </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordtype">int</span> y; </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordtype">int</span> radius; </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    SDL_Color fillColor; </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    SDL_Color outlineColor; </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>};</div>
+</div>
+<div class="ttc" id="a_game_object_8h_html"><div class="ttname"><a href="_game_object_8h.html">GameObject.h</a></div><div class="ttdoc">Definicja klasy GameObject, będącej bazą dla obiektów gry.</div></div>
+<div class="ttc" id="a_primitive_renderer_8h_html"><div class="ttname"><a href="_primitive_renderer_8h.html">PrimitiveRenderer.h</a></div><div class="ttdoc">Definicja klasy PrimitiveRenderer do rysowania podstawowych prymitywów 2D przy użyciu SDL.</div></div>
+<div class="ttc" id="a_transformable_object_8h_html"><div class="ttname"><a href="_transformable_object_8h.html">TransformableObject.h</a></div><div class="ttdoc">Definicja klasy TransformableObject odpowiedzialnej za transformacje obiektów 2D w przestrzeni.</div></div>
+<div class="ttc" id="aclass_circle_html_a08fb94feafa4f321e70b4ad83a5e62e1"><div class="ttname"><a href="class_circle.html#a08fb94feafa4f321e70b4ad83a5e62e1">Circle::Translate</a></div><div class="ttdeci">void Translate(float dx, float dy) override</div><div class="ttdoc">Przesuwa okrąg o zadany wektor.</div><div class="ttdef"><b>Definicja</b> Circle.cpp:81</div></div>
+<div class="ttc" id="aclass_circle_html_a31cf6d000544623d109efb3c8a9d01cc"><div class="ttname"><a href="class_circle.html#a31cf6d000544623d109efb3c8a9d01cc">Circle::Render</a></div><div class="ttdeci">virtual void Render(SDL_Renderer *renderer) override</div><div class="ttdoc">Renderuje okrąg przy użyciu SDL_Renderera.</div><div class="ttdef"><b>Definicja</b> Circle.cpp:68</div></div>
+<div class="ttc" id="aclass_circle_html_a3be8fdd86d824c91a2aa168712121e3d"><div class="ttname"><a href="class_circle.html#a3be8fdd86d824c91a2aa168712121e3d">Circle::Rotate</a></div><div class="ttdeci">void Rotate(float angleRad) override</div><div class="ttdoc">Obraca okrąg o zadany kąt (w radianach).</div><div class="ttdef"><b>Definicja</b> Circle.cpp:92</div></div>
+<div class="ttc" id="aclass_circle_html_a57945bc63965eddf86fd9a7cf0718834"><div class="ttname"><a href="class_circle.html#a57945bc63965eddf86fd9a7cf0718834">Circle::Draw</a></div><div class="ttdeci">virtual void Draw(PrimitiveRenderer &amp;renderer) const</div><div class="ttdoc">Rysuje okrąg za pomocą zadanego renderera prymitywów.</div><div class="ttdef"><b>Definicja</b> Circle.cpp:47</div></div>
+<div class="ttc" id="aclass_circle_html_a616f7fcde6e9570d0aae9a3ee7dd3dc9"><div class="ttname"><a href="class_circle.html#a616f7fcde6e9570d0aae9a3ee7dd3dc9">Circle::GetRadius</a></div><div class="ttdeci">int GetRadius() const</div><div class="ttdoc">Pobiera promień okręgu.</div><div class="ttdef"><b>Definicja</b> Circle.h:97</div></div>
+<div class="ttc" id="aclass_circle_html_a681d4e73e38be3931c9a61db8220b1d5"><div class="ttname"><a href="class_circle.html#a681d4e73e38be3931c9a61db8220b1d5">Circle::GetY</a></div><div class="ttdeci">int GetY() const</div><div class="ttdoc">Pobiera współrzędną Y środka okręgu.</div><div class="ttdef"><b>Definicja</b> Circle.h:90</div></div>
+<div class="ttc" id="aclass_circle_html_a73a7a8768503547fc05c8c2589a2ca4a"><div class="ttname"><a href="class_circle.html#a73a7a8768503547fc05c8c2589a2ca4a">Circle::ToJson</a></div><div class="ttdeci">virtual nlohmann::json ToJson() const override</div><div class="ttdoc">Serializuje dane okręgu do formatu JSON.</div><div class="ttdef"><b>Definicja</b> Circle.cpp:116</div></div>
+<div class="ttc" id="aclass_circle_html_a9e685945b43cba00c15ca6e6b2ca1c2e"><div class="ttname"><a href="class_circle.html#a9e685945b43cba00c15ca6e6b2ca1c2e">Circle::GetX</a></div><div class="ttdeci">int GetX() const</div><div class="ttdoc">Pobiera współrzędną X środka okręgu.</div><div class="ttdef"><b>Definicja</b> Circle.h:83</div></div>
+<div class="ttc" id="aclass_circle_html_aa3b18815977e60ef68cb933f839b2c50"><div class="ttname"><a href="class_circle.html#aa3b18815977e60ef68cb933f839b2c50">Circle::Circle</a></div><div class="ttdeci">Circle(int cx, int cy, int r, SDL_Color fill, SDL_Color outline)</div><div class="ttdoc">Konstruktor okręgu.</div><div class="ttdef"><b>Definicja</b> Circle.cpp:25</div></div>
+<div class="ttc" id="aclass_circle_html_abfd1d6287b33503a1846914e58fc9ada"><div class="ttname"><a href="class_circle.html#abfd1d6287b33503a1846914e58fc9ada">Circle::GetRect</a></div><div class="ttdeci">SDL_FRect GetRect() const</div><div class="ttdoc">Zwraca prostokąt ograniczający okrąg (bounding box).</div><div class="ttdef"><b>Definicja</b> Circle.h:106</div></div>
+<div class="ttc" id="aclass_circle_html_ad6ca355c954ede58e1de9d8aef1c185c"><div class="ttname"><a href="class_circle.html#ad6ca355c954ede58e1de9d8aef1c185c">Circle::Scale</a></div><div class="ttdeci">void Scale(float sx, float sy) override</div><div class="ttdoc">Skaluje okrąg względem osi X i Y.</div><div class="ttdef"><b>Definicja</b> Circle.cpp:104</div></div>
+<div class="ttc" id="aclass_game_object_html_a7aa1d3e4bc853e5395d30794edd547d9"><div class="ttname"><a href="class_game_object.html#a7aa1d3e4bc853e5395d30794edd547d9">GameObject::GameObject</a></div><div class="ttdeci">GameObject(const std::string &amp;name=&quot;GameObject&quot;)</div><div class="ttdoc">Konstruktor klasy GameObject.</div><div class="ttdef"><b>Definicja</b> GameObject.cpp:20</div></div>
+<div class="ttc" id="aclass_primitive_renderer_html"><div class="ttname"><a href="class_primitive_renderer.html">PrimitiveRenderer</a></div><div class="ttdoc">Klasa PrimitiveRenderer do rysowania prymitywów w przestrzeni 2D.</div><div class="ttdef"><b>Definicja</b> PrimitiveRenderer.h:21</div></div>
+<div class="ttc" id="aclass_transformable_object_html"><div class="ttname"><a href="class_transformable_object.html">TransformableObject</a></div><div class="ttdoc">Klasa TransformableObject reprezentuje obiekt 2D, który można poddać transformacjom.</div><div class="ttdef"><b>Definicja</b> TransformableObject.h:23</div></div>
+<div class="ttc" id="aclass_transformable_object_html_a1e1e3249266fb19fac86479656bbbaed"><div class="ttname"><a href="class_transformable_object.html#a1e1e3249266fb19fac86479656bbbaed">TransformableObject::GetScale</a></div><div class="ttdeci">const Vector2 &amp; GetScale() const</div><div class="ttdoc">Zwraca obecne wartości skali obiektu.</div><div class="ttdef"><b>Definicja</b> TransformableObject.h:92</div></div>
+<div class="ttc" id="aclass_transformable_object_html_aac4e90af6fac29d9d3168733dd80c1a5"><div class="ttname"><a href="class_transformable_object.html#aac4e90af6fac29d9d3168733dd80c1a5">TransformableObject::GetPosition</a></div><div class="ttdeci">const Vector2 &amp; GetPosition() const</div><div class="ttdoc">Zwraca obecną pozycję obiektu.</div><div class="ttdef"><b>Definicja</b> TransformableObject.h:74</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_0b6ee6e7e9547e675db4add2e5de97da.html">Engine</a></li><li class="navelem"><a class="el" href="dir_1dfe4a86cee15d5d6902f8c724dcf913.html">include</a></li><li class="navelem"><a class="el" href="_circle_8h.html">Circle.h</a></li>
+    <li class="footer">Wygenerowano za pomocą <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

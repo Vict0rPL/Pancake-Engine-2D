@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Pancake Engine 2D: Plik źródłowy Engine/include/PrimitiveRenderer.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Pancake Engine 2D
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Szukaj" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano za pomocą Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_primitive_renderer_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Wczytywanie...</div>
+<div class="SRStatus" id="Searching">Szukanie...</div>
+<div class="SRStatus" id="NoMatches">Brak dopasowań</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">PrimitiveRenderer.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_primitive_renderer_8h.html">Idź do dokumentacji tego pliku.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#ifndef PRIMITIVERENDERER_H</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#define PRIMITIVERENDERER_H</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;SDL3/SDL.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="class_primitive_renderer.html">   21</a></span><span class="keyword">class </span><a class="code hl_function" href="class_primitive_renderer.html#ac2f69ded59a23852411631cb581f9dcb">PrimitiveRenderer</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_function" href="class_primitive_renderer.html#ac2f69ded59a23852411631cb581f9dcb">PrimitiveRenderer</a>(SDL_Renderer* renderer);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_primitive_renderer.html#a0f8fdd00dd64b852a796f60b8c691236">DrawPoint</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, SDL_Color color = { 0,0,0,255 });</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_primitive_renderer.html#a78ce9d9bb4b5894d160ebd6d7ce985ac">DrawLine</a>(<span class="keywordtype">int</span> x0, <span class="keywordtype">int</span> y0, <span class="keywordtype">int</span> x1, <span class="keywordtype">int</span> y1, SDL_Color color = { 0,0,0,255 });</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_primitive_renderer.html#a2384139a9959edb6ec2cbcbd5c9fb73d">DrawSquare</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> size, SDL_Color color = { 0,0,0,255 });</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_primitive_renderer.html#a377aa69a334fe7631607975f486af4e8">FillSquare</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> size, SDL_Color color = { 0,0,0,255 });</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_primitive_renderer.html#ad901ff622fd86f2003baf7a840b5c900">DrawCircle</a>(<span class="keywordtype">int</span> x0, <span class="keywordtype">int</span> y0, <span class="keywordtype">int</span> radius, SDL_Color color = { 0,0,0,255 });</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_primitive_renderer.html#afb873ddf897ee62f864602d12a20c4f2">FillCircle</a>(<span class="keywordtype">int</span> x0, <span class="keywordtype">int</span> y0, <span class="keywordtype">int</span> radius, SDL_Color color = { 0,0,0,255 });</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_primitive_renderer.html#a2c934e2ee0f64107f12fa65ee850dde0">DrawEllipse</a>(<span class="keywordtype">int</span> x0, <span class="keywordtype">int</span> y0, <span class="keywordtype">int</span> rx, <span class="keywordtype">int</span> ry, SDL_Color color = { 0,0,0,255 });</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_primitive_renderer.html#ad00b0c333888e8a2b6af2e514c96bc10">FillEllipse</a>(<span class="keywordtype">int</span> x0, <span class="keywordtype">int</span> y0, <span class="keywordtype">int</span> rx, <span class="keywordtype">int</span> ry, SDL_Color color = { 0,0,0,255 });</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_primitive_renderer.html#a1173fc228bf484754c5459bb8b4c52d6">DrawPolygon</a>(<span class="keyword">const</span> std::vector&lt;SDL_Point&gt;&amp; pts, SDL_Color color = { 0,0,0,255 });</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_primitive_renderer.html#a447e103de5af1f71516be8e509580f10">FillPolygon</a>(<span class="keyword">const</span> std::vector&lt;SDL_Point&gt;&amp; pts, SDL_Color color = { 0,0,0,255 });</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    SDL_Renderer* renderer; </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>};</div>
+</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="preprocessor">#endif </span><span class="comment">// PRIMITIVERENDERER_H</span></div>
+<div class="ttc" id="aclass_primitive_renderer_html_a0f8fdd00dd64b852a796f60b8c691236"><div class="ttname"><a href="class_primitive_renderer.html#a0f8fdd00dd64b852a796f60b8c691236">PrimitiveRenderer::DrawPoint</a></div><div class="ttdeci">void DrawPoint(int x, int y, SDL_Color color={ 0, 0, 0, 255 })</div><div class="ttdoc">Rysuje punkt w przestrzeni 2D.</div><div class="ttdef"><b>Definicja</b> PrimitiveRenderer.cpp:33</div></div>
+<div class="ttc" id="aclass_primitive_renderer_html_a1173fc228bf484754c5459bb8b4c52d6"><div class="ttname"><a href="class_primitive_renderer.html#a1173fc228bf484754c5459bb8b4c52d6">PrimitiveRenderer::DrawPolygon</a></div><div class="ttdeci">void DrawPolygon(const std::vector&lt; SDL_Point &gt; &amp;pts, SDL_Color color={ 0, 0, 0, 255 })</div><div class="ttdoc">Rysuje wielokąt.</div><div class="ttdef"><b>Definicja</b> PrimitiveRenderer.cpp:253</div></div>
+<div class="ttc" id="aclass_primitive_renderer_html_a2384139a9959edb6ec2cbcbd5c9fb73d"><div class="ttname"><a href="class_primitive_renderer.html#a2384139a9959edb6ec2cbcbd5c9fb73d">PrimitiveRenderer::DrawSquare</a></div><div class="ttdeci">void DrawSquare(int x, int y, int size, SDL_Color color={ 0, 0, 0, 255 })</div><div class="ttdoc">Rysuje kwadrat.</div><div class="ttdef"><b>Definicja</b> PrimitiveRenderer.cpp:100</div></div>
+<div class="ttc" id="aclass_primitive_renderer_html_a2c934e2ee0f64107f12fa65ee850dde0"><div class="ttname"><a href="class_primitive_renderer.html#a2c934e2ee0f64107f12fa65ee850dde0">PrimitiveRenderer::DrawEllipse</a></div><div class="ttdeci">void DrawEllipse(int x0, int y0, int rx, int ry, SDL_Color color={ 0, 0, 0, 255 })</div><div class="ttdoc">Rysuje elipsę.</div><div class="ttdef"><b>Definicja</b> PrimitiveRenderer.cpp:189</div></div>
+<div class="ttc" id="aclass_primitive_renderer_html_a377aa69a334fe7631607975f486af4e8"><div class="ttname"><a href="class_primitive_renderer.html#a377aa69a334fe7631607975f486af4e8">PrimitiveRenderer::FillSquare</a></div><div class="ttdeci">void FillSquare(int x, int y, int size, SDL_Color color={ 0, 0, 0, 255 })</div><div class="ttdoc">Wypełnia kwadrat kolorem.</div><div class="ttdef"><b>Definicja</b> PrimitiveRenderer.cpp:84</div></div>
+<div class="ttc" id="aclass_primitive_renderer_html_a447e103de5af1f71516be8e509580f10"><div class="ttname"><a href="class_primitive_renderer.html#a447e103de5af1f71516be8e509580f10">PrimitiveRenderer::FillPolygon</a></div><div class="ttdeci">void FillPolygon(const std::vector&lt; SDL_Point &gt; &amp;pts, SDL_Color color={ 0, 0, 0, 255 })</div><div class="ttdoc">Wypełnia wielokąt kolorem.</div><div class="ttdef"><b>Definicja</b> PrimitiveRenderer.cpp:223</div></div>
+<div class="ttc" id="aclass_primitive_renderer_html_a78ce9d9bb4b5894d160ebd6d7ce985ac"><div class="ttname"><a href="class_primitive_renderer.html#a78ce9d9bb4b5894d160ebd6d7ce985ac">PrimitiveRenderer::DrawLine</a></div><div class="ttdeci">void DrawLine(int x0, int y0, int x1, int y1, SDL_Color color={ 0, 0, 0, 255 })</div><div class="ttdoc">Rysuje linię łączącą dwa punkty.</div><div class="ttdef"><b>Definicja</b> PrimitiveRenderer.cpp:49</div></div>
+<div class="ttc" id="aclass_primitive_renderer_html_ac2f69ded59a23852411631cb581f9dcb"><div class="ttname"><a href="class_primitive_renderer.html#ac2f69ded59a23852411631cb581f9dcb">PrimitiveRenderer::PrimitiveRenderer</a></div><div class="ttdeci">PrimitiveRenderer(SDL_Renderer *renderer)</div><div class="ttdoc">Konstruktor klasy PrimitiveRenderer.</div><div class="ttdef"><b>Definicja</b> PrimitiveRenderer.cpp:19</div></div>
+<div class="ttc" id="aclass_primitive_renderer_html_ad00b0c333888e8a2b6af2e514c96bc10"><div class="ttname"><a href="class_primitive_renderer.html#ad00b0c333888e8a2b6af2e514c96bc10">PrimitiveRenderer::FillEllipse</a></div><div class="ttdeci">void FillEllipse(int x0, int y0, int rx, int ry, SDL_Color color={ 0, 0, 0, 255 })</div><div class="ttdoc">Wypełnia elipsę kolorem.</div><div class="ttdef"><b>Definicja</b> PrimitiveRenderer.cpp:167</div></div>
+<div class="ttc" id="aclass_primitive_renderer_html_ad901ff622fd86f2003baf7a840b5c900"><div class="ttname"><a href="class_primitive_renderer.html#ad901ff622fd86f2003baf7a840b5c900">PrimitiveRenderer::DrawCircle</a></div><div class="ttdeci">void DrawCircle(int x0, int y0, int radius, SDL_Color color={ 0, 0, 0, 255 })</div><div class="ttdoc">Rysuje okrąg.</div><div class="ttdef"><b>Definicja</b> PrimitiveRenderer.cpp:138</div></div>
+<div class="ttc" id="aclass_primitive_renderer_html_afb873ddf897ee62f864602d12a20c4f2"><div class="ttname"><a href="class_primitive_renderer.html#afb873ddf897ee62f864602d12a20c4f2">PrimitiveRenderer::FillCircle</a></div><div class="ttdeci">void FillCircle(int x0, int y0, int radius, SDL_Color color={ 0, 0, 0, 255 })</div><div class="ttdoc">Wypełnia okrąg kolorem.</div><div class="ttdef"><b>Definicja</b> PrimitiveRenderer.cpp:118</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_0b6ee6e7e9547e675db4add2e5de97da.html">Engine</a></li><li class="navelem"><a class="el" href="dir_1dfe4a86cee15d5d6902f8c724dcf913.html">include</a></li><li class="navelem"><a class="el" href="_primitive_renderer_8h.html">PrimitiveRenderer.h</a></li>
+    <li class="footer">Wygenerowano za pomocą <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

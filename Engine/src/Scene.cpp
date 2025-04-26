@@ -1,4 +1,10 @@
-// Scene.cpp
+/**
+ * @file Scene.cpp
+ * @brief Implementacja klasy `Scene` odpowiedzialnej za zarządzanie obiektami w grze, ich aktualizowanie, renderowanie oraz zapis i odczyt sceny z pliku JSON.
+ *
+ * Klasa `Scene` zarządza wszystkimi obiektami gry, ich cyklem życia oraz ich rysowaniem. Oferuje także możliwość zapisu i ładowania stanu gry z pliku JSON.
+ */
+
 #include "Scene.h"
 #include "Point2D.h"
 #include "Line.h"
@@ -10,10 +16,23 @@
 #include <fstream>
 #include <iostream>
 
+ /**
+  * @brief Inicjalizuje scenę.
+  *
+  * Ta metoda jest odpowiedzialna za ewentualne dodanie domyślnych obiektów do sceny, jeśli zajdzie taka potrzeba w przyszłości.
+  */
 void Scene::Load() {
     // initialize default objects here if later needed
 }
 
+/**
+ * @brief Aktualizuje wszystkie obiekty w scenie.
+ *
+ * Metoda ta jest odpowiedzialna za zaktualizowanie wszystkich obiektów w scenie na podstawie upływającego czasu (deltaTime).
+ * Dodatkowo usuwa obiekty, które zostały oznaczone do usunięcia.
+ *
+ * @param deltaTime Czas, który minął od ostatniej aktualizacji (w sekundach).
+ */
 void Scene::Update(float deltaTime) {
     // Update all objects first
     for (auto& obj : gameObjects) {
@@ -35,17 +54,38 @@ void Scene::Update(float deltaTime) {
     }
 }
 
-
+/**
+ * @brief Renderuje wszystkie obiekty w scenie.
+ *
+ * Ta metoda renderuje wszystkie obiekty w scenie za pomocą podanego renderer'a SDL.
+ *
+ * @param renderer Wskaźnik na obiekt SDL_Renderer, który będzie używany do rysowania obiektów.
+ */
 void Scene::Render(SDL_Renderer* renderer) {
     for (auto& obj : gameObjects) {
         obj->Render(renderer);
     }
 }
 
+/**
+ * @brief Dodaje obiekt do sceny.
+ *
+ * Metoda dodaje nowy obiekt do sceny. Obiekt jest przekazywany jako unikalny wskaźnik.
+ *
+ * @param gameObject Unikalny wskaźnik na obiekt do dodania do sceny.
+ */
 void Scene::AddGameObject(std::unique_ptr<GameObject> gameObject) {
     gameObjects.push_back(std::move(gameObject));
 }
 
+/**
+ * @brief Serializuje scenę do formatu JSON i zapisuje do pliku.
+ *
+ * Metoda zapisuje wszystkie obiekty gry w scenie do pliku w formacie JSON. Każdy obiekt jest przekształcany na odpowiednią reprezentację JSON.
+ *
+ * @param filename Nazwa pliku, do którego scena zostanie zapisana.
+ * @return Zwraca true, jeśli zapis do pliku zakończył się powodzeniem, w przeciwnym razie false.
+ */
 bool Scene::SerializeToJson(const std::string& filename) const {
     nlohmann::json j;
     j["gameObjects"] = nlohmann::json::array();
@@ -61,6 +101,15 @@ bool Scene::SerializeToJson(const std::string& filename) const {
     return true;
 }
 
+/**
+ * @brief Ładuje scenę z pliku JSON i tworzy obiekty na podstawie zapisanych danych.
+ *
+ * Metoda ta odczytuje plik JSON, wczytuje informacje o obiektach w grze i tworzy odpowiednie obiekty, które następnie dodaje do nowej instancji sceny.
+ *
+ * @param filename Nazwa pliku JSON, z którego scena ma zostać załadowana.
+ * @param renderer Wskaźnik na renderer SDL, który może być użyty przy ładowaniu obiektów gry, np. gracza.
+ * @return Unikalny wskaźnik na nową scenę załadowaną z pliku.
+ */
 std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename, SDL_Renderer* renderer)
 {
     std::ifstream file(filename);
@@ -76,7 +125,7 @@ std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename, SDL_Rend
     for (auto& objJson : j["gameObjects"]) {
         std::string type = objJson.value("type", "");
 
-        // 1. Create the right object, but don�t add it yet.
+        // 1. Create the right object, but don’t add it yet.
         std::unique_ptr<GameObject> obj;
 
         if (type == "Point2D") {
@@ -181,7 +230,7 @@ std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename, SDL_Rend
             continue;
         }
 
-        // 2. If it�s transformable, read position/rotation/scale.
+        // 2. If it’s transformable, read position/rotation/scale.
         if (auto* t = dynamic_cast<TransformableObject*>(obj.get())) {
             auto& pj = objJson["position"];
             t->SetPosition({ pj.value("x",0.0f), pj.value("y",0.0f) });
@@ -190,7 +239,6 @@ std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename, SDL_Rend
             t->SetScale({ sj.value("x",1.0f), sj.value("y",1.0f) });
         }
 
-
         // 3. Finally, add to the scene.
         scene->AddGameObject(std::move(obj));
     }
@@ -198,6 +246,13 @@ std::unique_ptr<Scene> Scene::LoadFromJson(const std::string& filename, SDL_Rend
     return scene;
 }
 
+/**
+ * @brief Oznacza obiekt do usunięcia z gry.
+ *
+ * Metoda ta dodaje obiekt do listy obiektów, które mają zostać usunięte po zakończeniu bieżącej klatki aktualizacji.
+ *
+ * @param obj Wskaźnik na obiekt do usunięcia.
+ */
 void Scene::MarkForRemoval(GameObject* obj) {
     objectsToRemove.push_back(obj);
 }
